@@ -33,7 +33,7 @@
     "json-stable-stringify": "^1.0.1",
     "lmdb-store": "^0.6.10",
     "loader-utils": "^1.2.3",
-    "node-sass": "sass/node-sass#v5",
+    "node-sass": "7.0.1",
     "normalize-path": "^3.0.0",
     "pirates": "^4.0.1",
     "postcss": "^8.2.10",
