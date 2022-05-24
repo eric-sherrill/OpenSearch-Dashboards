@@ -37,7 +37,7 @@ import { EuiBetaBadge, EuiSpacer, EuiTitle, EuiText, EuiCode, EuiLink } from '@e
 import { i18n } from '@osd/i18n';
 import { FormattedMessage } from '@osd/i18n/react';
 import { DocLinksStart } from 'opensearch-dashboards/public';
-import { useOpenSearchDashboards } from '../../../../../../../plugins/opensearch_dashboards_react/public';
+import { useOpenSearchDashboards } from '../../../../../../opensearch_dashboards_react/public';
 import { IndexPatternManagmentContext } from '../../../../types';
 
 export const Header = ({
@@ -93,7 +93,11 @@ export const Header = ({
             }}
           />
           <br />
-          <EuiLink href={docLinks.links.indexPatterns.introduction} target="_blank" external>
+          <EuiLink
+            href={docLinks.links.noDocumentation.indexPatterns.introduction}
+            target="_blank"
+            external
+          >
             <FormattedMessage
               id="indexPatternManagement.createIndexPattern.documentation"
               defaultMessage="Read documentation"

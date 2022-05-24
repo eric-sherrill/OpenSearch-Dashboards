@@ -36,7 +36,7 @@ import { EuiCallOut, EuiIcon, EuiLink, EuiSpacer } from '@elastic/eui';
 
 import { FormattedMessage } from '@osd/i18n/react';
 
-import { useOpenSearchDashboards } from '../../../../../../../plugins/opensearch_dashboards_react/public';
+import { useOpenSearchDashboards } from '../../../../../../opensearch_dashboards_react/public';
 import { IndexPatternManagmentContext } from '../../../../types';
 
 export interface ScriptingWarningCallOutProps {
@@ -45,7 +45,7 @@ export interface ScriptingWarningCallOutProps {
 
 export const ScriptingWarningCallOut = ({ isVisible = false }: ScriptingWarningCallOutProps) => {
   const docLinksScriptedFields = useOpenSearchDashboards<IndexPatternManagmentContext>().services
-    .docLinks?.links.scriptedFields;
+    .docLinks?.links.noDocumentation.scriptedFields;
   return isVisible ? (
     <Fragment>
       <EuiCallOut

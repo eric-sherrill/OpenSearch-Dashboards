@@ -1,4 +1,4 @@
-<p align="center"><img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_darkmode.svg" height="64px"/></p>
+<p align="center"><img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_dashboards_logo_darkmode.svg" height="64px"/></p>
 <h1 align="center">OpenSearch Dashboards Developer Guide</h1>
 
 This guide applies to all development within the OpenSearch Dashboards project and is recommended for the development of all OpenSearch Dashboards plugins.
@@ -22,15 +22,12 @@ If you would like to install and run this project, please see the [Downloads Pag
 
 #### Prerequisites
 
-You need to have an OpenSearch server up and running to be able to run OpenSearch
-Dashboards. The easiest way to do it is [using Docker](https://opensearch.org/docs/opensearch/install/docker).
-
 We recommend using [Node Version Manager](https://github.com/nvm-sh/nvm) to install
 the node version we need.
 
 ### Bootstrap OpenSearch Dashboards
 
-While OpenSearch is starting, you can already bootstrap OpenSearch Dashboards:
+First we need to clone and bootstrap OpenSearch Dashboards:
 ```bash
 $ git clone https://github.com/opensearch-project/OpenSearch-Dashboards.git
 $ cd OpenSearch-Dashboards
@@ -52,6 +49,17 @@ opensearch.username: "admin" # Default username on the docker image
 opensearch.password: "admin" # Default password on the docker image
 opensearch.ssl.verificationMode: none
 ```
+
+### Run OpenSearch
+
+You need to have an OpenSearch server up and running to be able to run OpenSearch
+Dashboards. In a separate terminal you can run the latest snapshot built using:
+
+```bash
+$ yarn opensearch snapshot 
+```
+
+**Warning:** Starting the Dashboards instance before or during the initialization of the OpenSearch Server can cause Dashboards to sometimes misbehave. Ensure that the OpenSearch server instance is up and running first before starting up the Dashboards dev server from the next step.
 
 ### Run OpenSearch Dashboards
 
