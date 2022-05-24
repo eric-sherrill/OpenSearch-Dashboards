@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,18 +28,13 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import Fs from 'fs';
 import { resolve } from 'path';
 import { promisify } from 'util';
 
-import Accept from 'accept';
-import Boom from 'boom';
-import Hapi from 'hapi';
+import Accept from '@hapi/accept';
+import Boom from '@hapi/boom';
+import Hapi from '@hapi/hapi';
 
 import { FileHashCache } from './file_hash_cache';
 import { getFileHash } from './file_hash';

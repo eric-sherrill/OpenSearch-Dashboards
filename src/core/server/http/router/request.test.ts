@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,16 +28,11 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 jest.mock('uuid', () => ({
   v4: jest.fn().mockReturnValue('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'),
 }));
 
-import { RouteOptions } from 'hapi';
+import { RouteOptions } from '@hapi/hapi';
 import { OpenSearchDashboardsRequest } from './request';
 import { httpServerMock } from '../http_server.mocks';
 import { schema } from '@osd/config-schema';
@@ -218,6 +216,7 @@ describe('OpenSearchDashboardsRequest', () => {
       const request = httpServerMock.createRawRequest({
         route: {
           settings: {
+            // @ts-expect-error According to types/hapi__hapi, `auth` can't be a boolean, but it can according to the @hapi/hapi source (https://github.com/hapijs/hapi/blob/v20.2.1/lib/route.js#L134)
             auth,
           },
         },
@@ -227,11 +226,10 @@ describe('OpenSearchDashboardsRequest', () => {
       expect(opensearchDashboardsRequest.route.options.authRequired).toBe(false);
     });
     it('handles required auth: { mode: "required" }', () => {
-      const auth: RouteOptions['auth'] = { mode: 'required' };
       const request = httpServerMock.createRawRequest({
         route: {
           settings: {
-            auth,
+            auth: { mode: 'required' },
           },
         },
       });
@@ -241,11 +239,10 @@ describe('OpenSearchDashboardsRequest', () => {
     });
 
     it('handles required auth: { mode: "optional" }', () => {
-      const auth: RouteOptions['auth'] = { mode: 'optional' };
       const request = httpServerMock.createRawRequest({
         route: {
           settings: {
-            auth,
+            auth: { mode: 'optional' },
           },
         },
       });
@@ -255,11 +252,10 @@ describe('OpenSearchDashboardsRequest', () => {
     });
 
     it('handles required auth: { mode: "try" } as "optional"', () => {
-      const auth: RouteOptions['auth'] = { mode: 'try' };
       const request = httpServerMock.createRawRequest({
         route: {
           settings: {
-            auth,
+            auth: { mode: 'try' },
           },
         },
       });
@@ -269,26 +265,24 @@ describe('OpenSearchDashboardsRequest', () => {
     });
 
     it('throws on auth: strategy name', () => {
-      const auth: RouteOptions['auth'] = 'session';
       const request = httpServerMock.createRawRequest({
         route: {
           settings: {
-            auth,
+            auth: { strategies: ['session'] },
           },
         },
       });
 
       expect(() => OpenSearchDashboardsRequest.from(request)).toThrowErrorMatchingInlineSnapshot(
-        `"unexpected authentication options: \\"session\\" for route: /"`
+        `"unexpected authentication options: {\\"strategies\\":[\\"session\\"]} for route: /"`
       );
     });
 
     it('throws on auth: { mode: unexpected mode }', () => {
-      const auth: RouteOptions['auth'] = { mode: undefined };
       const request = httpServerMock.createRawRequest({
         route: {
           settings: {
-            auth,
+            auth: { mode: undefined },
           },
         },
       });

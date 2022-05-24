@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-const babelJest = require('babel-jest');
-
-module.exports = babelJest.createTransformer({
+module.exports = require('babel-jest').default.createTransformer({
   presets: [
     [
       require.resolve('@osd/babel-preset/node_preset'),

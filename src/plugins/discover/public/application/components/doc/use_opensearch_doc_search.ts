@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import { useEffect, useState } from 'react';
 import { IndexPattern, getServices } from '../../../opensearch_dashboards_services';
 import { DocProps } from './doc';
@@ -44,7 +43,7 @@ export enum OpenSearchRequestState {
 
 /**
  * helper function to build a query body for OpenSearch
- * https://www.opensearch.org/guide/en/elasticsearch/reference/current//query-dsl-ids-query.html
+ * https://opensearch.org/docs/latest/opensearch/query-dsl/index/
  */
 export function buildSearchBody(id: string, indexPattern: IndexPattern): Record<string, any> {
   const computedFields = indexPattern.getComputedFields();

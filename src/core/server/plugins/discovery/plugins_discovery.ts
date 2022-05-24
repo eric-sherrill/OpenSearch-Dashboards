@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { readdir, stat } from 'fs';
@@ -149,7 +147,7 @@ function findManifestInFolder(
   notFound: () => never[] | Observable<string | PluginDiscoveryError>
 ): string[] | Observable<string | PluginDiscoveryError> {
   return fsStat$(resolve(dir, 'opensearch_dashboards.json')).pipe(
-    mergeMap((stats) => {
+    mergeMap((stats: any) => {
       // `opensearch_dashboards.json` exists in given directory, we got a plugin
       if (stats.isFile()) {
         return [dir];
@@ -180,7 +178,7 @@ function mapSubdirectories(
     mergeMap((subDirs: string[]) => subDirs.map((subDir) => resolve(dir, subDir))),
     mergeMap((subDir) =>
       fsStat$(subDir).pipe(
-        mergeMap((pathStat) => (pathStat.isDirectory() ? mapFunc(subDir) : [])),
+        mergeMap((pathStat: any) => (pathStat.isDirectory() ? mapFunc(subDir) : [])),
         catchError((subDirStatError) => [
           PluginDiscoveryError.invalidPluginPath(subDir, subDirStatError),
         ])

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { i18n } from '@osd/i18n';
@@ -69,7 +67,7 @@ export const createMetricbeatInstructions = (context?: TutorialContext) => ({
       ],
       textPost: i18n.translate('home.tutorials.common.metricbeatInstructions.install.debTextPost', {
         defaultMessage: 'Looking for the 32-bit packages? See the [Download page]({link}).',
-        values: { link: 'https://www.opensearch.org/downloads/beats/metricbeat' },
+        values: { link: 'https://opensearch.org/docs/latest/downloads/beats/metricbeat' },
       }),
     },
     RPM: {
@@ -88,7 +86,7 @@ export const createMetricbeatInstructions = (context?: TutorialContext) => ({
       ],
       textPost: i18n.translate('home.tutorials.common.metricbeatInstructions.install.debTextPost', {
         defaultMessage: 'Looking for the 32-bit packages? See the [Download page]({link}).',
-        values: { link: 'https://www.opensearch.org/downloads/beats/metricbeat' },
+        values: { link: 'https://opensearch.org/docs/latest/downloads/beats/metricbeat' },
       }),
     },
     WINDOWS: {
@@ -111,7 +109,7 @@ export const createMetricbeatInstructions = (context?: TutorialContext) => ({
             folderPath: '`C:\\Program Files`',
             metricbeatLink:
               '{config.docs.beats.metricbeat}/metricbeat-installation-configuration.html',
-            opensearchLink: 'https://www.opensearch.org/downloads/beats/metricbeat',
+            opensearchLink: 'https://opensearch.org/docs/latest/downloads/beats/metricbeat',
           },
         }
       ),

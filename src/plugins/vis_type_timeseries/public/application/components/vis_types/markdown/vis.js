@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,16 +28,12 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import uuid from 'uuid';
 import { get } from 'lodash';
-import { Markdown } from '../../../../../../../plugins/opensearch_dashboards_react/public';
+import { Markdown } from '../../../../../../opensearch_dashboards_react/public';
 
 import { ErrorComponent } from '../../error';
 import { replaceVars } from '../../lib/replace_vars';

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React from 'react';
 import { AggRow } from './agg_row';
 import { AggSelect } from './agg_select';
@@ -49,7 +47,7 @@ import {
 } from '@elastic/eui';
 import { injectI18n, FormattedMessage } from '@osd/i18n/react';
 import { OSD_FIELD_TYPES } from '../../../../../../plugins/data/public';
-import { PANEL_TYPES } from '../../../../../../plugins/vis_type_timeseries/common/panel_types';
+import { PANEL_TYPES } from '../../../../common/panel_types';
 
 const isFieldTypeEnabled = (fieldRestrictions, fieldType) =>
   fieldRestrictions.length ? fieldRestrictions.includes(fieldType) : true;

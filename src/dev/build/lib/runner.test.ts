@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -69,6 +72,11 @@ const setup = async () => {
     isRelease: true,
     targetAllPlatforms: true,
     versionQualifier: '-SNAPSHOT',
+    targetPlatforms: {
+      linux: false,
+      linuxArm: false,
+      darwin: false,
+    },
   });
 
   const run = createRunner({

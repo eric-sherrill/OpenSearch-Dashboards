@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-import { Lifecycle, Request, ResponseToolkit } from 'hapi';
+import { Lifecycle, Request, ResponseToolkit } from '@hapi/hapi';
 import { Logger } from '../../logging';
 import {
   HapiResponseAdapter,
@@ -213,8 +212,7 @@ export function adoptToHapiAuthFormat(
 
         return hapiResponseAdapter.handle(
           lifecycleResponseFactory.redirected({
-            // hapi doesn't accept string[] as a valid header
-            headers: result.headers as any,
+            headers: result.headers,
           })
         );
       }

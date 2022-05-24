@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { i18n } from '@osd/i18n';
 import { tableVisResponseHandler, TableContext } from './table_vis_response_handler';
 import {
@@ -37,6 +35,7 @@ import {
   OpenSearchDashboardsDatatable,
   Render,
 } from '../../expressions/public';
+import { VisRenderValue } from '../../visualizations/public';
 
 export type Input = OpenSearchDashboardsDatatable;
 
@@ -44,15 +43,9 @@ interface Arguments {
   visConfig: string | null;
 }
 
-type VisParams = Required<Arguments>;
-
-interface RenderValue {
+interface RenderValue extends VisRenderValue {
   visData: TableContext;
   visType: 'table';
-  visConfig: VisParams;
-  params: {
-    listenOnChange: boolean;
-  };
 }
 
 export const createTableVisFn = (): ExpressionFunctionDefinition<

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { get, map } from 'lodash';
@@ -105,7 +103,7 @@ async function getBody(
 ) {
   const isFieldObject = (f: any): f is IFieldType => Boolean(f && f.name);
 
-  // https://www.opensearch.org/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html#_standard_operators
+  // See https://opensearch.org/docs/latest/opensearch/query-dsl/term/#regex
   const getEscapedQuery = (q: string = '') =>
     q.replace(/[.?+*|{}[\]()"\\#@&<>~]/g, (match) => `\\${match}`);
 

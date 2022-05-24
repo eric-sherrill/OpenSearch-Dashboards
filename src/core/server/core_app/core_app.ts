@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import Path from 'path';
 import { fromRoot } from '../../../core/server/utils';
 
@@ -89,6 +88,7 @@ export class CoreApp {
   }
   private registerStaticDirs(coreSetup: InternalCoreSetup) {
     coreSetup.http.registerStaticDir('/ui/{path*}', Path.resolve(__dirname, './assets'));
+    coreSetup.http.registerStaticDir('/ui/assets/{path*}', fromRoot('assets'));
 
     coreSetup.http.registerStaticDir(
       '/node_modules/@osd/ui-framework/dist/{path*}',

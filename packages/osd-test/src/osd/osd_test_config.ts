@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import url from 'url';
 import { opensearchDashboardsTestUser } from './users';
 
@@ -52,11 +51,11 @@ export const osdTestConfig = new (class OsdTestConfig {
       const testOpenSearchDashboardsUrl = url.parse(process.env.TEST_OPENSEARCH_DASHBOARDS_URL);
       return {
         protocol: testOpenSearchDashboardsUrl.protocol?.slice(0, -1),
-        hostname: testOpenSearchDashboardsUrl.hostname,
+        hostname: testOpenSearchDashboardsUrl.hostname ?? undefined,
         port: testOpenSearchDashboardsUrl.port
           ? parseInt(testOpenSearchDashboardsUrl.port, 10)
           : undefined,
-        auth: testOpenSearchDashboardsUrl.auth,
+        auth: testOpenSearchDashboardsUrl.auth ?? undefined,
         username: testOpenSearchDashboardsUrl.auth?.split(':')[0],
         password: testOpenSearchDashboardsUrl.auth?.split(':')[1],
       };

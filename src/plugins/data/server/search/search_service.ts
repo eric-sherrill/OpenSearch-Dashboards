@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -109,7 +107,7 @@ export class SearchService implements Plugin<ISearchSetup, ISearchStart> {
     core: CoreSetup<{}, DataPluginStart>,
     { registerFunction, usageCollection }: SearchServiceSetupDependencies
   ): ISearchSetup {
-    const usage = usageCollection ? usageProvider(core) : undefined;
+    const usage = usageCollection ? usageProvider(core, this.initializerContext) : undefined;
 
     const router = core.http.createRouter();
     const routeDependencies = {

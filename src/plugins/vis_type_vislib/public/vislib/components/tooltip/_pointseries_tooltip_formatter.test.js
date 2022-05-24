@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import _ from 'lodash';
@@ -94,5 +92,59 @@ describe('tooltipFormatter', function () {
     const $el = $(tooltipFormatter(event));
     const $rows = $el.find('tr');
     expect($rows.length).toBe(3);
+  });
+
+  it('renders correctly on split series data', function () {
+    const rawTable = {
+      columns: [
+        {
+          id: 'col-1',
+          name: 'first',
+        },
+        {
+          id: 'col-2',
+          name: 'second',
+        },
+        {
+          id: 'col-3',
+          name: 'third',
+        },
+      ],
+      rows: [
+        {
+          'col-1': 'A',
+          'col-2': 'C',
+          'col-3': 10,
+        },
+        {
+          'col-1': 'B',
+          'col-2': 'C',
+          'col-3': 20,
+        },
+      ],
+    };
+
+    const event = _.cloneDeep(baseEvent);
+
+    event.datum.yRaw = {
+      table: rawTable,
+      column: 2,
+    };
+
+    const $el = $(tooltipFormatter(event));
+    const $rows = $el.find('tr');
+    expect($rows.length).toBe(3);
+
+    const $row1 = $rows.eq(0).find('td');
+    expect(cell($row1, 0)).toBe('inner');
+    expect(cell($row1, 1)).toBe('3');
+
+    const $row2 = $rows.eq(1).find('td');
+    expect(cell($row2, 0)).toBe('third');
+    expect(cell($row2, 1)).toBe('2');
+
+    const $row3 = $rows.eq(2).find('td');
+    expect(cell($row3, 0)).toBe('top');
+    expect(cell($row3, 1)).toBe('1');
   });
 });

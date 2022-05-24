@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -89,7 +87,6 @@ describe('CoreUsageDataService', () => {
               'docs.count': 10,
               'docs.deleted': 10,
               'store.size': 1000,
-              'pri.store.size': 2000,
             },
           ],
         } as any);
@@ -98,7 +95,6 @@ describe('CoreUsageDataService', () => {
             {
               name: '.kibana_1',
               'docs.count': 20,
-              'docs.deleted': 20,
               'store.size': 2000,
               'pri.store.size': 4000,
             },
@@ -135,6 +131,9 @@ describe('CoreUsageDataService', () => {
                   "certificateAuthoritiesConfigured": false,
                   "certificateConfigured": false,
                   "cipherSuites": Array [
+                    "TLS_AES_256_GCM_SHA384",
+                    "TLS_CHACHA20_POLY1305_SHA256",
+                    "TLS_AES_128_GCM_SHA256",
                     "ECDHE-RSA-AES128-GCM-SHA256",
                     "ECDHE-ECDSA-AES128-GCM-SHA256",
                     "ECDHE-RSA-AES256-GCM-SHA384",
@@ -218,13 +217,13 @@ describe('CoreUsageDataService', () => {
                     "alias": ".kibana_task_manager",
                     "docsCount": 10,
                     "docsDeleted": 10,
-                    "primaryStoreSizeBytes": 2000,
+                    "primaryStoreSizeBytes": 0,
                     "storeSizeBytes": 1000,
                   },
                   Object {
                     "alias": ".kibana_task_manager",
                     "docsCount": 20,
-                    "docsDeleted": 20,
+                    "docsDeleted": 0,
                     "primaryStoreSizeBytes": 4000,
                     "storeSizeBytes": 2000,
                   },

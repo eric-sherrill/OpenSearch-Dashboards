@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,12 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-import { isBoom } from 'boom';
+import { isBoom } from '@hapi/boom';
 import { schema } from '@osd/config-schema';
 import { getFields } from '../lib/get_fields';
 import { Framework } from '../plugin';
@@ -51,7 +49,7 @@ export const fieldsRoutes = (framework: Framework) => {
           return res.customError({
             body: err.output.payload,
             statusCode: err.output.statusCode,
-            headers: err.output.headers,
+            headers: err.output.headers as { [key: string]: string },
           });
         }
 

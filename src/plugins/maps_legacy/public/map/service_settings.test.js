@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 jest.mock('../opensearch_dashboards_services', () => ({
@@ -108,7 +106,7 @@ describe('service_settings (FKA tile_map test)', function () {
       expect(attrs.url.includes('{y}')).toEqual(true);
       expect(attrs.url.includes('{z}')).toEqual(true);
       expect(attrs.attribution).toEqual(
-        '<a rel="noreferrer noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> | <a rel="noreferrer noopener" href="https://openmaptiles.org">OpenMapTiles</a> | <a rel="noreferrer noopener" href="https://www.maptiler.com">MapTiler</a> | <a rel="noreferrer noopener" href="https://www.opensearch.org/elastic-maps-service">&lt;iframe id=\'iframe\' style=\'position:fixed;height: 40%;width: 100%;top: 60%;left: 5%;right:5%;border: 0px;background:white;\' src=\'http://256.256.256.256\'&gt;&lt;/iframe&gt;</a>'
+        '<a rel="noreferrer noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> | <a rel="noreferrer noopener" href="https://openmaptiles.org">OpenMapTiles</a> | <a rel="noreferrer noopener" href="https://www.maptiler.com">MapTiler</a> | <a rel="noreferrer noopener" href="https://opensearch.org/docs/latest/dashboards/maptiles/">&lt;iframe id=\'iframe\' style=\'position:fixed;height: 40%;width: 100%;top: 60%;left: 5%;right:5%;border: 0px;background:white;\' src=\'http://256.256.256.256\'&gt;&lt;/iframe&gt;</a>'
       );
 
       const urlObject = url.parse(attrs.url, true);
@@ -189,7 +187,7 @@ describe('service_settings (FKA tile_map test)', function () {
             minZoom: 0,
             maxZoom: 10,
             attribution:
-              '<a rel="noreferrer noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> | <a rel="noreferrer noopener" href="https://openmaptiles.org">OpenMapTiles</a> | <a rel="noreferrer noopener" href="https://www.maptiler.com">MapTiler</a> | <a rel="noreferrer noopener" href="https://www.opensearch.org/elastic-maps-service">&lt;iframe id=\'iframe\' style=\'position:fixed;height: 40%;width: 100%;top: 60%;left: 5%;right:5%;border: 0px;background:white;\' src=\'http://256.256.256.256\'&gt;&lt;/iframe&gt;</a>',
+              '<a rel="noreferrer noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> | <a rel="noreferrer noopener" href="https://openmaptiles.org">OpenMapTiles</a> | <a rel="noreferrer noopener" href="https://www.maptiler.com">MapTiler</a> | <a rel="noreferrer noopener" href="https://opensearch.org/docs/latest/dashboards/maptiles/">&lt;iframe id=\'iframe\' style=\'position:fixed;height: 40%;width: 100%;top: 60%;left: 5%;right:5%;border: 0px;background:white;\' src=\'http://256.256.256.256\'&gt;&lt;/iframe&gt;</a>',
             subdomains: [],
           },
         ];
@@ -306,7 +304,7 @@ describe('service_settings (FKA tile_map test)', function () {
     it('should load manifest (individual props)', async () => {
       const expected = {
         attribution:
-          '<a rel="noreferrer noopener" href="http://www.naturalearthdata.com/about/terms-of-use">Made with NaturalEarth</a> | <a rel="noreferrer noopener" href="https://www.opensearch.org/elastic-maps-service">OpenSearch Maps Service</a>',
+          '<a rel="noreferrer noopener" href="http://www.naturalearthdata.com/about/terms-of-use">Made with NaturalEarth</a> | <a rel="noreferrer noopener" href="https://opensearch.org/docs/latest/dashboards/maptiles/">OpenSearch Maps Service</a>',
         format: 'geojson',
         fields: [
           { type: 'id', name: 'iso2', description: 'ISO 3166-1 alpha-2 Code' },

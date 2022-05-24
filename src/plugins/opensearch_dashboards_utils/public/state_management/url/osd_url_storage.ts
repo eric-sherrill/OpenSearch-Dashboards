@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { format as formatUrl } from 'url';
@@ -251,7 +249,8 @@ export const createOsdUrlControls = (
  * 4. Hash history with base path
  */
 export function getRelativeToHistoryPath(absoluteUrl: string, history: History): History.Path {
-  function stripBasename(path: string = '') {
+  function stripBasename(path: string | null) {
+    if (path === null) path = '';
     const stripLeadingHash = (_: string) => (_.charAt(0) === '#' ? _.substr(1) : _);
     const stripTrailingSlash = (_: string) =>
       _.charAt(_.length - 1) === '/' ? _.substr(0, _.length - 1) : _;
@@ -264,10 +263,12 @@ export function getRelativeToHistoryPath(absoluteUrl: string, history: History):
 
   return formatUrl({
     pathname: stripBasename(parsedUrl.pathname),
+    // @ts-expect-error
     search: stringify(urlUtils.encodeQuery(parsedUrl.query), { sort: false, encode: false }),
     hash: parsedHash
       ? formatUrl({
           pathname: parsedHash.pathname,
+          // @ts-expect-error
           search: stringify(urlUtils.encodeQuery(parsedHash.query), { sort: false, encode: false }),
         })
       : parsedUrl.hash,

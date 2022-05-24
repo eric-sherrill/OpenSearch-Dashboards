@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { Vis } from '../types';
 import {
   VisualizeInput,
@@ -38,7 +36,7 @@ import {
   VisualizeByReferenceInput,
   VisualizeSavedObjectAttributes,
 } from './visualize_embeddable';
-import { IContainer, ErrorEmbeddable } from '../../../../plugins/embeddable/public';
+import { IContainer, ErrorEmbeddable } from '../../../embeddable/public';
 import { DisabledLabEmbeddable } from './disabled_lab_embeddable';
 import {
   getSavedVisualizationsLoader,

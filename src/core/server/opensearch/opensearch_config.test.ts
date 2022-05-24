@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import {
@@ -52,11 +50,11 @@ const applyOpenSearchDeprecations = (
   _config[path] = settings;
   const migrated = applyDeprecations(
     _config,
-    deprecations.map((deprecation) => ({
+    deprecations.map((deprecation: any) => ({
       deprecation,
       path,
     })),
-    (msg) => deprecationMessages.push(msg)
+    (msg: any) => deprecationMessages.push(msg)
   );
   return {
     messages: deprecationMessages,
@@ -80,6 +78,10 @@ test('set correct defaults', () => {
       ],
       "ignoreVersionMismatch": false,
       "logQueries": false,
+      "memoryCircuitBreaker": Object {
+        "enabled": false,
+        "maxPercentage": 1,
+      },
       "optimizedHealthcheckId": undefined,
       "password": undefined,
       "pingTimeout": "PT30S",
@@ -439,6 +441,7 @@ describe('deprecations', () => {
     expect(messages).toMatchInlineSnapshot(`
       Array [
         "\\"elasticsearch.requestHeadersWhitelist\\" is deprecated and has been replaced by \\"opensearch.requestHeadersWhitelist\\"",
+        "\\"opensearch.requestHeadersWhitelist\\" is deprecated and has been replaced by \\"opensearch.requestHeadersAllowlist\\"",
       ]
     `);
   });

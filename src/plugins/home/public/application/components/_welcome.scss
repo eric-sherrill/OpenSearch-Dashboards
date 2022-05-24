@@ -10,8 +10,19 @@
 
 .homWelcome__logo {
   margin-bottom: $euiSizeXL;
+
   @include opensearchDashboardsCircleLogo;
   @include euiBottomShadowMedium;
+}
+
+.homWelcome__customLogoContainer {
+  height: 80px;
+  padding: 10px;
+}
+
+.homWelcome__customLogo {
+  height: 100%;
+  max-width: 100%;
 }
 
 .homWelcome__footerAction {

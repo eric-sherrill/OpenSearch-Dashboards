@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,24 +28,19 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import {
   MockLegacyScopedClusterClient,
   MockOpenSearchClient,
   legacyClusterClientInstanceMock,
 } from './core_service.test.mocks';
 
-import Boom from 'boom';
-import { Request } from 'hapi';
+import Boom from '@hapi/boom';
+import { Request } from '@hapi/hapi';
 import { errors as opensearchErrors } from 'elasticsearch';
 import { LegacyOpenSearchErrorHelpers } from '../../opensearch/legacy';
 
 import { opensearchClientMock } from '../../opensearch/client/mocks';
-import { ResponseError } from '@elastic/elasticsearch/lib/errors';
+import { ResponseError } from '@opensearch-project/opensearch/lib/errors';
 import * as osdTestServer from '../../../test_helpers/osd_server';
 import { InternalOpenSearchServiceStart } from '../../opensearch';
 

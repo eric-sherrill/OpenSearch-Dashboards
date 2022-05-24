@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,12 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-import Hapi from 'hapi';
+import Hapi from '@hapi/hapi';
 
 import { createBundlesRoute } from './bundles_route';
 import { getNpUiPluginPublicDirs } from './np_ui_plugin_public_dirs';

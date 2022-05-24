@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { mount, ReactWrapper } from 'enzyme';
@@ -82,6 +80,13 @@ function mockProps() {
     navigateToApp: () => Promise.resolve(),
     navigateToUrl: () => Promise.resolve(),
     customNavLink$: new BehaviorSubject(undefined),
+    branding: {
+      darkMode: false,
+      mark: {
+        defaultUrl: '/defaultModeLogo',
+        darkModeUrl: '/darkModeLogo',
+      },
+    },
   };
 }
 
@@ -205,5 +210,79 @@ describe('CollapsibleNav', () => {
     component.find('[data-test-subj="collapsibleNavGroup-noCategory"] a').simulate('click');
     expect(onClose.callCount).toEqual(3);
     expectNavIsClosed(component);
+  });
+
+  it('renders the nav bar with custom logo in default mode', () => {
+    const navLinks = [
+      mockLink({ category: opensearchDashboards }),
+      mockLink({ category: observability }),
+    ];
+    const recentNavLinks = [mockRecentNavLink({})];
+    const component = mount(
+      <CollapsibleNav
+        {...mockProps()}
+        isNavOpen={true}
+        navLinks$={new BehaviorSubject(navLinks)}
+        recentlyAccessed$={new BehaviorSubject(recentNavLinks)}
+      />
+    );
+    // check if nav bar renders default mode custom logo
+    expect(component).toMatchSnapshot();
+
+    // check if nav bar renders the original default mode opensearch mark
+    component.setProps({
+      branding: {
+        darkMode: false,
+        mark: {},
+      },
+    });
+    expect(component).toMatchSnapshot();
+  });
+
+  it('renders the nav bar with custom logo in dark mode', () => {
+    const navLinks = [
+      mockLink({ category: opensearchDashboards }),
+      mockLink({ category: observability }),
+    ];
+    const recentNavLinks = [mockRecentNavLink({})];
+    const component = mount(
+      <CollapsibleNav
+        {...mockProps()}
+        isNavOpen={true}
+        navLinks$={new BehaviorSubject(navLinks)}
+        recentlyAccessed$={new BehaviorSubject(recentNavLinks)}
+      />
+    );
+    // check if nav bar renders dark mode custom logo
+    component.setProps({
+      branding: {
+        darkMode: true,
+        mark: {
+          defaultUrl: '/defaultModeLogo',
+          darkModeUrl: '/darkModeLogo',
+        },
+      },
+    });
+    expect(component).toMatchSnapshot();
+
+    // check if nav bar renders default mode custom logo
+    component.setProps({
+      branding: {
+        darkMode: true,
+        mark: {
+          defaultUrl: '/defaultModeLogo',
+        },
+      },
+    });
+    expect(component).toMatchSnapshot();
+
+    // check if nav bar renders the original dark mode opensearch mark
+    component.setProps({
+      branding: {
+        darkMode: false,
+        mark: {},
+      },
+    });
+    expect(component).toMatchSnapshot();
   });
 });

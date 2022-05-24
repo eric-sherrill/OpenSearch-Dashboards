@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import React from 'react';
@@ -107,6 +105,15 @@ const mockDirectories = [
 
 const addBasePathMock = (path: string) => (path ? path : 'path');
 
+const branding = {
+  darkMode: false,
+  mark: {
+    defaultUrl: '/defaultModeLogo',
+    darkModeUrl: '/darkModeLogo',
+  },
+  applicationTitle: 'custom title',
+};
+
 describe('SolutionsSection', () => {
   test('only renders a spacer if no solutions are available', () => {
     const component = shallow(
@@ -114,6 +121,7 @@ describe('SolutionsSection', () => {
         addBasePath={addBasePathMock}
         solutions={[]}
         directories={mockDirectories}
+        branding={branding}
       />
     );
     expect(component).toMatchSnapshot();
@@ -125,6 +133,7 @@ describe('SolutionsSection', () => {
         addBasePath={addBasePathMock}
         solutions={[solutionEntry1]}
         directories={mockDirectories}
+        branding={branding}
       />
     );
     expect(component).toMatchSnapshot();
@@ -136,6 +145,7 @@ describe('SolutionsSection', () => {
         addBasePath={addBasePathMock}
         solutions={[solutionEntry1, solutionEntry2, solutionEntry3, solutionEntry4]}
         directories={mockDirectories}
+        branding={branding}
       />
     );
     expect(component).toMatchSnapshot();
@@ -146,6 +156,7 @@ describe('SolutionsSection', () => {
         addBasePath={addBasePathMock}
         solutions={[solutionEntry2, solutionEntry3, solutionEntry4]}
         directories={mockDirectories}
+        branding={branding}
       />
     );
     expect(component).toMatchSnapshot();

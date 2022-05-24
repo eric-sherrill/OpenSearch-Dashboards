@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { Execution } from './execution';
@@ -72,7 +70,7 @@ describe('ExecutionContract', () => {
 
   test('can cancel execution', () => {
     const execution = createExecution('foo bar=123');
-    const spy = jest.spyOn(execution, 'cancel');
+    const spy = jest.spyOn(execution, 'cancel').mockImplementation(() => {});
     const contract = new ExecutionContract(execution);
 
     expect(spy).toHaveBeenCalledTimes(0);

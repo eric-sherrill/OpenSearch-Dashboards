@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { shortenUrl } from './url_shortener';
@@ -60,6 +58,28 @@ describe('Url shortener', () => {
       expect(shortUrl).toBe(`http://localhost/goto/${shareId}`);
       expect(postStub).toHaveBeenCalledWith(`/api/shorten_url`, {
         body: '{"url":"/app/opensearch-dashboards#123"}',
+      });
+    });
+
+    it('should shorten urls with a port for legacy app', async () => {
+      const shortUrl = await shortenUrl('http://localhost:5601/app/kibana#123', {
+        basePath: '',
+        post: postStub,
+      });
+      expect(shortUrl).toBe(`http://localhost:5601/goto/${shareId}`);
+      expect(postStub).toHaveBeenCalledWith(`/api/shorten_url`, {
+        body: '{"url":"/app/kibana#123"}',
+      });
+    });
+
+    it('should shorten urls without a port for legacy app', async () => {
+      const shortUrl = await shortenUrl('http://localhost/app/kibana#123', {
+        basePath: '',
+        post: postStub,
+      });
+      expect(shortUrl).toBe(`http://localhost/goto/${shareId}`);
+      expect(postStub).toHaveBeenCalledWith(`/api/shorten_url`, {
+        body: '{"url":"/app/kibana#123"}',
       });
     });
   });
@@ -117,6 +137,50 @@ describe('Url shortener', () => {
       expect(shortUrl).toBe(`http://localhost${basePath}/goto/${shareId}`);
       expect(postStub).toHaveBeenCalledWith(`/api/shorten_url`, {
         body: '{"url":"/app/opensearch-dashboards"}',
+      });
+    });
+
+    it('should shorten urls with a port for legacy app', async () => {
+      const shortUrl = await shortenUrl(`http://localhost:5601${basePath}/app/kibana#123`, {
+        basePath,
+        post: postStub,
+      });
+      expect(shortUrl).toBe(`http://localhost:5601${basePath}/goto/${shareId}`);
+      expect(postStub).toHaveBeenCalledWith(`/api/shorten_url`, {
+        body: '{"url":"/app/kibana#123"}',
+      });
+    });
+
+    it('should shorten urls without a port for legacy app', async () => {
+      const shortUrl = await shortenUrl(`http://localhost${basePath}/app/kibana#123`, {
+        basePath,
+        post: postStub,
+      });
+      expect(shortUrl).toBe(`http://localhost${basePath}/goto/${shareId}`);
+      expect(postStub).toHaveBeenCalledWith(`/api/shorten_url`, {
+        body: '{"url":"/app/kibana#123"}',
+      });
+    });
+
+    it('should shorten urls with a query string for legacy app', async () => {
+      const shortUrl = await shortenUrl(`http://localhost${basePath}/app/kibana?foo#123`, {
+        basePath,
+        post: postStub,
+      });
+      expect(shortUrl).toBe(`http://localhost${basePath}/goto/${shareId}`);
+      expect(postStub).toHaveBeenCalledWith(`/api/shorten_url`, {
+        body: '{"url":"/app/kibana?foo#123"}',
+      });
+    });
+
+    it('should shorten urls without a hash for legacy app', async () => {
+      const shortUrl = await shortenUrl(`http://localhost${basePath}/app/kibana`, {
+        basePath,
+        post: postStub,
+      });
+      expect(shortUrl).toBe(`http://localhost${basePath}/goto/${shareId}`);
+      expect(postStub).toHaveBeenCalledWith(`/api/shorten_url`, {
+        body: '{"url":"/app/kibana"}',
       });
     });
 

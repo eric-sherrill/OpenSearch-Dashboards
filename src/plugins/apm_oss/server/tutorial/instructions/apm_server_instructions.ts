@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { i18n } from '@osd/i18n';
@@ -137,7 +135,7 @@ directory to `APM-Server`.\n4. Open a PowerShell prompt as an Administrator \
 **Run As Administrator**). If you are running Windows XP, you might need to download and install \
 PowerShell.\n5. From the PowerShell prompt, run the following commands to install APM Server as a Windows service:',
         values: {
-          downloadPageLink: 'https://www.opensearch.org/downloads/apm/apm-server',
+          downloadPageLink: 'https://opensearch.org/downloads/apm/apm-server',
           zipFileExtractFolder: '`C:\\Program Files`',
           apmServerDirectory: '`apm-server-{config.opensearchDashboards.version}-windows`',
         },

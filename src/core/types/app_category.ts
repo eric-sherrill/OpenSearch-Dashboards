@@ -4,7 +4,12 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
+
+import { EuiIconType } from '@elastic/eui/src/components/icon/icon';
 
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
@@ -23,11 +28,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /** @public */
@@ -66,5 +66,5 @@ export interface AppCategory {
    * If the category is only 1 item, and no icon is defined, will default to the product icon
    * Defaults to initials if no icon is defined
    */
-  euiIconType?: string;
+  euiIconType?: EuiIconType;
 }

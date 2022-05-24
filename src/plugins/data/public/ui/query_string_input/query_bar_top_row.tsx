@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import dateMath from '@elastic/datemath';
@@ -96,7 +94,7 @@ export default function QueryBarTopRow(props: QueryBarTopRowProps) {
   const opensearchDashboards = useOpenSearchDashboards<IDataPluginServices>();
   const { uiSettings, notifications, storage, appName, docLinks } = opensearchDashboards.services;
 
-  const kueryQuerySyntaxLink: string = docLinks!.links.query.kueryQuerySyntax;
+  const osdDQLDocs: string = docLinks!.links.opensearchDashboards.dql.base;
 
   const queryLanguage = props.query && props.query.language;
   const persistedLog: PersistedLog | undefined = React.useMemo(
@@ -344,7 +342,7 @@ export default function QueryBarTopRow(props: QueryBarTopRowProps) {
                have opensearchDashboards Query Language (DQL) selected. Please review the DQL docs {link}."
                 values={{
                   link: (
-                    <EuiLink href={kueryQuerySyntaxLink} target="_blank">
+                    <EuiLink href={osdDQLDocs} target="_blank">
                       <FormattedMessage
                         id="data.query.queryBar.syntaxOptionsDescription.docsLinkText"
                         defaultMessage="here"

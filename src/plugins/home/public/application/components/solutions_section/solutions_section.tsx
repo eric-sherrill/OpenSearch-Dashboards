@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,16 +28,12 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 import { EuiFlexGroup, EuiFlexItem, EuiHorizontalRule, EuiScreenReaderOnly } from '@elastic/eui';
 import { FormattedMessage } from '@osd/i18n/react';
 import { SolutionPanel } from './solution_panel';
+import { HomePluginBranding } from '../../../plugin';
 import { FeatureCatalogueEntry, FeatureCatalogueSolution } from '../../../';
 
 const sortByOrder = (
@@ -46,9 +45,10 @@ interface Props {
   addBasePath: (path: string) => string;
   solutions: FeatureCatalogueSolution[];
   directories: FeatureCatalogueEntry[];
+  branding: HomePluginBranding;
 }
 
-export const SolutionsSection: FC<Props> = ({ addBasePath, solutions, directories }) => {
+export const SolutionsSection: FC<Props> = ({ addBasePath, solutions, directories, branding }) => {
   // Separate OpenSearch Dashboards from other solutions
   const opensearchDashboards = solutions.find(({ id }) => id === 'opensearchDashboards');
   const opensearchDashboardsApps = directories
@@ -73,7 +73,12 @@ export const SolutionsSection: FC<Props> = ({ addBasePath, solutions, directorie
             <EuiFlexItem grow={1} className="homSolutions__group homSolutions__group--multiple">
               <EuiFlexGroup direction="column">
                 {solutions.map((solution) => (
-                  <SolutionPanel key={solution.id} solution={solution} addBasePath={addBasePath} />
+                  <SolutionPanel
+                    key={solution.id}
+                    solution={solution}
+                    addBasePath={addBasePath}
+                    branding={branding}
+                  />
                 ))}
               </EuiFlexGroup>
             </EuiFlexItem>
@@ -83,6 +88,7 @@ export const SolutionsSection: FC<Props> = ({ addBasePath, solutions, directorie
               solution={opensearchDashboards}
               addBasePath={addBasePath}
               apps={opensearchDashboardsApps.length ? opensearchDashboardsApps : undefined}
+              branding={branding}
             />
           ) : null}
         </EuiFlexGroup>

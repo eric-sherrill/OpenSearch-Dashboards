@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ColorPicker } from '../../color_picker';
@@ -48,7 +46,7 @@ import {
 import { Split } from '../../split';
 import { createTextHandler } from '../../lib/create_text_handler';
 import { FormattedMessage, injectI18n } from '@osd/i18n/react';
-import { PANEL_TYPES } from '../../../../../../../plugins/vis_type_timeseries/common/panel_types';
+import { PANEL_TYPES } from '../../../../../common/panel_types';
 
 const TimeseriesSeriesUI = injectI18n(function (props) {
   const {

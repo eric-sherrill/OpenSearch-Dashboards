@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { schema, TypeOf } from '@osd/config-schema';
 
 export const configSchema = schema.object({
@@ -45,10 +43,13 @@ export const configSchema = schema.object({
     aggs: schema.object({
       shardDelay: schema.object({
         // Whether or not to register the shard_delay (which is only available in snapshot versions
-        // of Elasticsearch) agg type/expression function to make it available in the UI for either
+        // of OpenSearch) agg type/expression function to make it available in the UI for either
         // functional or manual testing
         enabled: schema.boolean({ defaultValue: false }),
       }),
+    }),
+    usageTelemetry: schema.object({
+      enabled: schema.boolean({ defaultValue: false }),
     }),
   }),
 });

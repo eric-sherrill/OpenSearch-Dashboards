@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,9 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-import { Url } from 'url';
+import { URL } from 'url';
 import uuid from 'uuid';
-import { Request, RouteOptionsApp, ApplicationState } from 'hapi';
+import { Request, RouteOptionsApp, RequestApplicationState } from '@hapi/hapi';
 import { Observable, fromEvent, merge } from 'rxjs';
 import { shareReplay, first, takeUntil } from 'rxjs/operators';
 import { RecursiveReadonly } from '@osd/utility-types';
@@ -55,7 +53,7 @@ export interface OpenSearchDashboardsRouteOptions extends RouteOptionsApp {
 /**
  * @internal
  */
-export interface OpenSearchDashboardsRequestState extends ApplicationState {
+export interface OpenSearchDashboardsRequestState extends RequestApplicationState {
   requestId: string;
   requestUuid: string;
 }
@@ -177,7 +175,7 @@ export class OpenSearchDashboardsRequest<
    */
   public readonly uuid: string;
   /** a WHATWG URL standard object. */
-  public readonly url: Url;
+  public readonly url: URL;
   /** matched route details */
   public readonly route: RecursiveReadonly<OpenSearchDashboardsRequestRoute<Method>>;
   /**
@@ -310,11 +308,12 @@ export class OpenSearchDashboardsRequest<
       return true;
     }
 
+    // @ts-expect-error According to @types/hapi__hapi, `route.settings` should be of type `RouteSettings`, but it's actually `RouteOptions` (https://github.com/hapijs/hapi/blob/v20.2.1/lib/route.js#L134)
     if (authOptions === false) return false;
     throw new Error(
       `unexpected authentication options: ${JSON.stringify(authOptions)} for route: ${
-        this.url.href
-      }`
+        this.url.pathname
+      }${this.url.search}`
     );
   }
 }

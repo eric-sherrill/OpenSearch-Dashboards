@@ -1,4 +1,4 @@
-<p align="center"><img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_darkmode.svg" height="64px"/></p>
+<p align="center"><img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_dashboards_logo_darkmode.svg" height="64px"/></p>
 <h1 align="center">OpenSearch Dashboards Developer Guide</h1>
 
 This guide applies to all development within the OpenSearch Dashboards project and is recommended for the development of all OpenSearch Dashboards plugins.
@@ -22,15 +22,12 @@ If you would like to install and run this project, please see the [Downloads Pag
 
 #### Prerequisites
 
-You need to have an OpenSearch server up and running to be able to run OpenSearch
-Dashboards. The easiest way to do it is [using Docker](https://opensearch.org/docs/opensearch/install/docker).
-
 We recommend using [Node Version Manager](https://github.com/nvm-sh/nvm) to install
 the node version we need.
 
 ### Bootstrap OpenSearch Dashboards
 
-While OpenSearch is starting, you can already bootstrap OpenSearch Dashboards:
+First we need to clone and bootstrap OpenSearch Dashboards:
 ```bash
 $ git clone https://github.com/opensearch-project/OpenSearch-Dashboards.git
 $ cd OpenSearch-Dashboards
@@ -53,6 +50,17 @@ opensearch.password: "admin" # Default password on the docker image
 opensearch.ssl.verificationMode: none
 ```
 
+### Run OpenSearch
+
+You need to have an OpenSearch server up and running to be able to run OpenSearch
+Dashboards. In a separate terminal you can run the latest snapshot built using:
+
+```bash
+$ yarn opensearch snapshot 
+```
+
+**Warning:** Starting the Dashboards instance before or during the initialization of the OpenSearch Server can cause Dashboards to sometimes misbehave. Ensure that the OpenSearch server instance is up and running first before starting up the Dashboards dev server from the next step.
+
 ### Run OpenSearch Dashboards
 
 After you've installed OpenSearch Dashboards and configured it, you can start
@@ -66,7 +74,7 @@ access it.
 
 ### Building the artifacts
 
-To build the artifacts for all supported platforms,  run the following:
+To build the artifacts for all supported platforms, run the following:
 
 ```
 yarn build --skip-os-packages
@@ -78,7 +86,36 @@ If you want to build a specific platform, pass the platform flag after `yarn bui
 yarn build-platform --darwin
 ```
 
-You could pass one or multiple flags. If you don't pass any flag, `yarn build-platform` will use your local environment. Currenly we only support `darwin` (darwin x64), `linux` (linux x64) and `linux-arm` (linux arm64).  
+You could pass one or multiple flags. If you don't pass any flag, `yarn build-platform` will build an artifact based on your local environment. 
+
+Currently, the supported flags for this script are:
+* `darwin` (builds Darwin x64)
+* `linux` (builds Linux x64)
+* `linux-arm` (builds Linux ARM64).  
+
+If you would like to build only a DEB x64 artifact, run the following:
+
+```
+yarn build --deb --skip-archives
+```
+
+If you would like to build only a DEB ARM64 artifact, run the following:
+
+```
+yarn build --deb-arm --skip-archives
+```
+
+If you would like to build only a RPM x64 artifact, run the following:
+
+```
+yarn build --rpm --skip-archives
+```
+
+If you would like to build only a RPM ARM64 artifact, run the following:
+
+```
+yarn build --rpm-arm --skip-archives
+```
 
 ### Building the Docker Image
 

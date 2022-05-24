@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -68,7 +71,7 @@
  * given an empty migrationVersion property {} if no such property exists.
  */
 
-import Boom from 'boom';
+import Boom from '@hapi/boom';
 import { set } from '@elastic/safer-lodash-set';
 import _ from 'lodash';
 import Semver from 'semver';

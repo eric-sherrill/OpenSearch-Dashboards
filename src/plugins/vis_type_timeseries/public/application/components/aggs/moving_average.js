@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { AggRow } from './agg_row';
@@ -49,7 +47,7 @@ import {
   EuiFieldNumber,
 } from '@elastic/eui';
 import { i18n } from '@osd/i18n';
-import { MODEL_TYPES } from '../../../../../../plugins/vis_type_timeseries/common/model_options';
+import { MODEL_TYPES } from '../../../../common/model_options';
 
 const DEFAULTS = {
   model_type: MODEL_TYPES.UNWEIGHTED,

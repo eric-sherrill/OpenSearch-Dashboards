@@ -2,8 +2,11 @@
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a 
+ * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,12 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
- .mgtAdvancedSettings__field {
+.mgtAdvancedSettings__field {
   + * {
     margin-top: $euiSize;
   }
@@ -42,11 +40,12 @@
 
   &--unsaved .mgtAdvancedSettings__fieldTitle {
     // Simulates a left side border without shifting content
-    box-shadow: -$euiSizeXS 0px $euiColorWarning;
+    box-shadow: -$euiSizeXS 0 $euiColorWarning;
   }
+
   &--invalid .mgtAdvancedSettings__fieldTitle {
     // Simulates a left side border without shifting content
-    box-shadow: -$euiSizeXS 0px $euiColorDanger;
+    box-shadow: -$euiSizeXS 0 $euiColorDanger;
   }
 
   @include internetExplorerOnly {
@@ -63,14 +62,14 @@
 }
 
 .mgtAdvancedSettingsForm__unsavedCount {
-  @include euiBreakpoint('xs') {
+  @include euiBreakpoint("xs") {
     display: none;
   }
 }
 
 .mgtAdvancedSettingsForm__unsavedCountMessage {
   // Simulates a left side border without shifting content
-  box-shadow: -$euiSizeXS 0px $euiColorWarning;
+  box-shadow: -$euiSizeXS 0 $euiColorWarning;
   padding-left: $euiSizeS;
 }
 

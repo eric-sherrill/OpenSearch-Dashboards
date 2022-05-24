@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -26,7 +29,7 @@
  */
 
 import v8 from 'v8';
-import { Bench } from 'hoek';
+import { Bench } from '@hapi/hoek';
 import { OpsProcessMetrics, MetricsCollector } from './types';
 
 export class ProcessMetricsCollector implements MetricsCollector<OpsProcessMetrics> {

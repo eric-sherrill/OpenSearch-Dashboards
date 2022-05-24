@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,21 +28,16 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React, { Fragment } from 'react';
 import { EuiCode, EuiIcon, EuiLink, EuiText, EuiSpacer } from '@elastic/eui';
 
 import { FormattedMessage } from '@osd/i18n/react';
-import { useOpenSearchDashboards } from '../../../../../../../plugins/opensearch_dashboards_react/public';
+import { useOpenSearchDashboards } from '../../../../../../opensearch_dashboards_react/public';
 import { IndexPatternManagmentContext } from '../../../../types';
 
 export const ScriptingSyntax = () => {
   const docLinksScriptedFields = useOpenSearchDashboards<IndexPatternManagmentContext>().services
-    .docLinks?.links.scriptedFields;
+    .docLinks?.links.noDocumentation.scriptedFields;
   return (
     <Fragment>
       <EuiSpacer />

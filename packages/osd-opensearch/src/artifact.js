@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 const fetch = require('node-fetch');
 const AbortController = require('abort-controller');
 const fs = require('fs');
@@ -87,6 +86,11 @@ async function retry(log, fn) {
 // Setting this flag provides an easy way to run the latest un-promoted snapshot without having to look it up
 function shouldUseUnverifiedSnapshot() {
   return !!process.env.OSD_OPENSEARCH_SNAPSHOT_USE_UNVERIFIED;
+}
+
+// Setting this flag provides an easy way to skip comparing the checksum
+function skipVerifyChecksum() {
+  return !!process.env.OSD_SNAPSHOT_SKIP_VERIFY_CHECKSUM;
 }
 
 async function fetchSnapshotManifest(url, log) {
@@ -327,7 +331,9 @@ exports.Artifact = class Artifact {
         return;
       }
 
-      await this._verifyChecksum(artifactResp);
+      if (!skipVerifyChecksum()) {
+        await this._verifyChecksum(artifactResp);
+      }
 
       // cache the etag for future downloads
       cache.writeMeta(dest, { etag: artifactResp.etag });

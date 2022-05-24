@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,18 +28,13 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { overwrite } from '../../helpers';
 import { getBucketSize } from '../../helpers/get_bucket_size';
 import { isLastValueTimerangeMode } from '../../helpers/get_timerange_mode';
 import { getIntervalAndTimefield } from '../../get_interval_and_timefield';
 import { getTimerange } from '../../helpers/get_timerange';
 import { calculateAggRoot } from './calculate_agg_root';
-import { search } from '../../../../../../../plugins/data/server';
+import { search } from '../../../../../../data/server';
 const { dateHistogramInterval } = search.aggs;
 
 export function dateHistogram(req, panel, opensearchQueryConfig, indexPatternObject, capabilities) {

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import execa from 'execa';
@@ -104,9 +102,9 @@ export function startProc(name: string, options: ProcOptions, log: ToolingLog) {
   });
 
   if (stdin) {
-    childProcess.stdin.end(stdin, 'utf8');
+    childProcess.stdin!.end(stdin, 'utf8');
   } else {
-    childProcess.stdin.end();
+    childProcess.stdin!.end();
   }
 
   let stopCalled = false;
@@ -136,8 +134,8 @@ export function startProc(name: string, options: ProcOptions, log: ToolingLog) {
   ).pipe(share());
 
   const lines$ = Rx.merge(
-    observeLines(childProcess.stdout),
-    observeLines(childProcess.stderr)
+    observeLines(childProcess.stdout!),
+    observeLines(childProcess.stderr!)
   ).pipe(
     tap((line) => log.write(` ${chalk.gray('proc')} [${chalk.gray(name)}] ${line}`)),
     share()

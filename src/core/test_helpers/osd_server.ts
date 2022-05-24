@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,20 +28,13 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import { Client } from 'elasticsearch';
 import { ToolingLog, REPO_ROOT } from '@osd/dev-utils';
 import {
   createLegacyOpenSearchTestCluster,
-  DEFAULT_SUPERUSER_PASS,
   opensearchTestConfig,
-  osdTestConfig,
   opensearchDashboardsServerTestUser,
   opensearchDashboardsTestUser,
-  setupUsers,
 } from '@osd/test';
 import { defaultsDeep, get } from 'lodash';
 import { resolve } from 'path';
@@ -253,7 +249,6 @@ export function createTestServers({
     defaultsDeep({}, get(settings, 'opensearch', {}), {
       log,
       license,
-      password: license === 'trial' ? DEFAULT_SUPERUSER_PASS : undefined,
     })
   );
 
@@ -269,19 +264,7 @@ export function createTestServers({
       await opensearch.start(get(settings, 'opensearch.opensearchArgs', []));
 
       if (['gold', 'trial'].includes(license)) {
-        await setupUsers({
-          log,
-          opensearchPort: opensearchTestConfig.getUrlParts().port,
-          updates: [
-            ...usersToBeAdded,
-            // user opensearch
-            opensearchTestConfig.getUrlParts(),
-            // user opensearchDashboards
-            osdTestConfig.getUrlParts(),
-          ],
-        });
-
-        // Override provided configs, we know what the opensearch user is now
+        // Override provided configs
         osdSettings.opensearch = {
           hosts: [opensearchTestConfig.getUrl()],
           username: opensearchDashboardsServerTestUser.username,

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { get } from 'lodash';
 import { deepFreeze } from '@osd/std';
 import { DiscoveredPlugin, PluginName } from '../../server';
@@ -39,7 +37,7 @@ import {
   UiSettingsParams,
   UserProvidedValues,
 } from '../../server/types';
-import { AppCategory } from '../';
+import { AppCategory, Branding } from '../';
 
 export interface InjectedPluginMetadata {
   id: PluginName;
@@ -76,6 +74,7 @@ export interface InjectedMetadataParams {
         user?: Record<string, UserProvidedValues>;
       };
     };
+    branding: Branding;
   };
 }
 
@@ -143,6 +142,10 @@ export class InjectedMetadataService {
       getOpenSearchDashboardsBranch: () => {
         return this.state.branch;
       },
+
+      getBranding: () => {
+        return this.state.branding;
+      },
     };
   }
 }
@@ -176,6 +179,7 @@ export interface InjectedMetadataSetup {
   getInjectedVars: () => {
     [key: string]: unknown;
   };
+  getBranding: () => Branding;
 }
 
 /** @internal */

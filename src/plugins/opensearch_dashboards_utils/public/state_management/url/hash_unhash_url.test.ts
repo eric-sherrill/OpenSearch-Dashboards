@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { mockStorage } from '../../storage/hashed_item_store/mock';
@@ -79,6 +77,36 @@ describe('hash unhash url', () => {
 
       it('if empty hash without query', () => {
         const url = 'https://localhost:5601/app/opensearch-dashboards#';
+        expect(hashUrl(url)).toBe(url);
+      });
+
+      it('if just a path with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana';
+        expect(hashUrl(url)).toBe(url);
+      });
+
+      it('if just a path and query with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana?foo=bar';
+        expect(hashUrl(url)).toBe(url);
+      });
+
+      it('if empty hash with query with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana?foo=bar#';
+        expect(hashUrl(url)).toBe(url);
+      });
+
+      it('if query parameter matches and there is no hash with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana?testParam=(yes:!t)';
+        expect(hashUrl(url)).toBe(url);
+      });
+
+      it(`if query parameter matches and it's before the hash with legacy app`, () => {
+        const url = 'https://localhost:5601/app/kibana?testParam=(yes:!t)';
+        expect(hashUrl(url)).toBe(url);
+      });
+
+      it('if empty hash without query with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana#';
         expect(hashUrl(url)).toBe(url);
       });
 
@@ -186,6 +214,26 @@ describe('hash unhash url', () => {
 
       it('if empty hash without query', () => {
         const url = 'https://localhost:5601/app/opensearch-dashboards#';
+        expect(unhashUrl(url)).toBe(url);
+      });
+
+      it('if just a path with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana';
+        expect(unhashUrl(url)).toBe(url);
+      });
+
+      it('if just a path and query with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana?foo=bar';
+        expect(unhashUrl(url)).toBe(url);
+      });
+
+      it('if empty hash with query with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana?foo=bar#';
+        expect(unhashUrl(url)).toBe(url);
+      });
+
+      it('if empty hash without query with legacy app', () => {
+        const url = 'https://localhost:5601/app/kibana#';
         expect(unhashUrl(url)).toBe(url);
       });
 

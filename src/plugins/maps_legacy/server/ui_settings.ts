@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { i18n } from '@osd/i18n';
@@ -51,9 +49,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
             'maps_legacy.advancedSettings.visualization.tileMap.maxPrecision.cellDimensionsLinkText',
           values: {
             cellDimensionsLink:
-              // TODO: [RENAMEME] Need prod urls.
-              // issue: https://github.com/opensearch-project/OpenSearch-Dashboards/issues/335#issuecomment-868294864
-              `<a href="https://opensearch.org/docs/dashboards/maptiles"
+              `<a href="https://opensearch.org/docs/latest/dashboards/maptiles"
             target="_blank" rel="noopener">` +
               i18n.translate(
                 'maps_legacy.advancedSettings.visualization.tileMap.maxPrecision.cellDimensionsLinkText',

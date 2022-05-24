@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { i18n } from '@osd/i18n';
@@ -50,7 +48,7 @@ import { getAreaOptionTabs, countLabel } from './utils/common_config';
 import { createVislibVisController } from './vis_controller';
 import { VisTypeVislibDependencies } from './plugin';
 import { Rotates } from '../../charts/public';
-import { VIS_EVENT_TO_TRIGGER } from '../../../plugins/visualizations/public';
+import { VIS_EVENT_TO_TRIGGER } from '../../visualizations/public';
 
 export const createHorizontalBarVisTypeDefinition = (deps: VisTypeVislibDependencies) => ({
   name: 'horizontal_bar',

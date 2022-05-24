@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { Transform } from 'stream';
@@ -87,7 +85,9 @@ export function createGenerateDocRecordsStream({
                 // always rewrite the .kibana_* index to .kibana_1 so that
                 // when it is loaded it can skip migration, if possible
                 index: hit._index.startsWith('.kibana') ? '.kibana_1' : hit._index,
-                type: hit._type,
+                // TODO: verify no BWC issues here
+                // Removed: https://github.com/opensearch-project/OpenSearch/pull/2239
+                // type: hit._type,
                 id: hit._id,
                 source: hit._source,
               },

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,10 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { i18n } from '@osd/i18n';
 import _ from 'lodash';
 import uuid from 'uuid';
+import { EuiIconType } from '@elastic/eui/src/components/icon/icon';
 import { ActionByType, IncompatibleActionError } from '../../ui_actions_plugin';
 import { ViewMode, PanelState, IEmbeddable } from '../../embeddable_plugin';
 import {
@@ -65,7 +64,7 @@ export class AddToLibraryAction implements ActionByType<typeof ACTION_ADD_TO_LIB
     });
   }
 
-  public getIconType({ embeddable }: AddToLibraryActionContext) {
+  public getIconType({ embeddable }: AddToLibraryActionContext): EuiIconType {
     if (!embeddable.getRoot() || !embeddable.getRoot().isContainer) {
       throw new IncompatibleActionError();
     }

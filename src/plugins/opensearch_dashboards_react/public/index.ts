@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 export * from './code_editor';
 export * from './exit_full_screen_button';
 export * from './context';
@@ -48,6 +46,10 @@ export { reactToUiComponent, uiToReactComponent } from './adapters';
 export { useUrlTracker } from './use_url_tracker';
 export { toMountPoint, MountPointPortal } from './util';
 export { RedirectAppLinks } from './app_links';
+import { Branding } from 'opensearch-dashboards/public';
+
+/** Custom branding configurations for opensearch dashboards react plugin */
+export type ReactPluginBranding = Branding;
 
 /** dummy plugin, we just want opensearchDashboardsReact to have its own bundle */
 export function plugin() {

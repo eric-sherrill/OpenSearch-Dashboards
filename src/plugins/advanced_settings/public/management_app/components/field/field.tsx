@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import React, { PureComponent, Fragment } from 'react';
@@ -528,7 +526,10 @@ export class Field extends PureComponent<FieldProps> {
             <EuiBadge
               color="warning"
               onClick={() => {
-                window.open(links.management[setting.deprecation!.docLinksKey], '_blank');
+                window.open(
+                  links.noDocumentation.management[setting.deprecation!.docLinksKey],
+                  '_blank'
+                );
               }}
               onClickAriaLabel={i18n.translate('advancedSettings.field.deprecationClickAreaLabel', {
                 defaultMessage: 'Click to view deprecation documentation for {settingName}.',

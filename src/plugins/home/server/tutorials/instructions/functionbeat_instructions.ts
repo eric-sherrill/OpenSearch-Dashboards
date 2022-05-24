@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { i18n } from '@osd/i18n';
@@ -92,7 +90,7 @@ export const createFunctionbeatInstructions = (context?: TutorialContext) => ({
             folderPath: '`C:\\Program Files`',
             functionbeatLink:
               '{config.docs.beats.functionbeat}/functionbeat-installation-configuration.html',
-            opensearchLink: 'https://www.opensearch.org/downloads/beats/functionbeat',
+            opensearchLink: 'https://opensearch.org/docs/latest/downloads/beats/functionbeat',
           },
         }
       ),

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 /**
  * When you make an async request, typically you want to show the user a spinner while they wait.
  * However, if the request takes less than 300 ms, the spinner will flicker in the UI and the user
@@ -45,7 +43,6 @@ export async function ensureMinimumTime(
 ) {
   let returnValue;
 
-  // https://kibana-ci.opensearch.org/job/elastic+kibana+6.x+multijob-intake/128/console
   // We're having periodic failures around the timing here. I'm not exactly sure
   // why it's not consistent but I'm going to add some buffer space here to
   // prevent these random failures

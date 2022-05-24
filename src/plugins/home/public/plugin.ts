@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import {
   AppMountParameters,
   CoreSetup,
@@ -40,6 +38,7 @@ import {
 import { i18n } from '@osd/i18n';
 import { first } from 'rxjs/operators';
 
+import { Branding } from 'src/core/types';
 import {
   EnvironmentService,
   EnvironmentServiceSetup,
@@ -119,6 +118,7 @@ export class HomePublicPlugin
           homeConfig: this.initializerContext.config.get(),
           tutorialService: this.tutorialService,
           featureCatalogue: this.featuresCatalogueRegistry,
+          injectedMetadata: coreStart.injectedMetadata,
         });
         coreStart.chrome.docTitle.change(
           i18n.translate('home.pageTitle', { defaultMessage: 'Home' })
@@ -186,6 +186,9 @@ export type EnvironmentSetup = EnvironmentServiceSetup;
 
 /** @public */
 export type TutorialSetup = TutorialServiceSetup;
+
+/** @public */
+export type HomePluginBranding = Branding;
 
 /** @public */
 export interface HomePublicPluginSetup {

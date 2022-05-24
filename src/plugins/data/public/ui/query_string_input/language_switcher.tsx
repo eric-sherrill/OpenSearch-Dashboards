@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import {
@@ -53,8 +51,8 @@ interface Props {
 }
 
 export function QueryLanguageSwitcher(props: Props) {
-  const opensearchDashboards = useOpenSearchDashboards();
-  const kueryQuerySyntaxDocs = opensearchDashboards.services.docLinks!.links.query.kueryQuerySyntax;
+  const osdDQLDocs = useOpenSearchDashboards().services.docLinks?.links.opensearchDashboards.dql
+    .base;
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const luceneLabel = (
     <FormattedMessage id="data.query.queryBar.luceneLanguageName" defaultMessage="Lucene" />
@@ -89,7 +87,6 @@ export function QueryLanguageSwitcher(props: Props) {
       button={button}
       isOpen={isPopoverOpen}
       closePopover={() => setIsPopoverOpen(false)}
-      withTitle
       repositionOnScroll
     >
       <EuiPopoverTitle>
@@ -108,7 +105,7 @@ export function QueryLanguageSwitcher(props: Props) {
               OpenSearch Dashboards uses Lucene."
               values={{
                 docsLink: (
-                  <EuiLink href={kueryQuerySyntaxDocs} target="_blank">
+                  <EuiLink href={osdDQLDocs} target="_blank">
                     {dqlFullName}
                   </EuiLink>
                 ),

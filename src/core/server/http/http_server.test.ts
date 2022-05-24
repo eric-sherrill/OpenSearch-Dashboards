@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { Server } from 'http';
@@ -93,7 +91,7 @@ beforeEach(() => {
     ssl: {
       enabled: true,
       certificate,
-      cipherSuites: ['cipherSuite'],
+      cipherSuites: ['TLS_AES_256_GCM_SHA384'],
       getSecureOptions: () => 0,
       key,
       redirectHttpFromPort: config.port + 1,
@@ -695,8 +693,8 @@ describe('with `basepath: /bar` and `rewriteBasePath: false`', () => {
 });
 
 describe('with `basepath: /bar` and `rewriteBasePath: true`', () => {
-  let innerServerListener: Server;
   let configWithBasePath: HttpConfig;
+  let innerServerListener: Server;
 
   beforeEach(async () => {
     configWithBasePath = {
@@ -1224,7 +1222,7 @@ describe('timeout options', () => {
       router.get(
         {
           path: '/',
-          validate: { body: schema.any() },
+          validate: { body: schema.maybe(schema.any()) },
         },
         (context, req, res) => {
           return res.ok({
@@ -1257,7 +1255,7 @@ describe('timeout options', () => {
       router.get(
         {
           path: '/',
-          validate: { body: schema.any() },
+          validate: { body: schema.maybe(schema.any()) },
           options: { timeout: { idleSocket: 12000 } },
         },
         (context, req, res) => {

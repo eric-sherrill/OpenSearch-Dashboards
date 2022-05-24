@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,16 +28,11 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import http from 'http';
 import https from 'https';
 import net from 'net';
 import stream from 'stream';
-import Boom from 'boom';
+import Boom from '@hapi/boom';
 import { URL } from 'url';
 
 interface Args {

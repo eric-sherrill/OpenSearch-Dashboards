@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { fromLiteralExpression } from '../ast/ast';
 import { WildcardTypeBuildNode } from './types';
 import { KueryNode } from '..';
@@ -41,7 +39,7 @@ function escapeRegExp(str: string) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
 
-// See https://www.opensearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#_reserved_characters
+// See https://opensearch.org/docs/latest/opensearch/query-dsl/term/#regex
 function escapeQueryString(str: string) {
   return str.replace(/[+-=&|><!(){}[\]^"~*?:\\/]/g, '\\$&'); // $& means the whole matched string
 }

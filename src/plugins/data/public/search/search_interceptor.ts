@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { get, trimEnd, debounce } from 'lodash';
 import { BehaviorSubject, throwError, timer, defer, from, Observable, NEVER } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
@@ -43,7 +41,7 @@ import {
   OPENSEARCH_SEARCH_STRATEGY,
 } from '../../common';
 import { SearchUsageCollector } from './collectors';
-import { SearchTimeoutError, PainlessError, isPainlessError, TimeoutErrorMode } from './errors';
+import { SearchTimeoutError, PainlessError, isPainlessError } from './errors';
 import { toMountPoint } from '../../../opensearch_dashboards_react/public';
 
 export interface SearchInterceptorDeps {
@@ -84,14 +82,6 @@ export class SearchInterceptor {
   }
 
   /*
-   * @returns `TimeoutErrorMode` indicating what action should be taken in case of a request timeout based on license and permissions.
-   * @internal
-   */
-  protected getTimeoutMode() {
-    return TimeoutErrorMode.UPGRADE;
-  }
-
-  /*
    * @returns `Error` a search service specific error or the original error, if a specific error can't be recognized.
    * @internal
    */
@@ -103,8 +93,7 @@ export class SearchInterceptor {
   ): Error {
     if (timeoutSignal.aborted || get(e, 'body.message') === 'Request timed out') {
       // Handle a client or a server side timeout
-      const err = new SearchTimeoutError(e, this.getTimeoutMode());
-
+      const err = new SearchTimeoutError(e);
       // Show the timeout error here, so that it's shown regardless of how an application chooses to handle errors.
       this.showTimeoutError(err);
       return err;
@@ -170,11 +159,12 @@ export class SearchInterceptor {
       ...(abortSignal ? [abortSignal] : []),
     ];
 
-    const combinedSignal = getCombinedSignal(signals);
+    const { signal: combinedSignal, cleanup: cleanupCombinedSignal } = getCombinedSignal(signals);
     const cleanup = () => {
       subscription.unsubscribe();
+      combinedSignal.removeEventListener('abort', cleanup);
+      cleanupCombinedSignal();
     };
-
     combinedSignal.addEventListener('abort', cleanup);
 
     return {

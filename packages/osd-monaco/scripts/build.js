@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 const path = require('path');
 const del = require('del');
 const supportsColor = require('supports-color');
@@ -46,14 +44,14 @@ run(
     await del(TARGET_BUILD_DIR);
 
     const cwd = ROOT_DIR;
-    const env = { ...process.env };
+    const env = { ...process.env, dev: !!flags.dev, prod: !flags.dev };
     if (supportsColor.stdout) {
       env.FORCE_COLOR = 'true';
     }
 
     await procRunner.run('worker', {
       cmd: 'webpack',
-      args: ['--config', WEBPACK_CONFIG_PATH, flags.dev ? '--env.dev' : '--env.prod'],
+      args: ['--config', WEBPACK_CONFIG_PATH],
       wait: true,
       env,
       cwd,

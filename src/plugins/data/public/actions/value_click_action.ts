@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,17 +28,12 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import {
   ActionByType,
   APPLY_FILTER_TRIGGER,
   createAction,
   UiActionsStart,
-} from '../../../../plugins/ui_actions/public';
+} from '../../../ui_actions/public';
 import { createFiltersFromValueClickAction } from './filters/create_filters_from_value_click';
 import type { Filter } from '../../common/opensearch_query/filters';
 import type { ValueClickContext } from '../../../embeddable/public';

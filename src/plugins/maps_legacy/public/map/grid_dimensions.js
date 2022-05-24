@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,13 +28,8 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 // geohash precision mapping of geohash grid cell dimensions (width x height, in meters) at equator.
-// https://www.opensearch.org/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html#_cell_dimensions_at_the_equator
+// https://opensearch.org/docs/latest/opensearch/bucket-agg/#geo_distance-geohash_grid
 const gridAtEquator = {
   1: [5009400, 4992600],
   2: [1252300, 624100],

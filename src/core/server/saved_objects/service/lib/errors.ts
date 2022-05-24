@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,12 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-import Boom from 'boom';
+import Boom from '@hapi/boom';
 
 // 400 - badRequest
 const CODE_BAD_REQUEST = 'SavedObjectsClient/badRequest';
@@ -57,7 +55,7 @@ const CODE_GENERAL_ERROR = 'SavedObjectsClient/generalError';
 
 const code = Symbol('SavedObjectsClientErrorCode');
 
-export interface DecoratedError extends Boom {
+export interface DecoratedError extends Boom.Boom {
   [code]?: string;
 }
 

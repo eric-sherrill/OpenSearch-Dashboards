@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,17 +28,12 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React from 'react';
 import * as Rx from 'rxjs';
 import { debounceTime, filter, share, switchMap } from 'rxjs/operators';
 import { PersistedState } from '../../../../plugins/visualizations/public';
 import { VisualizationController } from '../types';
-import { ResizeChecker } from '../../../../plugins/opensearch_dashboards_utils/public';
+import { ResizeChecker } from '../../../opensearch_dashboards_utils/public';
 import { ExprVis } from '../expressions/vis';
 
 interface VisualizationChartProps {

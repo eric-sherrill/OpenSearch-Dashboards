@@ -6,12 +6,12 @@
 
 import { $Values } from '@osd/utility-types';
 import { Action } from 'history';
-import { ApiResponse } from '@elastic/elasticsearch';
-import { ApiResponse as ApiResponse_2 } from '@elastic/elasticsearch/lib/Transport';
+import { ApiResponse } from '@opensearch-project/opensearch';
+import { ApiResponse as ApiResponse_2 } from '@opensearch-project/opensearch/lib/Transport';
 import { ApplicationStart } from 'opensearch-dashboards/public';
 import { Assign } from '@osd/utility-types';
 import { BehaviorSubject } from 'rxjs';
-import Boom from 'boom';
+import Boom from '@hapi/boom';
 import { CoreSetup } from 'src/core/public';
 import { CoreSetup as CoreSetup_2 } from 'opensearch-dashboards/public';
 import { CoreStart } from 'opensearch-dashboards/public';
@@ -35,7 +35,7 @@ import { ISearchOptions as ISearchOptions_2 } from 'src/plugins/data/public';
 import { ISearchSource as ISearchSource_2 } from 'src/plugins/data/public';
 import { IStorageWrapper } from 'src/plugins/opensearch_dashboards_utils/public';
 import { IUiSettingsClient } from 'src/core/public';
-import { KibanaClient } from '@elastic/elasticsearch/api/kibana';
+import { OpenSearchDashboardsClient } from '@opensearch-project/opensearch/api/opensearch_dashboards';
 import { Location } from 'history';
 import { LocationDescriptorObject } from 'history';
 import { Logger } from '@osd/logging';
@@ -66,14 +66,14 @@ import { SavedObject } from 'src/core/server';
 import { SavedObject as SavedObject_2 } from 'src/core/public';
 import { SavedObjectReference as SavedObjectReference_2 } from 'src/core/types';
 import { SavedObjectsClientContract } from 'src/core/public';
-import { Search } from '@elastic/elasticsearch/api/requestParams';
+import { Search } from '@opensearch-project/opensearch/api/requestParams';
 import { SearchResponse } from 'elasticsearch';
 import { SerializedFieldFormat as SerializedFieldFormat_2 } from 'src/plugins/expressions/common';
 import { ToastInputFields } from 'src/core/public/notifications';
 import { ToastsSetup } from 'opensearch-dashboards/public';
-import { TransportRequestOptions } from '@elastic/elasticsearch/lib/Transport';
-import { TransportRequestParams } from '@elastic/elasticsearch/lib/Transport';
-import { TransportRequestPromise } from '@elastic/elasticsearch/lib/Transport';
+import { TransportRequestOptions } from '@opensearch-project/opensearch/lib/Transport';
+import { TransportRequestParams } from '@opensearch-project/opensearch/lib/Transport';
+import { TransportRequestPromise } from '@opensearch-project/opensearch/lib/Transport';
 import { TypeOf } from '@osd/config-schema';
 import { UiActionsSetup } from 'src/plugins/ui_actions/public';
 import { UiActionsStart } from 'src/plugins/ui_actions/public';
@@ -2014,8 +2014,6 @@ export class SearchInterceptor {
     // (undocumented)
     protected readonly deps: SearchInterceptorDeps;
     // (undocumented)
-    protected getTimeoutMode(): TimeoutErrorMode;
-    // (undocumented)
     protected handleSearchError(e: any, request: IOpenSearchDashboardsSearchRequest, timeoutSignal: AbortSignal, appAbortSignal?: AbortSignal): Error;
     // @internal
     protected pendingCount$: BehaviorSubject<number>;
@@ -2150,11 +2148,9 @@ export interface SearchSourceFields {
 //
 // @public
 export class SearchTimeoutError extends OsdError {
-    constructor(err: Error, mode: TimeoutErrorMode);
+    constructor(err: Error);
     // (undocumented)
     getErrorMessage(application: ApplicationStart): JSX.Element;
-    // (undocumented)
-    mode: TimeoutErrorMode;
     }
 
 // Warning: (ae-missing-release-tag) "SortDirection" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
@@ -2228,18 +2224,6 @@ export class TimeHistory {
 //
 // @public (undocumented)
 export type TimeHistoryContract = PublicMethodsOf<TimeHistory>;
-
-// Warning: (ae-missing-release-tag) "TimeoutErrorMode" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
-// @public (undocumented)
-export enum TimeoutErrorMode {
-    // (undocumented)
-    CHANGE = 2,
-    // (undocumented)
-    CONTACT = 1,
-    // (undocumented)
-    UPGRADE = 0
-}
 
 // Warning: (ae-missing-release-tag) "TimeRange" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //

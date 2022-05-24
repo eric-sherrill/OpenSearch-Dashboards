@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,9 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-import HapiTemplates from 'vision';
-import HapiStaticFiles from 'inert';
-import HapiProxy from 'h2o2';
+import HapiTemplates from '@hapi/vision';
+import HapiStaticFiles from '@hapi/inert';
+import HapiProxy from '@hapi/h2o2';
 
 const plugins = [HapiTemplates, HapiStaticFiles, HapiProxy];
 

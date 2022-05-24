@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,15 +28,10 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { getCoreStart } from '../../../../services';
 import { createTickFormatter } from '../../lib/tick_formatter';
 import { TopN } from '../../../visualizations/views/top_n';
-import { getLastValue } from '../../../../../../../plugins/vis_type_timeseries/common/get_last_value';
+import { getLastValue } from '../../../../../common/get_last_value';
 import { isBackgroundInverted } from '../../../lib/set_is_reversed';
 import { replaceVars } from '../../lib/replace_vars';
 import PropTypes from 'prop-types';

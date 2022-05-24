@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 export { HomeServerPluginSetup, HomeServerPluginStart } from './plugin';
 export { TutorialProvider } from './services';
 export { SampleDatasetProvider, SampleDataRegistrySetup } from './services';
@@ -39,7 +37,7 @@ import { configSchema, ConfigSchema } from '../config';
 
 export const config: PluginConfigDescriptor<ConfigSchema> = {
   exposeToBrowser: {
-    disableWelcomeScreen: false,
+    disableWelcomeScreen: true,
   },
   schema: configSchema,
   deprecations: ({ renameFromRoot }) => [

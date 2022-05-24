@@ -4,8 +4,8 @@
 
 ```ts
 
-import { ApiResponse } from '@elastic/elasticsearch/lib/Transport';
-import Boom from 'boom';
+import { ApiResponse } from '@opensearch-project/opensearch/lib/Transport';
+import Boom from '@hapi/boom';
 import { BulkIndexDocumentsParams } from 'elasticsearch';
 import { CatAliasesParams } from 'elasticsearch';
 import { CatAllocationParams } from 'elasticsearch';
@@ -23,7 +23,7 @@ import { CatThreadPoolParams } from 'elasticsearch';
 import { ClearScrollParams } from 'elasticsearch';
 import { CliArgs } from '@osd/config';
 import { Client } from 'elasticsearch';
-import { ClientOptions } from '@elastic/elasticsearch';
+import { ClientOptions } from '@opensearch-project/opensearch';
 import { ClusterAllocationExplainParams } from 'elasticsearch';
 import { ClusterGetSettingsParams } from 'elasticsearch';
 import { ClusterHealthParams } from 'elasticsearch';
@@ -100,7 +100,7 @@ import { IngestDeletePipelineParams } from 'elasticsearch';
 import { IngestGetPipelineParams } from 'elasticsearch';
 import { IngestPutPipelineParams } from 'elasticsearch';
 import { IngestSimulateParams } from 'elasticsearch';
-import { KibanaClient } from '@elastic/elasticsearch/api/kibana';
+import { OpenSearchDashboardsClient } from '@opensearch-project/opensearch/api/opensearch_dashboards';
 import { Logger } from '@osd/logging';
 import { LoggerFactory } from '@osd/logging';
 import { LogLevel } from '@osd/logging';
@@ -129,16 +129,16 @@ import { RecursiveReadonly } from '@osd/utility-types';
 import { ReindexParams } from 'elasticsearch';
 import { ReindexRethrottleParams } from 'elasticsearch';
 import { RenderSearchTemplateParams } from 'elasticsearch';
-import { Request } from 'hapi';
-import { ResponseObject } from 'hapi';
-import { ResponseToolkit } from 'hapi';
+import { Request } from '@hapi/hapi';
+import { ResponseObject } from '@hapi/hapi';
+import { ResponseToolkit } from '@hapi/hapi';
 import { SchemaTypeError } from '@osd/config-schema';
 import { ScrollParams } from 'elasticsearch';
 import { SearchParams } from 'elasticsearch';
 import { SearchResponse as SearchResponse_2 } from 'elasticsearch';
 import { SearchShardsParams } from 'elasticsearch';
 import { SearchTemplateParams } from 'elasticsearch';
-import { Server } from 'hapi';
+import { Server } from '@hapi/hapi';
 import { ShallowPromise } from '@osd/utility-types';
 import { SnapshotCreateParams } from 'elasticsearch';
 import { SnapshotCreateRepositoryParams } from 'elasticsearch';
@@ -155,14 +155,14 @@ import { TasksCancelParams } from 'elasticsearch';
 import { TasksGetParams } from 'elasticsearch';
 import { TasksListParams } from 'elasticsearch';
 import { TermvectorsParams } from 'elasticsearch';
-import { TransportRequestOptions } from '@elastic/elasticsearch/lib/Transport';
-import { TransportRequestParams } from '@elastic/elasticsearch/lib/Transport';
-import { TransportRequestPromise } from '@elastic/elasticsearch/lib/Transport';
+import { TransportRequestOptions } from '@opensearch-project/opensearch/lib/Transport';
+import { TransportRequestParams } from '@opensearch-project/opensearch/lib/Transport';
+import { TransportRequestPromise } from '@opensearch-project/opensearch/lib/Transport';
 import { Type } from '@osd/config-schema';
 import { TypeOf } from '@osd/config-schema';
 import { UpdateDocumentByQueryParams } from 'elasticsearch';
 import { UpdateDocumentParams } from 'elasticsearch';
-import { Url } from 'url';
+import { URL } from 'url';
 
 // @public
 export interface AppCategory {
@@ -1236,7 +1236,7 @@ export type LegacyOpenSearchClientConfig = Pick<ConfigOptions, 'keepAlive' | 'lo
 };
 
 // @public
-export interface LegacyOpenSearchError extends Boom {
+export interface LegacyOpenSearchError extends Boom.Boom {
     // (undocumented)
     [code]?: string;
 }
@@ -1414,7 +1414,7 @@ export interface OnPreRoutingToolkit {
 }
 
 // @public
-export type OpenSearchClient = Omit<KibanaClient, 'connectionPool' | 'transport' | 'serializer' | 'extend' | 'child' | 'close'> & {
+export type OpenSearchClient = Omit<OpenSearchDashboardsClient, 'connectionPool' | 'transport' | 'serializer' | 'extend' | 'child' | 'close'> & {
     transport: {
         request(params: TransportRequestParams, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
     };
@@ -1479,7 +1479,7 @@ export class OpenSearchDashboardsRequest<Params = unknown, Query = unknown, Body
     readonly route: RecursiveReadonly<OpenSearchDashboardsRequestRoute<Method>>;
     // (undocumented)
     readonly socket: IOpenSearchDashboardsSocket;
-    readonly url: Url;
+    readonly url: URL;
     readonly uuid: string;
     }
 
@@ -2060,38 +2060,6 @@ export interface SavedObjectsClientWrapperOptions {
     typeRegistry: ISavedObjectTypeRegistry;
 }
 
-// @public
-export interface SavedObjectsComplexFieldMapping {
-    // (undocumented)
-    doc_values?: boolean;
-    dynamic?: false | 'strict';
-    // (undocumented)
-    enabled?: boolean;
-    // (undocumented)
-    properties: SavedObjectsMappingProperties;
-    // (undocumented)
-    type?: string;
-}
-
-// @public
-export interface SavedObjectsCoreFieldMapping {
-    // (undocumented)
-    doc_values?: boolean;
-    // (undocumented)
-    fields?: {
-        [subfield: string]: {
-            type: string;
-            ignore_above?: number;
-        };
-    };
-    // (undocumented)
-    index?: boolean;
-    // (undocumented)
-    null_value?: number | boolean | string;
-    // (undocumented)
-    type: string;
-}
-
 // @public (undocumented)
 export interface SavedObjectsCreateOptions extends SavedObjectsBaseOptions {
     id?: string;
@@ -2210,7 +2178,9 @@ export interface SavedObjectsExportResultDetails {
 }
 
 // @public
-export type SavedObjectsFieldMapping = SavedObjectsCoreFieldMapping | SavedObjectsComplexFieldMapping;
+export type SavedObjectsFieldMapping = opensearchtypes.MappingProperty & {
+    dynamic?: false | 'strict';
+};
 
 // @public (undocumented)
 export interface SavedObjectsFindOptions {

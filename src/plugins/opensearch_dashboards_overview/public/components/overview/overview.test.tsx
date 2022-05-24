@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import moment from 'moment';
@@ -61,8 +59,7 @@ const mockNewsFetchResult = {
       expireOn: moment('2050-12-31T11:59:59Z'),
       hash: '8e18fcedbc',
       linkText: 'Read more on the blog',
-      linkUrl:
-        'https://www.opensearch.org/blog/the-go-client-for-elasticsearch-introduction?blade=opensearchDashboardsfeed',
+      linkUrl: 'https://opensearch.org/docs/latest/clients/go/',
       publishOn: moment('2020-08-31T10:23:47Z'),
       title: 'The Go client for OpenSearch: Introduction',
     },
@@ -73,8 +70,7 @@ const mockNewsFetchResult = {
       expireOn: moment('2050-12-31T11:59:59Z'),
       hash: 'fb3e3d42ef',
       linkText: 'Read more on the blog',
-      linkUrl:
-        'https://www.opensearch.org/blog/alerting-and-anomaly-detection-for-uptime-and-reliability?blade=opensearchDashboardsfeed',
+      linkUrl: 'https://opensearch.org/docs/latest/monitoring-plugins/ad/index/',
       publishOn: moment('2020-08-14T10:23:47Z'),
       title: 'Alerting and anomaly detection for uptime and reliability',
     },
@@ -86,7 +82,7 @@ const mockNewsFetchResult = {
       hash: 'b2fc7d47d5',
       linkText: 'Learn more on the blog',
       linkUrl:
-        'https://www.opensearch.org/blog/optimizing-costs-elastic-cloud-hot-warm-index-lifecycle-management?blade=opensearchDashboardsfeed',
+        'https://opensearch.org/docs/latest/opensearch/cluster/#advanced-step-7-set-up-a-hot-warm-architecture',
       publishOn: moment('2020-08-01T10:23:47Z'),
       title: 'Optimizing costs in Elastic Cloud: Hot-warm + index lifecycle management',
     },
@@ -167,6 +163,14 @@ const mockFeatures = [
   },
 ];
 
+const mockBranding = {
+  darkMode: false,
+  mark: {
+    defaultUrl: '/defaultModeUrl',
+    darkModeUrl: '/darkModeUrl',
+  },
+};
+
 describe('Overview', () => {
   test('render', () => {
     const component = shallowWithIntl(
@@ -174,19 +178,30 @@ describe('Overview', () => {
         newsFetchResult={mockNewsFetchResult}
         solutions={mockSolutions}
         features={mockFeatures}
+        branding={mockBranding}
       />
     );
     expect(component).toMatchSnapshot();
   });
   test('without solutions', () => {
     const component = shallowWithIntl(
-      <Overview newsFetchResult={mockNewsFetchResult} solutions={[]} features={mockFeatures} />
+      <Overview
+        newsFetchResult={mockNewsFetchResult}
+        solutions={[]}
+        features={mockFeatures}
+        branding={mockBranding}
+      />
     );
     expect(component).toMatchSnapshot();
   });
   test('without features', () => {
     const component = shallowWithIntl(
-      <Overview newsFetchResult={mockNewsFetchResult} solutions={mockSolutions} features={[]} />
+      <Overview
+        newsFetchResult={mockNewsFetchResult}
+        solutions={mockSolutions}
+        features={[]}
+        branding={mockBranding}
+      />
     );
     expect(component).toMatchSnapshot();
   });

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 const dedent = require('dedent');
 const getopts = require('getopts');
 const { Cluster } = require('../cluster');
@@ -48,7 +46,6 @@ exports.help = (defaults = {}) => {
       --install-path    Installation path, defaults to 'source' within base-path
       --data-archive    Path to zip or tarball containing an OpenSearch data directory to seed the cluster with.
       --password        Sets password for opensearch user [default: ${password}]
-      --password.[user] Sets password for native realm user [default: ${password}]
       -E                Additional key=value settings to pass to OpenSearch
       --download-only   Download the snapshot but don't actually start it
       --ssl             Sets up SSL on OpenSearch

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /* eslint-disable react/no-danger */
@@ -157,6 +155,16 @@ export const Styles: FunctionComponent<Props> = ({ darkMode }) => {
             transform: scaleX(0) translateX(0%);
             animation: osdProgress 1s cubic-bezier(.694, .0482, .335, 1) infinite;
             background-color: ${darkMode ? '#1BA9F5' : '#006DE4'};
+          }
+
+          .loadingLogoContainer {
+            height: 60px;
+            padding: 10px 10px 10px 10px;
+          }
+
+          .loadingLogo {
+            height: 100%;
+            max-width: 100%;
           }
 
           @keyframes osdProgress {

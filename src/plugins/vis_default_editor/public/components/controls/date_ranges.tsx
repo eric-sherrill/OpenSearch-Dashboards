@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import React, { Fragment, useState, useEffect, useCallback } from 'react';
@@ -138,10 +136,10 @@ function DateRangesParamEditor({
     );
 
   return (
-    <EuiFormRow compressed fullWidth>
+    <EuiFormRow display={'rowCompressed'} fullWidth>
       <>
         <EuiText size="xs">
-          <EuiLink href={services.docLinks.links.date.dateMath} target="_blank">
+          <EuiLink href={services.docLinks.links.noDocumentation.dateMath} target="_blank">
             <FormattedMessage
               id="visDefaultEditor.controls.dateRanges.acceptedDateFormatsLinkText"
               defaultMessage="Acceptable date formats"

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import expect from '@osd/expect';
 
 export default function ({ getService, getPageObjects }) {
@@ -46,8 +44,6 @@ export default function ({ getService, getPageObjects }) {
     'visChart',
   ]);
 
-  // https://www.opensearch.org/guide/en/kibana/current/tutorial-load-dataset.html
-
   describe('Shakespeare', function describeIndexTests() {
     // index starts on the first "count" metric at 1
     // Each new metric or aggregation added to a visualization gets the next index.
@@ -56,10 +52,6 @@ export default function ({ getService, getPageObjects }) {
     let aggIndex = 1;
 
     before(async function () {
-      log.debug(
-        'Load empty_opensearch_dashboards and Shakespeare Getting Started data\n' +
-          'https://www.opensearch.org/guide/en/kibana/current/tutorial-load-dataset.html'
-      );
       await security.testUser.setRoles(['opensearch_dashboards_admin', 'test_shakespeare_reader']);
       await opensearchArchiver.load('empty_opensearch_dashboards', { skipExisting: true });
       log.debug('Load shakespeare data');
@@ -78,7 +70,6 @@ export default function ({ getService, getPageObjects }) {
       expect(patternName).to.be('shakespeare');
     });
 
-    // https://www.opensearch.org/guide/en/kibana/current/tutorial-visualizing.html
     /* 1. Click New and select Vertical bar chart.
     2. Select the shakes* index pattern. Since you haven’t defined any buckets
     yet, you’ll see a single big bar that shows the total count of documents that

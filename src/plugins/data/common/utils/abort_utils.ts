@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 /**
  * Class used to signify that something was aborted. Useful for applications to conditionally handle
  * this type of error differently than other errors.
@@ -49,15 +47,23 @@ export class AbortError extends Error {
  *
  * @param signal The `AbortSignal` to generate the `Promise` from
  */
-export function toPromise(signal: AbortSignal): Promise<never> {
-  return new Promise((resolve, reject) => {
-    if (signal.aborted) reject(new AbortError());
-    const abortHandler = () => {
+export function toPromise(signal: AbortSignal): { promise: Promise<never>; cleanup: () => void } {
+  let abortHandler: () => void;
+  const cleanup = () => {
+    if (abortHandler) {
       signal.removeEventListener('abort', abortHandler);
+    }
+  };
+  const promise = new Promise<never>((resolve, reject) => {
+    if (signal.aborted) reject(new AbortError());
+    abortHandler = () => {
+      cleanup();
       reject(new AbortError());
     };
     signal.addEventListener('abort', abortHandler);
   });
+
+  return { promise, cleanup };
 }
 
 /**
@@ -65,13 +71,26 @@ export function toPromise(signal: AbortSignal): Promise<never> {
  *
  * @param signals
  */
-export function getCombinedSignal(signals: AbortSignal[]) {
+export function getCombinedSignal(
+  signals: AbortSignal[]
+): { signal: AbortSignal; cleanup: () => void } {
   const controller = new AbortController();
+  let cleanup = () => {};
+
   if (signals.some((signal) => signal.aborted)) {
     controller.abort();
   } else {
     const promises = signals.map((signal) => toPromise(signal));
-    Promise.race(promises).catch(() => controller.abort());
+    cleanup = () => {
+      promises.forEach((p) => p.cleanup());
+      controller.signal.removeEventListener('abort', cleanup);
+    };
+    controller.signal.addEventListener('abort', cleanup);
+    Promise.race(promises.map((p) => p.promise)).catch(() => {
+      cleanup();
+      controller.abort();
+    });
   }
-  return controller.signal;
+
+  return { signal: controller.signal, cleanup };
 }

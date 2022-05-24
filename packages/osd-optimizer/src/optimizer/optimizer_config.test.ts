@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 jest.mock('./assign_bundles_to_workers.ts');
@@ -465,6 +463,10 @@ describe('OptimizerConfig::create()', () => {
         "invocationCallOrder": Array [
           21,
         ],
+        "lastCall": Array [
+          Symbol(parsed plugin scan dirs),
+          Symbol(parsed plugin paths),
+        ],
         "results": Array [
           Object {
             "type": "return",
@@ -491,6 +493,13 @@ describe('OptimizerConfig::create()', () => {
         "invocationCallOrder": Array [
           23,
         ],
+        "lastCall": Array [
+          Array [],
+          Array [
+            Symbol(bundle1),
+            Symbol(bundle2),
+          ],
+        ],
         "results": Array [
           Object {
             "type": "return",
@@ -514,6 +523,11 @@ describe('OptimizerConfig::create()', () => {
         ],
         "invocationCallOrder": Array [
           22,
+        ],
+        "lastCall": Array [
+          Symbol(new platform plugins),
+          Symbol(parsed repo root),
+          Symbol(parsed output root),
         ],
         "results": Array [
           Object {

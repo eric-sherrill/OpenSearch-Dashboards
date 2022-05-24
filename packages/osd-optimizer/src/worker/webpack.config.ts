@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import Path from 'path';
@@ -160,22 +158,22 @@ export function getWebpackConfig(bundle: Bundle, bundleRefs: BundleRefs, worker:
                   loader: 'postcss-loader',
                   options: {
                     sourceMap: !worker.dist,
-                    config: {
-                      path: require.resolve('@osd/optimizer/postcss.config.js'),
+                    postcssOptions: {
+                      config: require.resolve('@osd/optimizer/postcss.config.js'),
                     },
                   },
                 },
                 {
                   loader: 'sass-loader',
                   options: {
-                    prependData(loaderContext: webpack.loader.LoaderContext) {
+                    additionalData(content: string, loaderContext: webpack.loader.LoaderContext) {
                       return `@import ${stringifyRequest(
                         loaderContext,
                         Path.resolve(
                           worker.repoRoot,
                           `src/core/public/core_app/styles/_globals_${theme}.scss`
                         )
-                      )};\n`;
+                      )};\n${content}`;
                     },
                     webpackImporter: false,
                     implementation: require('node-sass'),

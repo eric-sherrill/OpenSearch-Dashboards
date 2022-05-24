@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,15 +28,10 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { BehaviorSubject, Subject } from 'rxjs';
 import { take, filter } from 'rxjs/operators';
 import supertest from 'supertest';
-import { Server as HapiServer } from 'hapi';
+import { Server as HapiServer } from '@hapi/hapi';
 import { createHttpServer } from '../../http/test_utils';
 import { HttpService, IRouter } from '../../http';
 import { contextServiceMock } from '../../context/context_service.mock';
@@ -108,8 +106,8 @@ describe('ServerMetricsCollector', () => {
     await server.start();
 
     await sendGet('/');
-    const discoReq1 = sendGet('/disconnect').end();
-    const discoReq2 = sendGet('/disconnect').end();
+    const discoReq1 = sendGet('/disconnect').end(() => null);
+    const discoReq2 = sendGet('/disconnect').end(() => null);
 
     await hitSubject
       .pipe(
@@ -133,7 +131,7 @@ describe('ServerMetricsCollector', () => {
     expect(metrics.requests).toEqual(
       expect.objectContaining({
         total: 3,
-        disconnects: 1,
+        disconnects: 0,
       })
     );
 
@@ -144,7 +142,7 @@ describe('ServerMetricsCollector', () => {
     expect(metrics.requests).toEqual(
       expect.objectContaining({
         total: 3,
-        disconnects: 2,
+        disconnects: 0,
       })
     );
   });
@@ -214,6 +212,7 @@ describe('ServerMetricsCollector', () => {
 
     waitSubject.next('go');
     await Promise.all([res1, res2]);
+    await delay(requestWaitDelay);
     metrics = await collector.collect();
     expect(metrics.concurrent_connections).toEqual(0);
   });

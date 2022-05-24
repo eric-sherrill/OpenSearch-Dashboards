@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { mapMatchAll } from './map_match_all';
@@ -51,7 +49,7 @@ describe('filter_manager/lib', () => {
     });
 
     describe('when given a filter that is not match_all', () => {
-      test('filter is rejected', async (done) => {
+      test('filter is rejected', (done) => {
         delete filter.match_all;
 
         try {

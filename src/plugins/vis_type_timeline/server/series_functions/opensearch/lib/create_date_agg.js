@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,9 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import _ from 'lodash';
 import { buildAggBody } from './agg_body';
-import { search } from '../../../../../../plugins/data/server';
+import { search } from '../../../../../data/server';
 const { dateHistogramInterval } = search.aggs;
 
 export default function createDateAgg(config, tlConfig, scriptedFields) {

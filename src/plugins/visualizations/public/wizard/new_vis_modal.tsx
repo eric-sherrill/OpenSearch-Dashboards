@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,9 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React from 'react';
 
-import { EuiModal, EuiOverlayMask } from '@elastic/eui';
+import { EuiModal } from '@elastic/eui';
 import { i18n } from '@osd/i18n';
 
 import { METRIC_TYPE, UiStatsMetricType } from '@osd/analytics';
@@ -40,7 +38,7 @@ import { ApplicationStart, IUiSettingsClient, SavedObjectsStart } from '../../..
 import { SearchSelection } from './search_selection';
 import { TypeSelection } from './type_selection';
 import { TypesStart, VisType, VisTypeAlias } from '../vis_types';
-import { UsageCollectionSetup } from '../../../../plugins/usage_collection/public';
+import { UsageCollectionSetup } from '../../../usage_collection/public';
 import { EmbeddableStateTransfer } from '../../../embeddable/public';
 import { VISUALIZE_ENABLE_LABS_SETTING } from '../../common/constants';
 
@@ -131,7 +129,7 @@ class NewVisModal extends React.Component<TypeSelectionProps, TypeSelectionState
         </EuiModal>
       );
 
-    return <EuiOverlayMask>{selectionModal}</EuiOverlayMask>;
+    return selectionModal;
   }
 
   private onCloseModal = () => {

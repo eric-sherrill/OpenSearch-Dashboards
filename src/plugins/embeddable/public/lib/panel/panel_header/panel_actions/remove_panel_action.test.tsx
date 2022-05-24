@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { EmbeddableOutput, isErrorEmbeddable } from '../../../';
 import { RemovePanelAction } from './remove_panel_action';
 import { EmbeddableStart } from '../../../../plugin';
@@ -42,7 +40,7 @@ import { FilterableEmbeddableFactory } from '../../../test_samples/embeddables/f
 import { FilterableContainer } from '../../../test_samples/embeddables/filterable_container';
 import { ViewMode } from '../../../types';
 import { ContactCardEmbeddable } from '../../../test_samples/embeddables/contact_card/contact_card_embeddable';
-import { opensearchFilters, Filter } from '../../../../../../../plugins/data/public';
+import { opensearchFilters, Filter } from '../../../../../../data/public';
 import { embeddablePluginMock } from '../../../../mocks';
 
 const { setup, doStart } = embeddablePluginMock.createInstance();

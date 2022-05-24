@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,17 +28,11 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 exports.cache = require('./cache');
 exports.log = require('./log').log;
 exports.parseOpenSearchLog = require('./parse_opensearch_log').parseOpenSearchLog;
 exports.findMostRecentlyChanged = require('./find_most_recently_changed').findMostRecentlyChanged;
 exports.extractConfigFiles = require('./extract_config_files').extractConfigFiles;
 exports.decompress = require('./decompress').decompress;
-exports.NativeRealm = require('./native_realm').NativeRealm;
 exports.buildSnapshot = require('./build_snapshot').buildSnapshot;
 exports.archiveForPlatform = require('./build_snapshot').archiveForPlatform;

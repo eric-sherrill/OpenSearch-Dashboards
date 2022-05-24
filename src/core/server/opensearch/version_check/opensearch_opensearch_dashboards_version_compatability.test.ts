@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { opensearchVersionCompatibleWithOpenSearchDashboards } from './opensearch_opensearch_dashboards_version_compatability';
@@ -58,6 +56,30 @@ describe('plugins/opensearch', () => {
       it('when majors and minors are not equal, but the engine is on legacy version 8.0.0 and OpenSearch Dashboards is on 1.0.0', () => {
         expect(opensearchVersionCompatibleWithOpenSearchDashboards('8.0.0', '1.0.0')).toBe(false);
       });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 6.10.3 and OpenSearch Dashboards is on 2.0.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('6.10.3', '2.0.0')).toBe(false);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 7.10.3 and OpenSearch Dashboards is on 2.0.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.3', '2.0.0')).toBe(false);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 8.0.0 and OpenSearch Dashboards is on 2.0.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('8.0.0', '2.0.0')).toBe(false);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 6.10.3 and OpenSearch Dashboards is on 3.0.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('6.10.3', '3.0.0')).toBe(false);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 7.10.3 and OpenSearch Dashboards is on 3.0.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.3', '3.0.0')).toBe(false);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 8.0.0 and OpenSearch Dashboards is on 3.0.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('8.0.0', '3.0.0')).toBe(false);
+      });
     });
 
     describe('returns true', () => {
@@ -87,6 +109,30 @@ describe('plugins/opensearch', () => {
 
       it('when majors and minors are not equal, but the engine is on legacy version 7.10.2 and OpenSearch Dashboards is on 1.1.0', () => {
         expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.2', '1.1.0')).toBe(true);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 7.10.2 and OpenSearch Dashboards is on 2.0.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.2', '2.0.0')).toBe(true);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 7.10.2 and OpenSearch Dashboards is on 2.0.1', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.2', '2.0.1')).toBe(true);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 7.10.2 and OpenSearch Dashboards is on 2.1.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.2', '2.1.0')).toBe(true);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 7.10.2 and OpenSearch Dashboards is on 3.0.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.2', '3.0.0')).toBe(true);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 7.10.2 and OpenSearch Dashboards is on 3.0.1', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.2', '3.0.1')).toBe(true);
+      });
+
+      it('when majors and minors are not equal, but the engine is on legacy version 7.10.2 and OpenSearch Dashboards is on 3.1.0', () => {
+        expect(opensearchVersionCompatibleWithOpenSearchDashboards('7.10.2', '3.1.0')).toBe(true);
       });
     });
   });

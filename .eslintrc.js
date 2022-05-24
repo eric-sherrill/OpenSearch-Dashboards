@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,22 +28,33 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
+/**
+ * For new files created by OpenSearch Contributors
  */
+const OSD_NEW_HEADER = `
+/*
+ * Copyright OpenSearch Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ */
+`;
 
-const NEW_OSS_HEADER = `
+/**
+ * For modified and modified files with external open source code
+ */
+const OSD_HEADER = `
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a 
+ * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 `;
 
-const OSS_MODIFIED_HEADER = `
+const OSD_BAD_HEADER = `
 /*
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
@@ -65,14 +79,6 @@ const APACHE_2_0_LICENSE_HEADER = `
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-`;
-
-const ELASTIC_LICENSE_HEADER = `
-/*
- * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
- * or more contributor license agreements. Licensed under the Elastic License;
- * you may not use this file except in compliance with the Elastic License.
  */
 `;
 
@@ -151,14 +157,14 @@ module.exports = {
         '@osd/eslint/require-license-header': [
           'error',
           {
-            license: NEW_OSS_HEADER,
+            licenses: [OSD_NEW_HEADER, OSD_HEADER],
           },
         ],
         '@osd/eslint/disallow-license-headers': [
           'error',
           {
             licenses: [
-              ELASTIC_LICENSE_HEADER,
+              OSD_BAD_HEADER,
               SAFER_LODASH_SET_HEADER,
               SAFER_LODASH_SET_LODASH_HEADER,
               SAFER_LODASH_SET_DEFINITELYTYPED_HEADER,
@@ -187,14 +193,16 @@ module.exports = {
         '@osd/eslint/require-license-header': [
           'error',
           {
-            license: SAFER_LODASH_SET_LODASH_HEADER,
+            licenses: [SAFER_LODASH_SET_LODASH_HEADER],
           },
         ],
         '@osd/eslint/disallow-license-headers': [
           'error',
           {
             licenses: [
-              ELASTIC_LICENSE_HEADER,
+              OSD_BAD_HEADER,
+              OSD_NEW_HEADER,
+              OSD_HEADER,
               APACHE_2_0_LICENSE_HEADER,
               SAFER_LODASH_SET_HEADER,
               SAFER_LODASH_SET_DEFINITELYTYPED_HEADER,
@@ -209,19 +217,19 @@ module.exports = {
         '@osd/eslint/require-license-header': [
           'error',
           {
-            license: SAFER_LODASH_SET_HEADER,
+            licenses: [SAFER_LODASH_SET_HEADER],
           },
         ],
         '@osd/eslint/disallow-license-headers': [
           'error',
           {
             licenses: [
-              NEW_OSS_HEADER,
-              ELASTIC_LICENSE_HEADER,
+              OSD_BAD_HEADER,
+              OSD_NEW_HEADER,
+              OSD_HEADER,
               APACHE_2_0_LICENSE_HEADER,
               SAFER_LODASH_SET_LODASH_HEADER,
               SAFER_LODASH_SET_DEFINITELYTYPED_HEADER,
-              OSS_MODIFIED_HEADER,
             ],
           },
         ],
@@ -233,19 +241,19 @@ module.exports = {
         '@osd/eslint/require-license-header': [
           'error',
           {
-            license: SAFER_LODASH_SET_DEFINITELYTYPED_HEADER,
+            licenses: [SAFER_LODASH_SET_DEFINITELYTYPED_HEADER],
           },
         ],
         '@osd/eslint/disallow-license-headers': [
           'error',
           {
             licenses: [
-              NEW_OSS_HEADER,
-              ELASTIC_LICENSE_HEADER,
+              OSD_BAD_HEADER,
+              OSD_NEW_HEADER,
+              OSD_HEADER,
               APACHE_2_0_LICENSE_HEADER,
               SAFER_LODASH_SET_HEADER,
               SAFER_LODASH_SET_LODASH_HEADER,
-              OSS_MODIFIED_HEADER,
             ],
           },
         ],
@@ -375,7 +383,6 @@ module.exports = {
      */
     {
       files: [
-        '**/*.stories.tsx',
         'test/*/config.ts',
         'test/*/config_open.ts',
         'test/*/{tests,test_suites,apis,apps}/**/*',
@@ -393,7 +400,6 @@ module.exports = {
     {
       files: [
         '**/public/**/*.js',
-        'packages/osd-ui-framework/doc_site/src/**/*.js',
         'src/fixtures/**/*.js', // TODO: this directory needs to be more obviously "public" (or go away)
       ],
       settings: {
@@ -433,8 +439,6 @@ module.exports = {
     {
       files: [
         'packages/osd-ui-framework/**/*.test.js',
-        'packages/osd-ui-framework/doc_site/**/*.js',
-        'packages/osd-ui-framework/generator-kui/**/*.js',
         'packages/osd-ui-framework/Gruntfile.js',
         'packages/osd-opensearch/src/**/*.js',
         'packages/osd-interpreter/tasks/**/*.js',
@@ -543,7 +547,7 @@ module.exports = {
     {
       files: ['**/*.test.{js,mjs,ts,tsx}'],
       rules: {
-        'jest/valid-describe': 'error',
+        'jest/valid-describe-callback': 'error',
       },
     },
 
@@ -742,6 +746,13 @@ module.exports = {
             patterns: ['lodash/*', '!lodash/fp'],
           },
         ],
+      },
+    },
+    {
+      files: ['cypress/**/*.js'],
+      rules: {
+        'import/no-unresolved': 'off',
+        'no-undef': 'off',
       },
     },
   ],

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,9 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import _ from 'lodash';
 import { newMetricAggFn } from './new_metric_agg_fn';
-import { isBasicAgg } from '../../../../../../plugins/vis_type_timeseries/common/agg_lookup';
+import { isBasicAgg } from '../../../../common/agg_lookup';
 import { handleAdd, handleChange } from './collection_actions';
 
 export const seriesChangeHandler = (props, items) => (doc) => {

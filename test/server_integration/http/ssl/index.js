@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,17 +28,20 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 export default function ({ getService }) {
   const supertest = getService('supertest');
 
   describe('opensearch-dashboards server with ssl', () => {
     it('handles requests using ssl', async () => {
       await supertest.get('/').expect(302);
+    });
+
+    it('handles UI requests using ssl', async () => {
+      await supertest.get('ui/').expect(302);
+    });
+
+    it('handles UI assests requests using ssl', async () => {
+      await supertest.get('ui/assets').expect(302);
     });
   });
 }

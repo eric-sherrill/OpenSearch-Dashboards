@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { get } from 'lodash';
@@ -55,11 +53,8 @@ import {
   AUTO_INTERVAL,
 } from './lib/get_interval';
 import { i18n } from '@osd/i18n';
-import {
-  TIME_RANGE_DATA_MODES,
-  TIME_RANGE_MODE_KEY,
-} from '../../../../../plugins/vis_type_timeseries/common/timerange_data_modes';
-import { PANEL_TYPES } from '../../../../../plugins/vis_type_timeseries/common/panel_types';
+import { TIME_RANGE_DATA_MODES, TIME_RANGE_MODE_KEY } from '../../../common/timerange_data_modes';
+import { PANEL_TYPES } from '../../../common/panel_types';
 import { isTimerangeModeEnabled } from '../lib/check_ui_restrictions';
 import { VisDataContext } from '../contexts/vis_data_context';
 

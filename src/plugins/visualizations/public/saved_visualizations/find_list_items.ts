@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,9 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import _ from 'lodash';
 import { SavedObjectAttributes, SavedObjectsClientContract } from '../../../../core/public';
-import { SavedObjectLoader } from '../../../../plugins/saved_objects/public';
+import { SavedObjectLoader } from '../../../saved_objects/public';
 import { VisTypeAlias } from '../vis_types';
 import { VisualizationsAppExtension } from '../vis_types/vis_type_alias_registry';
 

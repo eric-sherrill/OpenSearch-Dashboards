@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import {
@@ -81,7 +79,7 @@ describe('telemetry_application_usage', () => {
   test('if no savedObjectClient initialised, return undefined', async () => {
     expect(collector.isReady()).toBe(false);
     expect(await collector.fetch(callCluster, opensearchClient)).toBeUndefined();
-    jest.runTimersToTime(ROLL_INDICES_START);
+    jest.advanceTimersByTime(ROLL_INDICES_START);
   });
 
   test('when savedObjectClient is initialised, return something', async () => {
@@ -95,7 +93,7 @@ describe('telemetry_application_usage', () => {
     );
     getUsageCollector.mockImplementation(() => savedObjectClient);
 
-    jest.runTimersToTime(ROLL_TOTAL_INDICES_INTERVAL); // Force rollTotals to run
+    jest.advanceTimersByTime(ROLL_TOTAL_INDICES_INTERVAL); // Force rollTotals to run
 
     expect(collector.isReady()).toBe(true);
     expect(await collector.fetch(callCluster, opensearchClient)).toStrictEqual({});
@@ -153,7 +151,7 @@ describe('telemetry_application_usage', () => {
 
     getUsageCollector.mockImplementation(() => savedObjectClient);
 
-    jest.runTimersToTime(ROLL_TOTAL_INDICES_INTERVAL); // Force rollTotals to run
+    jest.advanceTimersByTime(ROLL_TOTAL_INDICES_INTERVAL); // Force rollTotals to run
 
     expect(await collector.fetch(callCluster, opensearchClient)).toStrictEqual({
       appId: {

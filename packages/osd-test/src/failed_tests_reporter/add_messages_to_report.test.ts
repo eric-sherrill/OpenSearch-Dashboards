@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import Path from 'path';
@@ -335,8 +333,8 @@ it('rewrites cypress reports with minimal changes', async () => {
      You can fix this problem by:
        - Passing \`{force: true}\` which disables all error checking
     @@ -46,5 +37,5 @@
-         at Promise._settlePromise (http://elastic:changeme@localhost:61141/__cypress/runner/cypress_runner.js:7057:18)
-         at Promise._settlePromise0 (http://elastic:changeme@localhost:61141/__cypress/runner/cypress_runner.js:7102:10)]]›‹/failure›
+         at Promise._settlePromise (https://example.com/__cypress/runner/cypress_runner.js:7057:18)
+         at Promise._settlePromise0 (https://example.com/__cypress/runner/cypress_runner.js:7102:10)]]›‹/failure›
          ‹/testcase›
        ‹/testsuite›
     -‹/testsuites›

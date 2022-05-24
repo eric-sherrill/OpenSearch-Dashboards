@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,18 +28,13 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import {
   SavedObjectsClientContract,
   ChromeStart,
   OverlayStart,
 } from 'opensearch-dashboards/public';
 import { DataPublicPluginStart, IndexPatternsContract } from '../../../../plugins/data/public';
-import { SavedObjectLoader } from '../../../../plugins/saved_objects/public';
+import { SavedObjectLoader } from '../../../saved_objects/public';
 import { createSavedDashboardClass } from './saved_dashboard';
 
 interface Services {

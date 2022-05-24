@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import { IconType } from '@elastic/eui';
 import { OpenSearchDashboardsRequest } from 'src/core/server';
 
@@ -123,5 +122,7 @@ export interface TutorialContext {
 export type TutorialProvider = (context: TutorialContext) => TutorialSchema;
 export type TutorialContextFactory = (
   req: OpenSearchDashboardsRequest
-) => { [key: string]: unknown };
+) => {
+  [key: string]: unknown;
+};
 export type ScopedTutorialContextFactory = (...args: any[]) => any;

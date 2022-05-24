@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { isAutoInterval } from '../_interval_options';
@@ -100,8 +98,8 @@ const calculateAutoInterval = (
   const exactInterval = diff / maxBars;
 
   // For integer fields that are less than maxBars, we should use 1 as the value of interval
-  // Elastic has 4 integer data types: long, integer, short, byte
-  // see: https://www.opensearch.org/guide/en/elasticsearch/reference/current/number.html
+  // OpenSearch has 5 integer data types: long, integer, byte, double and float
+  // see: https://opensearch.org/docs/latest/search-plugins/sql/datatypes/#data-types
   if (
     diff < maxBars &&
     esTypes.every((opensearchType) =>

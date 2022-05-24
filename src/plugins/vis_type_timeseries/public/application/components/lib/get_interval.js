@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,16 +28,12 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import moment from 'moment';
 import { i18n } from '@osd/i18n';
 import { get } from 'lodash';
-import { search } from '../../../../../../plugins/data/public';
+import { search } from '../../../../../data/public';
 const { parseOpenSearchInterval } = search.aggs;
-import { GTE_INTERVAL_RE } from '../../../../../../plugins/vis_type_timeseries/common/interval_regexp';
+import { GTE_INTERVAL_RE } from '../../../../common/interval_regexp';
 
 export const AUTO_INTERVAL = 'auto';
 

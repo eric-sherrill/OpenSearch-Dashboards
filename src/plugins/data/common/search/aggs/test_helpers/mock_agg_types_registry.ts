@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { fieldFormatsMock } from '../../../field_formats/mocks';
@@ -93,7 +91,9 @@ export function mockAggTypesRegistry(deps?: AggTypesDependencies): AggTypesRegis
   aggTypes.buckets.forEach(({ name, fn }) => registrySetup.registerBucket(name, fn));
   aggTypes.metrics.forEach(({ name, fn }) => registrySetup.registerMetric(name, fn));
 
-  const registryStart = registry.start();
+  const registryStart = registry.start({
+    uiSettings: { get: jest.fn().mockImplementation(() => []) } as any,
+  });
 
   // initialize each agg type and store in memory
   registryStart.getAll().buckets.forEach((type) => {

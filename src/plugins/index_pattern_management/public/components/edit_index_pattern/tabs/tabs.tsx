@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import React, { useState, useCallback, useEffect, Fragment, useMemo } from 'react';
@@ -50,7 +48,7 @@ import {
   UI_SETTINGS,
   DataPublicPluginStart,
 } from '../../../../../../plugins/data/public';
-import { useOpenSearchDashboards } from '../../../../../../plugins/opensearch_dashboards_react/public';
+import { useOpenSearchDashboards } from '../../../../../opensearch_dashboards_react/public';
 import { IndexPatternManagmentContext } from '../../../types';
 import { createEditIndexPatternPageStateContainer } from '../edit_index_pattern_state_container';
 import { TAB_INDEXED_FIELDS, TAB_SCRIPTED_FIELDS, TAB_SOURCE_FILTERS } from '../constants';
@@ -215,7 +213,7 @@ export function Tabs({ indexPattern, saveIndexPattern, fields, history, location
                   },
                 }}
                 onRemoveField={refreshFilters}
-                painlessDocLink={docLinks.links.scriptedFields.painless}
+                painlessDocLink={docLinks.links.noDocumentation.scriptedFields.painless}
               />
             </Fragment>
           );
@@ -237,7 +235,7 @@ export function Tabs({ indexPattern, saveIndexPattern, fields, history, location
       }
     },
     [
-      docLinks.links.scriptedFields.painless,
+      docLinks.links.noDocumentation.scriptedFields.painless,
       fieldFilter,
       fieldWildcardMatcherDecorated,
       fields,

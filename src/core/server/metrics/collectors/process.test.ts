@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import v8, { HeapInfo } from 'v8';
@@ -75,6 +73,7 @@ describe('ProcessMetricsCollector', () => {
       heapTotal,
       heapUsed,
       external: 0,
+      arrayBuffers: 0,
     }));
 
     jest.spyOn(v8, 'getHeapStatistics').mockImplementation(

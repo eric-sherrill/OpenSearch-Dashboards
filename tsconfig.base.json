@@ -10,7 +10,8 @@
       "test_utils/*": [
         "src/test_utils/public/*"
       ],
-      "fixtures/*": ["src/fixtures/*"]
+      "fixtures/*": ["src/fixtures/*"],
+      "@opensearch-project/opensearch": ["node_modules/@opensearch-project/opensearch/api/new"]
     },
     // Support .tsx files and transform JSX into calls to React.createElement
     "jsx": "react",
@@ -55,8 +56,8 @@
       "jest",
       "react",
       "flot",
-      "jest-styled-components",
-      "@testing-library/jest-dom"
+      "@testing-library/jest-dom",
+      "resize-observer-polyfill"
     ]
   }
 }

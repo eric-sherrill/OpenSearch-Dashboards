@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,12 +28,8 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { omit, pick } from 'lodash';
+import { setImmediate } from 'timers';
 
 import {
   MockedPluginInitializer,
@@ -113,7 +112,7 @@ describe('PluginsService', () => {
       ...mockSetupDeps,
       application: expect.any(Object),
       getStartServices: expect.any(Function),
-      injectedMetadata: pick(mockSetupDeps.injectedMetadata, 'getInjectedVar'),
+      injectedMetadata: pick(mockSetupDeps.injectedMetadata, 'getInjectedVar', 'getBranding'),
     };
     mockStartDeps = {
       application: applicationServiceMock.createInternalStartContract(),
@@ -132,7 +131,7 @@ describe('PluginsService', () => {
       ...mockStartDeps,
       application: expect.any(Object),
       chrome: omit(mockStartDeps.chrome, 'getComponent'),
-      injectedMetadata: pick(mockStartDeps.injectedMetadata, 'getInjectedVar'),
+      injectedMetadata: pick(mockStartDeps.injectedMetadata, 'getInjectedVar', 'getBranding'),
     };
 
     // Reset these for each test.
@@ -268,7 +267,8 @@ describe('PluginsService', () => {
     describe('timeout', () => {
       const flushPromises = () => new Promise((resolve) => setImmediate(resolve));
       beforeAll(() => {
-        jest.useFakeTimers();
+        jest.useFakeTimers('legacy');
+        setImmediate(() => {});
       });
       afterAll(() => {
         jest.useRealTimers();

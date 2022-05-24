@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,19 +28,15 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-import { EuiHeaderLogo } from '@elastic/eui';
 import { i18n } from '@osd/i18n';
 import React from 'react';
 import useObservable from 'react-use/lib/useObservable';
 import { Observable } from 'rxjs';
 import Url from 'url';
 import { ChromeNavLink } from '../..';
-import { OpenSearchDashboardsLogoDarkMode } from './branding/opensearch_dashboards_logo_darkmode';
+import { CustomLogo } from './branding/opensearch_dashboards_custom_logo';
+import { ChromeBranding } from '../../chrome_service';
+import './header_logo.scss';
 
 function findClosestAnchor(element: HTMLElement): HTMLAnchorElement | void {
   let current = element;
@@ -104,21 +103,24 @@ interface Props {
   navLinks$: Observable<ChromeNavLink[]>;
   forceNavigation$: Observable<boolean>;
   navigateToApp: (appId: string) => void;
+  branding: ChromeBranding;
 }
 
-export function HeaderLogo({ href, navigateToApp, ...observables }: Props) {
+export function HeaderLogo({ href, navigateToApp, branding, ...observables }: Props) {
   const forceNavigation = useObservable(observables.forceNavigation$, false);
   const navLinks = useObservable(observables.navLinks$, []);
 
   return (
-    <EuiHeaderLogo
+    <a
       data-test-subj="logo"
-      iconType={OpenSearchDashboardsLogoDarkMode}
       onClick={(e) => onClick(e, forceNavigation, navLinks, navigateToApp)}
       href={href}
       aria-label={i18n.translate('core.ui.chrome.headerGlobalNav.goHomePageIconAriaLabel', {
         defaultMessage: 'Go to home page',
       })}
-    />
+      className="logoContainer"
+    >
+      <CustomLogo {...branding} />
+    </a>
   );
 }

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
+import { setImmediate } from 'timers';
 
 import { SearchResponse } from 'elasticsearch';
 import { UI_SETTINGS } from '../../../constants';
@@ -57,7 +57,8 @@ const mockResponses: Record<string, SearchResponse<any>> = {
   } as SearchResponse<any>,
 };
 
-jest.useFakeTimers();
+jest.useFakeTimers('legacy');
+setImmediate(() => {});
 
 jest.mock('./call_client', () => ({
   callClient: jest.fn((requests: SearchRequest[]) => {
@@ -119,17 +120,18 @@ describe('fetchSoon', () => {
     expect((callClient as jest.Mock).mock.calls[0][1]).toEqual(options);
   });
 
-  test('should return the response to the corresponding call for multiple batched requests', async () => {
+  test('should return the response to the corresponding call for multiple batched requests', (done) => {
     const getConfig = getConfigStub({ [UI_SETTINGS.COURIER_BATCH_SEARCHES]: true });
     const requests = [{ _mockResponseId: 'foo' }, { _mockResponseId: 'bar' }];
 
-    const promises = requests.map((request) => {
-      return fetchSoon(request, {}, { getConfig } as FetchHandlers);
-    });
+    const promises = requests.map((request) =>
+      fetchSoon(request, {}, { getConfig } as FetchHandlers)
+    );
     jest.advanceTimersByTime(50);
-    const results = await Promise.all(promises);
-
-    expect(results).toEqual([mockResponses.foo, mockResponses.bar]);
+    Promise.all(promises).then((results) => {
+      expect(results).toEqual([mockResponses.foo, mockResponses.bar]);
+      done();
+    });
   });
 
   test('should wait for the previous batch to start before starting a new batch', () => {

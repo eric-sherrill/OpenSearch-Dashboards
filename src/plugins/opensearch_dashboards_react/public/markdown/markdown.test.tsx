@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import React from 'react';
@@ -70,7 +68,7 @@ test('should add `noreferrer` and `nooopener` to unknown links in new tabs', () 
 // TODO: [RENAMEME] if we fork EUI and update that regex then we can include this test again
 xtest('should only add `nooopener` to known links in new tabs', () => {
   const component = shallow(
-    <Markdown openLinksInNewTab={true} markdown="[link](https://www.opensearch.org/cool/path" />
+    <Markdown openLinksInNewTab={true} markdown="[link](https://opensearch.org/cool/path" />
   );
   expect(component.render().find('a').prop('rel')).toBe('noopener');
 });

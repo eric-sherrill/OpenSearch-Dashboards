@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { SpecDefinitionsService } from '../../../services';
 
 const commonPipelineParams = {
@@ -41,7 +39,7 @@ const commonPipelineParams = {
   tag: '',
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/append-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/append-processor.html
 const appendProcessorDefinition = {
   append: {
     __template: {
@@ -54,7 +52,7 @@ const appendProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/bytes-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/bytes-processor.html
 const bytesProcessorDefinition = {
   bytes: {
     __template: {
@@ -69,7 +67,7 @@ const bytesProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/ingest-circle-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/ingest-circle-processor.html
 const circleProcessorDefinition = {
   circle: {
     __template: {
@@ -90,7 +88,7 @@ const circleProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/csv-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/csv-processor.html
 const csvProcessorDefinition = {
   csv: {
     __template: {
@@ -112,7 +110,7 @@ const csvProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/convert-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/convert-processor.html
 const convertProcessorDefinition = {
   convert: {
     __template: {
@@ -131,7 +129,7 @@ const convertProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/date-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/date-processor.html
 const dateProcessorDefinition = {
   date: {
     __template: {
@@ -147,7 +145,7 @@ const dateProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/date-index-name-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/date-index-name-processor.html
 const dateIndexNameProcessorDefinition = {
   date_index_name: {
     __template: {
@@ -166,7 +164,7 @@ const dateIndexNameProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/dissect-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/dissect-processor.html
 const dissectProcessorDefinition = {
   dissect: {
     __template: {
@@ -183,7 +181,7 @@ const dissectProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/dot-expand-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/dot-expand-processor.html
 const dotExpanderProcessorDefinition = {
   dot_expander: {
     __template: {
@@ -195,7 +193,7 @@ const dotExpanderProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/drop-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/drop-processor.html
 const dropProcessorDefinition = {
   drop: {
     __template: {},
@@ -203,7 +201,7 @@ const dropProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/fail-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/fail-processor.html
 const failProcessorDefinition = {
   fail: {
     __template: {
@@ -214,7 +212,7 @@ const failProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/foreach-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/foreach-processor.html
 const foreachProcessorDefinition = {
   foreach: {
     __template: {
@@ -229,7 +227,7 @@ const foreachProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/geoip-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/geoip-processor.html
 const geoipProcessorDefinition = {
   geoip: {
     __template: {
@@ -248,7 +246,7 @@ const geoipProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/grok-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/grok-processor.html
 const grokProcessorDefinition = {
   grok: {
     __template: {
@@ -268,7 +266,7 @@ const grokProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/gsub-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/gsub-processor.html
 const gsubProcessorDefinition = {
   gsub: {
     __template: {
@@ -283,7 +281,7 @@ const gsubProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/htmlstrip-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/htmlstrip-processor.html
 const htmlStripProcessorDefinition = {
   html_strip: {
     __template: {
@@ -298,7 +296,7 @@ const htmlStripProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/inference-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/inference-processor.html
 const inferenceProcessorDefinition = {
   inference: {
     __template: {
@@ -314,7 +312,7 @@ const inferenceProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/join-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/join-processor.html
 const joinProcessorDefinition = {
   join: {
     __template: {
@@ -327,7 +325,7 @@ const joinProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/json-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/json-processor.html
 const jsonProcessorDefinition = {
   json: {
     __template: {
@@ -342,7 +340,7 @@ const jsonProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/kv-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/kv-processor.html
 const kvProcessorDefinition = {
   kv: {
     __template: {
@@ -362,7 +360,7 @@ const kvProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/lowercase-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/lowercase-processor.html
 const lowercaseProcessorDefinition = {
   lowercase: {
     __template: {
@@ -376,7 +374,7 @@ const lowercaseProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/pipeline-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/pipeline-processor.html
 const pipelineProcessorDefinition = {
   pipeline: {
     __template: {
@@ -387,7 +385,7 @@ const pipelineProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/remove-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/remove-processor.html
 const removeProcessorDefinition = {
   remove: {
     __template: {
@@ -398,7 +396,7 @@ const removeProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/rename-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/rename-processor.html
 const renameProcessorDefinition = {
   rename: {
     __template: {
@@ -414,7 +412,7 @@ const renameProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/script-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/script-processor.html
 const scriptProcessorDefinition = {
   script: {
     __template: {},
@@ -427,7 +425,7 @@ const scriptProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/set-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/set-processor.html
 const setProcessorDefinition = {
   set: {
     __template: {
@@ -443,7 +441,7 @@ const setProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/ingest-node-set-security-user-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/ingest-node-set-security-user-processor.html
 const setSecurityUserProcessorDefinition = {
   set_security_user: {
     __template: {
@@ -455,7 +453,7 @@ const setSecurityUserProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/split-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/split-processor.html
 const splitProcessorDefinition = {
   split: {
     __template: {
@@ -471,7 +469,7 @@ const splitProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/sort-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/sort-processor.html
 const sortProcessorDefinition = {
   sort: {
     __template: {
@@ -483,7 +481,7 @@ const sortProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/trim-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/trim-processor.html
 const trimProcessorDefinition = {
   trim: {
     __template: {
@@ -497,7 +495,7 @@ const trimProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/uppercase-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/uppercase-processor.html
 const uppercaseProcessorDefinition = {
   uppercase: {
     __template: {
@@ -511,7 +509,7 @@ const uppercaseProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/urldecode-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/urldecode-processor.html
 const urlDecodeProcessorDefinition = {
   urldecode: {
     __template: {
@@ -526,7 +524,7 @@ const urlDecodeProcessorDefinition = {
   },
 };
 
-// Based on https://www.opensearch.org/guide/en/elasticsearch/reference/master/user-agent-processor.html
+// Based on https://opensearch.org/docs/latest/guide/en/elasticsearch/reference/master/user-agent-processor.html
 const userAgentProcessorDefinition = {
   user_agent: {
     __template: {

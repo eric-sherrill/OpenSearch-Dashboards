@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { delay } from 'bluebird';
@@ -68,8 +66,9 @@ export function CommonPageProvider({ getService, getPageObjects }: FtrProviderCo
       // Disable the welcome screen. This is relevant for environments
       // which don't allow to use the yml setting, e.g. cloud production.
       // It is done here so it applies to logins but also to a login re-use.
-      await browser.setLocalStorageItem('home:welcome:show', 'false');
 
+      // Update: Enable the welcome screen for functional tests on the welcome screen.
+      await browser.setLocalStorageItem('home:welcome:show', 'true');
       let currentUrl = await browser.getCurrentUrl();
       log.debug(`currentUrl = ${currentUrl}\n    appUrl = ${appUrl}`);
       await testSubjects.find('opensearchDashboardsChrome', 6 * defaultFindTimeout); // 60 sec waiting

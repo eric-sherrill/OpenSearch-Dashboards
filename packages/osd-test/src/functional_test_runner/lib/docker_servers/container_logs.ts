@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import execa from 'execa';
 import * as Rx from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -48,8 +46,8 @@ export function observeContainerLogs(name: string, containerId: string, log: Too
   const logLine$ = new Rx.Subject<string>();
 
   Rx.merge(
-    observeLines(logsProc.stdout).pipe(tap((line) => log.info(`[docker:${name}] ${line}`))),
-    observeLines(logsProc.stderr).pipe(tap((line) => log.error(`[docker:${name}] ${line}`)))
+    observeLines(logsProc.stdout!).pipe(tap((line) => log.info(`[docker:${name}] ${line}`))),
+    observeLines(logsProc.stderr!).pipe(tap((line) => log.error(`[docker:${name}] ${line}`)))
   ).subscribe(logLine$);
 
   return logLine$.asObservable();

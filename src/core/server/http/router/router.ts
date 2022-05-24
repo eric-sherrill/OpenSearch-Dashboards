@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,13 +28,8 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-import { Request, ResponseObject, ResponseToolkit } from 'hapi';
-import Boom from 'boom';
+import { Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
+import Boom from '@hapi/boom';
 
 import { isConfigSchema } from '@osd/config-schema';
 import { Logger } from '../../logging';
@@ -57,7 +55,10 @@ interface RouterRoute {
   method: RouteMethod;
   path: string;
   options: RouteConfigOptions<RouteMethod>;
-  handler: (req: Request, responseToolkit: ResponseToolkit) => Promise<ResponseObject | Boom<any>>;
+  handler: (
+    req: Request,
+    responseToolkit: ResponseToolkit
+  ) => Promise<ResponseObject | Boom.Boom<any>>;
 }
 
 /**

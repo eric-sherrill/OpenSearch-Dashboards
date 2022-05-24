@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import typeDetect from 'type-detect';
@@ -59,7 +57,9 @@ type RequiredProperties<Base extends Props> = Pick<
 // this might not have perfect _rendering_ output, but it will be typed.
 export type ObjectResultType<P extends Props> = Readonly<
   { [K in keyof OptionalProperties<P>]?: TypeOf<P[K]> } &
-    { [K in keyof RequiredProperties<P>]: TypeOf<P[K]> }
+    {
+      [K in keyof RequiredProperties<P>]: TypeOf<P[K]>;
+    }
 >;
 
 type DefinedProperties<Base extends NullableProps> = Pick<
@@ -70,7 +70,9 @@ type DefinedProperties<Base extends NullableProps> = Pick<
 >;
 
 type ExtendedProps<P extends Props, NP extends NullableProps> = Omit<P, keyof NP> &
-  { [K in keyof DefinedProperties<NP>]: NP[K] };
+  {
+    [K in keyof DefinedProperties<NP>]: NP[K];
+  };
 
 type ExtendedObjectType<P extends Props, NP extends NullableProps> = ObjectType<
   ExtendedProps<P, NP>

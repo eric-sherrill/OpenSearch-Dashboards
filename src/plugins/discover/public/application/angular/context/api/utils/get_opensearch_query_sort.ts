@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import {
   OpenSearchQuerySortValue,
   SortDirection,
@@ -37,7 +35,7 @@ import {
 
 /**
  * Returns `OpenSearchQuerySort` which is used to sort records in the OpenSearch query
- * https://opensearch.org/docs/opensearch/ux/#sort-results
+ * https://opensearch.org/docs/latest/opensearch/ux/#sort-results
  * @param timeField
  * @param tieBreakerField
  * @param sortDir

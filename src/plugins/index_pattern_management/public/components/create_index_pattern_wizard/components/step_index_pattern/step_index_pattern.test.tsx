@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import React from 'react';
@@ -213,9 +211,9 @@ describe('StepIndexPattern', () => {
     // Ensure it works in the other code flow too (the other early return)
 
     // Provide `opensearch` so we do not auto append * and enter our other code flow
-    instance.onQueryChanged({ target: { value: 'opensearch' } } as React.ChangeEvent<
-      HTMLInputElement
-    >);
+    instance.onQueryChanged({
+      target: { value: 'opensearch' },
+    } as React.ChangeEvent<HTMLInputElement>);
     instance.lastQuery = 'o';
     await new Promise((resolve) => process.nextTick(resolve));
     expect(component.state('exactMatchedIndices')).toEqual([]);

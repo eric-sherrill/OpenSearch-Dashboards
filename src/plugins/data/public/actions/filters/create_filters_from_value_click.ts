@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,15 +28,10 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { OpenSearchDashboardsDatatable } from '../../../../../plugins/expressions/public';
 import { deserializeAggConfig } from '../../search/expressions';
 import { opensearchFilters, Filter } from '../../../public';
-import { getIndexPatterns } from '../../../public/services';
+import { getIndexPatterns } from '../../services';
 import type { ValueClickContext } from '../../../../embeddable/public';
 
 /**

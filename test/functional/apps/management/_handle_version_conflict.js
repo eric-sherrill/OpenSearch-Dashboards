@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /* Steps for version conflict test
@@ -66,7 +64,9 @@ export default function ({ getService, getPageObjects }) {
       await PageObjects.settings.setScriptedFieldScript(`doc['bytes'].value`);
       const response = await opensearch.update({
         index: '.kibana',
-        type: '_doc',
+        // TODO: verify no BWC issues here
+        // Removed: https://github.com/opensearch-project/OpenSearch/pull/2239
+        // type: '_doc',
         id: 'index-pattern:logstash-*',
         body: {
           doc: { 'index-pattern': { fieldFormatMap: '{"geo.src":{"id":"number"}}' } },
@@ -93,7 +93,9 @@ export default function ({ getService, getPageObjects }) {
       await PageObjects.settings.setFieldFormat('url');
       const response = await opensearch.update({
         index: '.kibana',
-        type: '_doc',
+        // TODO: verify no BWC issues here
+        // Removed: https://github.com/opensearch-project/OpenSearch/pull/2239
+        // type: '_doc',
         id: 'index-pattern:logstash-*',
         body: {
           doc: { 'index-pattern': { fieldFormatMap: '{"geo.dest":{"id":"number"}}' } },

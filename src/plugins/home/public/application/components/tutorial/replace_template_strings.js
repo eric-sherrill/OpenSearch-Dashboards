@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { Writer } from 'mustache';
@@ -56,16 +54,16 @@ export function replaceTemplateStrings(text, params = {}) {
     config: {
       ...tutorialService.getVariables(),
       docs: {
-        base_url: docLinks.ELASTIC_WEBSITE_URL,
+        base_url: docLinks.OPENSEARCH_WEBSITE_URL,
         beats: {
-          filebeat: docLinks.links.filebeat.base,
-          metricbeat: docLinks.links.metricbeat.base,
-          heartbeat: docLinks.links.heartbeat.base,
-          functionbeat: docLinks.links.functionbeat.base,
-          winlogbeat: docLinks.links.winlogbeat.base,
-          auditbeat: docLinks.links.auditbeat.base,
+          filebeat: docLinks.links.noDocumentation.filebeat,
+          metricbeat: docLinks.links.noDocumentation.metricbeat,
+          heartbeat: docLinks.links.noDocumentation.heartbeat,
+          functionbeat: docLinks.links.noDocumentation.functionbeat,
+          winlogbeat: docLinks.links.noDocumentation.winlogbeat,
+          auditbeat: docLinks.links.noDocumentation.auditbeat,
         },
-        logstash: docLinks.links.logstash.base,
+        logstash: docLinks.links.noDocumentation.logstash,
         version: docLinks.DOC_LINK_VERSION,
       },
       opensearchDashboards: {

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,18 +28,13 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import Url from 'url';
 import { Agent as HttpsAgent, ServerOptions as TlsOptions } from 'https';
 
 import apm from 'elastic-apm-node';
 import { ByteSizeValue } from '@osd/config-schema';
-import { Server, Request } from 'hapi';
-import HapiProxy from 'h2o2';
+import { Server, Request } from '@hapi/hapi';
+import HapiProxy from '@hapi/h2o2';
 import { sampleSize } from 'lodash';
 import * as Rx from 'rxjs';
 import { take } from 'rxjs/operators';

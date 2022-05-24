@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { schema } from '..';
@@ -70,7 +68,13 @@ test('includes namespace in failure', () => {
 describe('#defaultValue', () => {
   test('returns default when undefined', () => {
     const value = new Stream();
-    expect(schema.stream({ defaultValue: value }).validate(undefined)).toStrictEqual(value);
+    expect(schema.stream({ defaultValue: value }).validate(undefined)).toMatchInlineSnapshot(`
+      Stream {
+        "_events": Object {},
+        "_eventsCount": 0,
+        "_maxListeners": undefined,
+      }
+    `);
   });
 
   test('returns value when specified', () => {

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import type { PublicMethodsOf } from '@osd/utility-types';
 import { RenderingService as Service } from '../rendering_service';
 import { InternalRenderingServiceSetup } from '../types';
@@ -41,9 +40,13 @@ export const setupMock: jest.Mocked<InternalRenderingServiceSetup> = {
 };
 export const mockSetup = jest.fn().mockResolvedValue(setupMock);
 export const mockStop = jest.fn();
+export const mockIsUrlValid = jest.fn();
+export const mockIsTitleValid = jest.fn();
 export const mockRenderingService: jest.Mocked<IRenderingService> = {
   setup: mockSetup,
   stop: mockStop,
+  isUrlValid: mockIsUrlValid,
+  isTitleValid: mockIsTitleValid,
 };
 export const RenderingService = jest.fn<IRenderingService, [typeof mockRenderingServiceParams]>(
   () => mockRenderingService

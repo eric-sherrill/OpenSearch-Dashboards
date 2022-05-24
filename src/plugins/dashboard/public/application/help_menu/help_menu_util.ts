@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { i18n } from '@osd/i18n';
 import { CoreStart } from 'opensearch-dashboards/public';
 
@@ -44,9 +42,7 @@ export function addHelpMenuToAppChrome(
     links: [
       {
         linkType: 'documentation',
-        // TODO: [RENAMEME] Need prod urls.
-        // issue: https://github.com/opensearch-project/OpenSearch-Dashboards/issues/335#issuecomment-868294864
-        href: `${docLinks.links.opensearchDashboards}`,
+        href: `${docLinks.links.opensearchDashboards.introduction}`,
       },
     ],
   });

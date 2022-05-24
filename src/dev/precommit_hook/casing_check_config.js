@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /**
@@ -60,10 +58,6 @@ export const IGNORE_FILE_GLOBS = [
 
   // filename must match language code which requires capital letters
   '**/translations/*.json',
-
-  // Storybook has predetermined filesnames
-  '**/preview-body.html',
-  '**/preview-head.html',
 
   // filename required by api-extractor
   'api-documenter.json',
@@ -104,7 +98,6 @@ export const IGNORE_DIRECTORY_GLOBS = [
   ...KEBAB_CASE_DIRECTORY_GLOBS,
   'src/babel-*',
   'packages/*',
-  'packages/osd-ui-framework/generator-kui',
   'src/legacy/ui/public/flot-charts',
   'test/functional/fixtures/opensearch_archiver/visualize_source-filters',
   'packages/osd-pm/src/utils/__fixtures__/*',
@@ -146,7 +139,4 @@ export const TEMPORARILY_IGNORED_PATHS = [
   'src/core/server/core_app/assets/favicons/mstile-310x310.png',
   'src/core/server/core_app/assets/favicons/safari-pinned-tab.svg',
   'test/functional/apps/management/exports/_import_objects-conflicts.json',
-  'packages/osd-ui-framework/doc_site/src/images/elastic-logo.svg',
-  'packages/osd-ui-framework/doc_site/src/images/hint-arrow.svg',
-  'packages/osd-ui-framework/doc_site/src/images/react-logo.svg',
 ];

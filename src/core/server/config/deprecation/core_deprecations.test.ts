@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { configDeprecationFactory, applyDeprecations } from '@osd/config';
@@ -100,7 +98,8 @@ describe('core deprecations', () => {
       });
       expect(messages).toMatchInlineSnapshot(`
         Array [
-          "It is not recommended to disable xsrf protections for API endpoints via [server.xsrf.whitelist]. It will be removed in 8.0 release. Instead, supply the \\"osd-xsrf\\" header.",
+          "\\"server.xsrf.whitelist\\" is deprecated and has been replaced by \\"server.xsrf.allowlist\\"",
+          "It is not recommended to disable xsrf protections for API endpoints via [server.xsrf.whitelist]. Instead, supply the \\"osd-xsrf\\" header.",
         ]
       `);
     });
@@ -115,7 +114,7 @@ describe('core deprecations', () => {
       });
       expect(messages).toMatchInlineSnapshot(`
         Array [
-          "You should set server.basePath along with server.rewriteBasePath. Starting in 7.0, OpenSearch Dashboards will expect that all requests start with server.basePath rather than expecting you to rewrite the requests in your reverse proxy. Set server.rewriteBasePath to false to preserve the current behavior and silence this warning.",
+          "You should set server.basePath along with server.rewriteBasePath. OpenSearch Dashboards will expect that all requests start with server.basePath rather than expecting you to rewrite the requests in your reverse proxy. Set server.rewriteBasePath to false to preserve the current behavior and silence this warning.",
         ]
       `);
     });

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import {
@@ -56,9 +54,6 @@ export {
   opensearchDashboardsTestUser,
   adminTestUser,
 } from './osd';
-
-// @ts-ignore not typed yet
-export { setupUsers, DEFAULT_SUPERUSER_PASS } from './functional_tests/lib/auth';
 
 export { readConfigFile } from './functional_test_runner/lib/config/read_config_file';
 

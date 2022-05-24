@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { FtrProviderContext } from '../ftr_provider_context';
 
 interface TabbedGridData {
@@ -48,14 +46,20 @@ export function DataGridProvider({ getService }: FtrProviderContext) {
       const columns = $('.euiDataGridHeaderCell__content')
         .toArray()
         .map((cell) => $(cell).text());
-      const rows = $.findTestSubjects('dataGridRow')
+
+      const rows: string[][] = [];
+      let rowIdx = -1;
+      $.findTestSubjects('dataGridRowCell')
         .toArray()
-        .map((row) =>
-          $(row)
-            .find('.euiDataGridRowCell__truncate')
-            .toArray()
-            .map((cell) => $(cell).text())
-        );
+        .forEach((cell) => {
+          const cCell = $(cell);
+          if (cCell.hasClass('euiDataGridRowCell--firstColumn')) {
+            rows.push([]);
+            rowIdx = rows.length - 1;
+          }
+
+          rows[rowIdx].push(cCell.find('.euiDataGridRowCell__truncate').text());
+        });
 
       return {
         columns,

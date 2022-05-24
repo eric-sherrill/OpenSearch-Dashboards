@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { StartServicesAccessor } from '../../../../core/public';
@@ -62,6 +60,7 @@ describe('createStartServicesGetter', () => {
     await new Promise((r) => setTimeout(r, 1));
     future.resolve([core, plugins, self]);
     await future.promise;
+    await new Promise((r) => process.nextTick(r)); // Allow the current event loop to finish
 
     expect(start()).toEqual({
       core,
@@ -81,6 +80,7 @@ describe('createStartServicesGetter', () => {
     await new Promise((r) => setTimeout(r, 1));
     future.resolve([core, plugins, self]);
     await future.promise;
+    await new Promise((r) => process.nextTick(r)); // Allow the current event loop to finish
 
     expect(start()).toEqual({
       core,

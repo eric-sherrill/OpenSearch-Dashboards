@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,13 +28,8 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import supertest from 'supertest';
-import request from 'request';
+import { parse as parseCookie } from 'tough-cookie';
 import { schema } from '@osd/config-schema';
 
 import { ensureRawRequest } from '../router';
@@ -774,7 +772,7 @@ describe('Auth', () => {
     const cookies = response.header['set-cookie'];
     expect(cookies).toHaveLength(1);
 
-    const sessionCookie = request.cookie(cookies[0]);
+    const sessionCookie = parseCookie(cookies[0]);
     if (!sessionCookie) {
       throw new Error('session cookie expected to be defined');
     }

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { UiActionsService } from './ui_actions_service';
 import { Action, ActionInternal, createAction } from '../actions';
 import { createHelloWorldAction } from '../tests/test_samples';
@@ -48,7 +46,7 @@ const testAction1: Action = {
   type: 'type1' as ActionType,
   execute: async () => {},
   getDisplayName: () => 'test1',
-  getIconType: () => '',
+  getIconType: () => undefined,
   isCompatible: async () => true,
 };
 
@@ -58,7 +56,7 @@ const testAction2: Action = {
   type: 'type2' as ActionType,
   execute: async () => {},
   getDisplayName: () => 'test2',
-  getIconType: () => '',
+  getIconType: () => undefined,
   isCompatible: async () => true,
 };
 
@@ -110,7 +108,7 @@ describe('UiActionsService', () => {
         id: 'test',
         execute: async () => {},
         getDisplayName: () => 'test',
-        getIconType: () => '',
+        getIconType: () => undefined,
         isCompatible: async () => true,
         type: 'test' as ActionType,
       });
@@ -122,7 +120,7 @@ describe('UiActionsService', () => {
         id: 'test',
         execute: async () => {},
         getDisplayName: () => 'test',
-        getIconType: () => '',
+        getIconType: () => undefined,
         isCompatible: async () => true,
         type: 'test' as ActionType,
       });
@@ -139,7 +137,7 @@ describe('UiActionsService', () => {
       type: 'type1' as ActionType,
       execute: async () => {},
       getDisplayName: () => 'test',
-      getIconType: () => '',
+      getIconType: () => undefined,
       isCompatible: async () => true,
     };
     const action2: Action = {
@@ -148,7 +146,7 @@ describe('UiActionsService', () => {
       type: 'type2' as ActionType,
       execute: async () => {},
       getDisplayName: () => 'test',
-      getIconType: () => '',
+      getIconType: () => undefined,
       isCompatible: async () => true,
     };
 

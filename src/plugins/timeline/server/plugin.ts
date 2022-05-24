@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { CoreSetup, CoreStart, Plugin, PluginInitializerContext, Logger } from 'src/core/server';
 import { i18n } from '@osd/i18n';
 import { schema } from '@osd/config-schema';
@@ -39,8 +37,6 @@ import { timelineSheetSavedObjectType } from './saved_objects';
 /**
  * Deprecated since 7.0, the Timeline app will be removed in 8.0.
  * To continue using your Timeline worksheets, migrate them to a dashboard.
- *
- *  @link https://www.opensearch.org/guide/en/kibana/master/timeline.html#timeline-deprecation
  **/
 const showWarningMessageIfTimelineSheetWasFound = (core: CoreStart, logger: Logger) => {
   const { savedObjects } = core;
@@ -55,7 +51,7 @@ const showWarningMessageIfTimelineSheetWasFound = (core: CoreStart, logger: Logg
       ({ total }) =>
         total &&
         logger.warn(
-          'Deprecated since 7.0, the Timeline app will be removed in 8.0. To continue using your Timeline worksheets, migrate them to a dashboard. See https://www.opensearch.org/guide/en/kibana/master/dashboard.html#timeline-deprecation.'
+          'Deprecated since 7.0, the Timeline app will be removed in 8.0. To continue using your Timeline worksheets, migrate them to a dashboard.'
         )
     );
 };

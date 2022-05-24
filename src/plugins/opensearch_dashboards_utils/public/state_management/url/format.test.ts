@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { replaceUrlHashQuery } from './format';
@@ -51,6 +49,23 @@ describe('format', () => {
       ).toMatchInlineSnapshot(
         `"http://localhost:5601/oxf/app/opensearch-dashboards#?test=test&test1=test1"`
       );
+    });
+
+    it('should add hash query to url without hash with legacy app', () => {
+      const url = 'http://localhost:5601/oxf/app/kibana';
+      expect(replaceUrlHashQuery(url, () => ({ test: 'test' }))).toMatchInlineSnapshot(
+        `"http://localhost:5601/oxf/app/kibana#?test=test"`
+      );
+    });
+
+    it('should replace hash query with legacy app', () => {
+      const url = 'http://localhost:5601/oxf/app/kibana#?test=test';
+      expect(
+        replaceUrlHashQuery(url, (query) => ({
+          ...query,
+          test1: 'test1',
+        }))
+      ).toMatchInlineSnapshot(`"http://localhost:5601/oxf/app/kibana#?test=test&test1=test1"`);
     });
   });
 });

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,16 +28,11 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import React from 'react';
 import { FormattedMessage, I18nProvider } from '@osd/i18n/react';
 import { EuiCallOut, EuiLink, EuiLoadingSpinner, EuiPageContent } from '@elastic/eui';
 import { IndexPatternsContract } from 'src/plugins/data/public';
 import { OpenSearchRequestState, useOpenSearchDocSearch } from './use_opensearch_doc_search';
-import { getServices } from '../../../opensearch_dashboards_services';
 import { DocViewer } from '../doc_viewer/doc_viewer';
 
 export interface DocProps {
@@ -59,7 +57,6 @@ export interface DocProps {
 
 export function Doc(props: DocProps) {
   const [reqState, hit, indexPattern] = useOpenSearchDocSearch(props);
-
   return (
     <I18nProvider>
       <EuiPageContent>
@@ -114,9 +111,7 @@ export function Doc(props: DocProps) {
               values={{ indexName: props.index }}
             />{' '}
             <EuiLink
-              href={`https://www.opensearch.org/guide/en/elasticsearch/reference/${
-                getServices().metadata.branch
-              }/indices-exists.html`}
+              href={`https://opensearch.org/docs/latest/opensearch/rest-api/index-apis/exists/`}
               target="_blank"
             >
               <FormattedMessage

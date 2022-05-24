@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { UrlFormat } from './url';
@@ -304,6 +302,35 @@ describe('UrlFormat', () => {
 
       expect(converter('#/dashboard/')).toBe(
         '<span ng-non-bindable><a href="http://opensearch-dashboards.host.com/app/opensearch-dashboards#/dashboard/" target="_blank" rel="noopener noreferrer">#/dashboard/</a></span>'
+      );
+    });
+
+    test('should support multiple types of urls w/o basePath from legacy app', () => {
+      const parsedUrl = {
+        origin: 'http://opensearch-dashboards.host.com',
+        pathname: '/app/kibana',
+      };
+      const url = new UrlFormat({ parsedUrl });
+      const converter = url.getConverterFor(HTML_CONTEXT_TYPE) as Function;
+
+      expect(converter('10.22.55.66')).toBe(
+        '<span ng-non-bindable><a href="http://opensearch-dashboards.host.com/app/10.22.55.66" target="_blank" rel="noopener noreferrer">10.22.55.66</a></span>'
+      );
+
+      expect(converter('http://www.domain.name/app/kibana#/dashboard/')).toBe(
+        '<span ng-non-bindable><a href="http://www.domain.name/app/kibana#/dashboard/" target="_blank" rel="noopener noreferrer">http://www.domain.name/app/kibana#/dashboard/</a></span>'
+      );
+
+      expect(converter('/app/kibana')).toBe(
+        '<span ng-non-bindable><a href="http://opensearch-dashboards.host.com/app/kibana" target="_blank" rel="noopener noreferrer">/app/kibana</a></span>'
+      );
+
+      expect(converter('kibana#/dashboard/')).toBe(
+        '<span ng-non-bindable><a href="http://opensearch-dashboards.host.com/app/kibana#/dashboard/" target="_blank" rel="noopener noreferrer">kibana#/dashboard/</a></span>'
+      );
+
+      expect(converter('#/dashboard/')).toBe(
+        '<span ng-non-bindable><a href="http://opensearch-dashboards.host.com/app/kibana#/dashboard/" target="_blank" rel="noopener noreferrer">#/dashboard/</a></span>'
       );
     });
   });

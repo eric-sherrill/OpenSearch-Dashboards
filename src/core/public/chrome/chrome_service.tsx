@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { EuiBreadcrumb, IconType } from '@elastic/eui';
@@ -51,6 +49,7 @@ import { ChromeNavLinks, NavLinksService, ChromeNavLink } from './nav_links';
 import { ChromeRecentlyAccessed, RecentlyAccessedService } from './recently_accessed';
 import { Header } from './ui';
 import { ChromeHelpExtensionMenuLink } from './ui/header/header_help_menu';
+import { Branding } from '../';
 export { ChromeNavControls, ChromeRecentlyAccessed, ChromeDocTitle };
 
 const IS_LOCKED_KEY = 'core.chrome.isLocked';
@@ -70,6 +69,9 @@ export interface ChromeBrand {
 
 /** @public */
 export type ChromeBreadcrumb = EuiBreadcrumb;
+
+/** @public */
+export type ChromeBranding = Branding;
 
 /** @public */
 export interface ChromeHelpExtension {
@@ -211,7 +213,11 @@ export class ChromeService {
             defaultMessage="Support for Internet Explorer will be dropped in future versions of this software, please check {link}."
             values={{
               link: (
-                <EuiLink target="_blank" href="https://www.opensearch.org/support/matrix" external>
+                <EuiLink
+                  target="_blank"
+                  href={docLinks.links.opensearchDashboards.browser}
+                  external
+                >
                   <FormattedMessage
                     id="core.chrome.browserDeprecationLink"
                     defaultMessage="the support matrix on our website"
@@ -239,7 +245,7 @@ export class ChromeService {
           basePath={http.basePath}
           breadcrumbs$={breadcrumbs$.pipe(takeUntil(this.stop$))}
           customNavLink$={customNavLink$.pipe(takeUntil(this.stop$))}
-          opensearchDashboardsDocLink={docLinks.links.opensearchDashboards}
+          opensearchDashboardsDocLink={docLinks.links.opensearchDashboards.introduction}
           forceAppSwitcherNavigation$={navLinks.getForceAppSwitcherNavigation$()}
           helpExtension$={helpExtension$.pipe(takeUntil(this.stop$))}
           helpSupportUrl$={helpSupportUrl$.pipe(takeUntil(this.stop$))}
@@ -253,6 +259,7 @@ export class ChromeService {
           navControlsRight$={navControls.getRight$()}
           onIsLockedUpdate={setIsNavDrawerLocked}
           isLocked$={getIsNavDrawerLocked$}
+          branding={injectedMetadata.getBranding()}
         />
       ),
 

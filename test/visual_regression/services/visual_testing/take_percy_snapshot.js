@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -24,14 +27,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-import { readFileSync } from 'fs';
-import { agentJsFilename } from '@percy/agent/dist/utils/sdk-utils';
 
 export function takePercySnapshot(show, hide) {
   if (!window.PercyAgent) {
@@ -120,7 +115,5 @@ export function takePercySnapshot(show, hide) {
 }
 
 export const takePercySnapshotWithAgent = `
-  ${readFileSync(agentJsFilename(), 'utf8')}
-
   return (${takePercySnapshot.toString()}).apply(null, arguments);
 `;

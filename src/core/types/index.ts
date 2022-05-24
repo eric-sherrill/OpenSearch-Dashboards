@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 /**
  * Use * syntax so that these exports do not break when internal
  * types are stripped.
@@ -40,3 +38,4 @@ export * from './app_category';
 export * from './ui_settings';
 export * from './saved_objects';
 export * from './serializable';
+export * from './custom_branding';

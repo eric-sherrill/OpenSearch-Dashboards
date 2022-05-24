@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import {
@@ -113,7 +111,7 @@ export class ScopedHistory<HistoryLocationState = unknown>
    */
   public get location() {
     this.verifyActive();
-    return this.stripBasePath(this.parentHistory.location);
+    return this.stripBasePath(this.parentHistory.location as Location<HistoryLocationState>);
   }
 
   /**
@@ -338,7 +336,7 @@ export class ScopedHistory<HistoryLocationState = unknown>
       }
 
       [...this.listeners].forEach((listener) => {
-        listener(this.stripBasePath(location), action);
+        listener(this.stripBasePath(location as Location<HistoryLocationState>), action);
       });
     });
   }

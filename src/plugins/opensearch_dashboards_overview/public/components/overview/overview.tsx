@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { snakeCase } from 'lodash';
@@ -62,17 +60,18 @@ import { AddData } from '../add_data';
 import { GettingStarted } from '../getting_started';
 import { ManageData } from '../manage_data';
 import { NewsFeed } from '../news_feed';
+import { OverviewPluginBranding } from '../../plugin';
 
 const sortByOrder = (featureA: FeatureCatalogueEntry, featureB: FeatureCatalogueEntry) =>
   (featureA.order || Infinity) - (featureB.order || Infinity);
-
 interface Props {
   newsFetchResult: FetchResult | null | void;
   solutions: FeatureCatalogueSolution[];
   features: FeatureCatalogueEntry[];
+  branding: OverviewPluginBranding;
 }
 
-export const Overview: FC<Props> = ({ newsFetchResult, solutions, features }) => {
+export const Overview: FC<Props> = ({ newsFetchResult, solutions, features, branding }) => {
   const [isNewOpenSearchDashboardsInstance, setNewOpenSearchDashboardsInstance] = useState(false);
   const {
     services: { http, data, uiSettings, application },
@@ -155,6 +154,7 @@ export const Overview: FC<Props> = ({ newsFetchResult, solutions, features }) =>
             id="opensearchDashboardsOverview.header.title"
           />
         }
+        branding={branding}
       />
 
       <div className="osdOverviewContent">

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { format as formatUrl } from 'url';
 import { stringify, ParsedQuery } from 'query-string';
 import { parseUrl, parseUrlHash } from './parse';
@@ -40,6 +38,7 @@ export function replaceUrlQuery(
   queryReplacer: (query: ParsedQuery) => ParsedQuery
 ) {
   const url = parseUrl(rawUrl);
+  // @ts-expect-error
   const newQuery = queryReplacer(url.query || {});
   const searchQueryString = stringify(urlUtils.encodeQuery(newQuery), {
     sort: false,
@@ -58,6 +57,7 @@ export function replaceUrlHashQuery(
 ) {
   const url = parseUrl(rawUrl);
   const hash = parseUrlHash(rawUrl);
+  // @ts-expect-error
   const newQuery = queryReplacer(hash?.query || {});
   const searchQueryString = stringify(urlUtils.encodeQuery(newQuery), {
     sort: false,

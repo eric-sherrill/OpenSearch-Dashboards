@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 // ported from https://github.com/spalger/sha.js/blob/6557630d508873e262e94bff70c50bdd797c1df7/sha256.js
@@ -131,6 +129,18 @@ const K = [
 
 const W = new Array(64);
 
+type BufferEncoding =
+  | 'ascii'
+  | 'utf8'
+  | 'utf-8'
+  | 'utf16le'
+  | 'ucs2'
+  | 'ucs-2'
+  | 'base64'
+  | 'latin1'
+  | 'binary'
+  | 'hex';
+
 /* eslint-disable  no-bitwise, no-shadow */
 export class Sha256 {
   private _a: number;
@@ -170,7 +180,7 @@ export class Sha256 {
     this._s = 0;
   }
 
-  update(data: string | Buffer, encoding?: string): Sha256 {
+  update(data: string | Buffer, encoding?: BufferEncoding): Sha256 {
     if (typeof data === 'string') {
       encoding = encoding || 'utf8';
       data = Buffer.from(data, encoding);
@@ -201,7 +211,7 @@ export class Sha256 {
     return this;
   }
 
-  digest(encoding: string): string {
+  digest(encoding: BufferEncoding): string {
     // Suppose the length of the message M, in bits, is l
     const l = this._len * 8;
 

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import moment from 'moment-timezone';
@@ -168,9 +166,7 @@ export const getDateFormatSettings = (): Record<string, UiSettingsParams> => {
         defaultMessage: 'Used for the {dateNanosLink} datatype of OpenSearch',
         values: {
           dateNanosLink:
-            // TODO: [RENAMEME] Need prod urls.
-            // issue: https://github.com/opensearch-project/OpenSearch-Dashboards/issues/335#issuecomment-868294864
-            '<a href="https://opensearch.org/docs/opensearch/units" target="_blank" rel="noopener noreferrer">' +
+            '<a href="https://opensearch.org/docs/latest/opensearch/units/" target="_blank" rel="noopener noreferrer">' +
             i18n.translate('core.ui_settings.params.dateNanosLinkTitle', {
               defaultMessage: 'date_nanos',
             }) +

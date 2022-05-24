@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /* eslint-disable react/no-multi-comp */
@@ -112,10 +110,9 @@ export const createZoomWarningMsg = (function () {
               defaultMessage="You've reached the maximum number of zoom
               levels. To zoom all the way in, you can configure your own map server.
               Please go to { wms } for more information."
-              // TODO: [RENAMEME] Need prod urls.
               values={{
                 wms: (
-                  <a target="_blank" href="https://opensearch.org/docs/dashboards/maptiles/">
+                  <a target="_blank" href="https://opensearch.org/docs/latest/dashboards/maptiles/">
                     {`Custom WMS Configuration`}
                   </a>
                 ),

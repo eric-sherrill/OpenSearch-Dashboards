@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import url, { format as formatUrl } from 'url';
@@ -56,7 +54,7 @@ export const opensearchTestConfig = new (class OpenSearchTestConfig {
   }
 
   getUrlParts() {
-    // Allow setting one complete TEST_OPENSEARCH_URL for opensearch like https://elastic:changeme@myCloudInstance:9200
+    // Allow setting one complete TEST_OPENSEARCH_URL for opensearch like https://opensearch:changeme@example.com:9200
     if (process.env.TEST_OPENSEARCH_URL) {
       const testOpenSearchUrl = url.parse(process.env.TEST_OPENSEARCH_URL);
       return {

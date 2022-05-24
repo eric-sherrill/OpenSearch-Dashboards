@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 export default function ({ getService, loadTestFile }) {
   const browser = getService('browser');
 
@@ -39,7 +37,6 @@ export default function ({ getService, loadTestFile }) {
     before(async function () {
       await browser.setWindowSize(1200, 800);
     });
-    // https://www.opensearch.org/guide/en/kibana/current/tutorial-load-dataset.html
     loadTestFile(require.resolve('./_shakespeare'));
   });
 }

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { i18n } from '@osd/i18n';
@@ -106,9 +104,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
           'data.advancedSettings.query.queryStringOptionsText',
         values: {
           optionsLink:
-            // TODO: [RENAMEME] Need prod urls.
-            // issue: https://github.com/opensearch-project/OpenSearch-Dashboards/issues/335#issuecomment-868294864
-            '<a href="https://opensearch.org/docs/opensearch/query-dsl/index" target="_blank" rel="noopener">' +
+            '<a href="https://opensearch.org/docs/latest/opensearch/query-dsl/index/" target="_blank" rel="noopener">' +
             i18n.translate('data.advancedSettings.query.queryStringOptions.optionsLinkText', {
               defaultMessage: 'Options',
             }) +
@@ -167,7 +163,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
           'data.advancedSettings.sortOptionsText',
         values: {
           optionsLink:
-            '<a href="https://opensearch.org/docs/opensearch/ux/#sort-results" target="_blank" rel="noopener">' +
+            '<a href="https://opensearch.org/docs/latest/opensearch/ux/#sort-results" target="_blank" rel="noopener">' +
             i18n.translate('data.advancedSettings.sortOptions.optionsLinkText', {
               defaultMessage: 'Options',
             }) +
@@ -249,7 +245,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
           setRequestReferenceSetting: `<strong>${UI_SETTINGS.COURIER_SET_REQUEST_PREFERENCE}</strong>`,
           customSettingValue: '"custom"',
           requestPreferenceLink:
-            '<a href="https://opensearch.org/docs/opensearch/popular-api" target="_blank" rel="noopener">' +
+            '<a href="https://opensearch.org/docs/latest/opensearch/popular-api" target="_blank" rel="noopener">' +
             i18n.translate(
               'data.advancedSettings.courier.customRequestPreference.requestPreferenceLinkText',
               {
@@ -273,7 +269,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
           'Controls the {maxRequestsLink} setting used for _msearch requests sent by OpenSearch Dashboards. ' +
           'Set to 0 to disable this config and use the OpenSearch default.',
         values: {
-          maxRequestsLink: `<a href="https://opensearch.org/docs/opensearch/query-dsl/full-text/#multi-match"
+          maxRequestsLink: `<a href="https://opensearch.org/docs/latest/opensearch/query-dsl/full-text/#multi-match"
             target="_blank" rel="noopener" >max_concurrent_shard_requests</a>`,
         },
       }),
@@ -296,7 +292,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
     },
     [UI_SETTINGS.SEARCH_INCLUDE_FROZEN]: {
       name: 'Search in frozen indices',
-      description: `Will include <a href="https://opensearch.org/docs/opensearch/index-data"
+      description: `Will include <a href="https://opensearch.org/docs/latest/opensearch/index-data"
         target="_blank" rel="noopener">frozen indices</a> in results if enabled. Searching through frozen indices
         might increase the search time.`,
       value: false,
@@ -645,7 +641,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
           'data.advancedSettings.timepicker.quickRanges.acceptedFormatsLinkText',
         values: {
           acceptedFormatsLink:
-            `<a href="https://opensearch.org/docs/opensearch/units"
+            `<a href="https://opensearch.org/docs/latest/opensearch/units"
             target="_blank" rel="noopener">` +
             i18n.translate('data.advancedSettings.timepicker.quickRanges.acceptedFormatsLinkText', {
               defaultMessage: 'accepted formats',

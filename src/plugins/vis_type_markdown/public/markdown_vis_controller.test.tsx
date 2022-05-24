@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,13 +28,8 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React from 'react';
-import { wait, render } from '@testing-library/react';
+import { waitFor, render } from '@testing-library/react';
 import MarkdownVisComponent from './markdown_vis_controller';
 
 describe('markdown vis controller', () => {
@@ -49,7 +47,7 @@ describe('markdown vis controller', () => {
       <MarkdownVisComponent {...vis.params} renderComplete={jest.fn()} />
     );
 
-    await wait(() => getByTestId('markdownBody'));
+    await waitFor(() => getByTestId('markdownBody'));
 
     expect(getByText('markdown')).toMatchInlineSnapshot(`
       <a
@@ -73,7 +71,7 @@ describe('markdown vis controller', () => {
       <MarkdownVisComponent {...vis.params} renderComplete={jest.fn()} />
     );
 
-    await wait(() => getByTestId('markdownBody'));
+    await waitFor(() => getByTestId('markdownBody'));
 
     expect(getByText(/testing/i)).toMatchInlineSnapshot(`
       <p>
@@ -95,7 +93,7 @@ describe('markdown vis controller', () => {
       <MarkdownVisComponent {...vis.params} renderComplete={jest.fn()} />
     );
 
-    await wait(() => getByTestId('markdownBody'));
+    await waitFor(() => getByTestId('markdownBody'));
 
     expect(getByText(/initial/i)).toBeInTheDocument();
 
@@ -125,7 +123,7 @@ describe('markdown vis controller', () => {
         <MarkdownVisComponent {...vis.params} renderComplete={renderComplete} />
       );
 
-      await wait(() => getByTestId('markdownBody'));
+      await waitFor(() => getByTestId('markdownBody'));
 
       expect(renderComplete).toHaveBeenCalledTimes(1);
     });
@@ -135,7 +133,7 @@ describe('markdown vis controller', () => {
         <MarkdownVisComponent {...vis.params} renderComplete={renderComplete} />
       );
 
-      await wait(() => getByTestId('markdownBody'));
+      await waitFor(() => getByTestId('markdownBody'));
 
       expect(renderComplete).toHaveBeenCalledTimes(1);
 
@@ -152,7 +150,7 @@ describe('markdown vis controller', () => {
         <MarkdownVisComponent {...vis.params} renderComplete={renderComplete} />
       );
 
-      await wait(() => getByTestId('markdownBody'));
+      await waitFor(() => getByTestId('markdownBody'));
 
       expect(renderComplete).toHaveBeenCalledTimes(1);
 

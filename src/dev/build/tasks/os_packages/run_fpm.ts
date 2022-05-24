@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -36,10 +39,14 @@ export async function runFpm(
   log: ToolingLog,
   build: Build,
   type: 'rpm' | 'deb',
+  arch: 'x64' | 'arm64',
   pkgSpecificFlags: string[]
 ) {
-  const linux = config.getPlatform('linux', 'x64');
+  const linux = config.getPlatform('linux', arch);
   const version = config.getBuildVersion();
+  const fileName = config.resolveFromTarget(
+    arch === 'arm64' ? `NAME-${version}-arm64.${type}` : `NAME-${version}-ARCH.TYPE`
+  );
 
   const resolveWithTrailingSlash = (...paths: string[]) => `${resolve(...paths)}/`;
 
@@ -61,7 +68,7 @@ export async function runFpm(
     // the filtered package version, which would have dashes replaced with
     // underscores
     '--package',
-    config.resolveFromTarget(`NAME-${version}-ARCH.TYPE`),
+    fileName,
 
     // input type
     '-s',
@@ -75,7 +82,7 @@ export async function runFpm(
     '--version',
     version,
     '--url',
-    'https://www.opensearch.org',
+    'https://opensearch.org',
     '--vendor',
     'OpenSearch',
     '--maintainer',
@@ -122,6 +129,8 @@ export async function runFpm(
     `usr/share/opensearch-dashboards/config`,
     '--exclude',
     `usr/share/opensearch-dashboards/data`,
+    '--exclude',
+    `usr/share/opensearch-dashboards/assets`,
 
     // flags specific to the package we are building, supplied by tasks below
     ...pkgSpecificFlags,

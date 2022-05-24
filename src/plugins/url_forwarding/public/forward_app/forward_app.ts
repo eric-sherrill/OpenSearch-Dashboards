@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,17 +28,52 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { App, AppMountParameters, CoreSetup } from 'opensearch-dashboards/public';
 import { AppNavLinkStatus } from '../../../../core/public';
 import { navigateToLegacyOpenSearchDashboardsUrl } from './navigate_to_legacy_opensearch_dashboards_url';
 import { ForwardDefinition, UrlForwardingStart } from '../plugin';
 
 export const createLegacyUrlForwardApp = (
+  core: CoreSetup<{}, UrlForwardingStart>,
+  forwards: ForwardDefinition[]
+): App => ({
+  id: 'kibana',
+  chromeless: true,
+  title: 'Legacy URL migration',
+  appRoute: '/app/kibana#/',
+  navLinkStatus: AppNavLinkStatus.hidden,
+  async mount(params: AppMountParameters) {
+    const hash = params.history.location.hash.substr(1);
+
+    if (!hash) {
+      const [, , opensearchDashboardsLegacyStart] = await core.getStartServices();
+      opensearchDashboardsLegacyStart.navigateToDefaultApp();
+    }
+
+    const [
+      {
+        application,
+        http: { basePath },
+      },
+    ] = await core.getStartServices();
+
+    const result = await navigateToLegacyOpenSearchDashboardsUrl(
+      hash,
+      forwards,
+      basePath,
+      application
+    );
+
+    if (!result.navigated) {
+      const [, , opensearchDashboardsLegacyStart] = await core.getStartServices();
+      opensearchDashboardsLegacyStart.navigateToDefaultApp();
+    }
+
+    return () => {};
+  },
+});
+
+export const createLegacyUrlForwardCurrentApp = (
   core: CoreSetup<{}, UrlForwardingStart>,
   forwards: ForwardDefinition[]
 ): App => ({

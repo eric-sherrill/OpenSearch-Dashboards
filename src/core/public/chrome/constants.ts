@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -24,17 +27,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
-// export const OPENSEARCH_DASHBOARDS_FEEDBACK_LINK =
-//  'https://www.opensearch.org/products/kibana/feedback?blade=kibanafeedback';
-// export const OPENSEARCH_DASHBOARDS_ASK_OPENSEARCH_LINK =
-// 'https://www.opensearch.org/products/kibana/ask-elastic?blade=kibanaaskelastic';
-// export const GITHUB_CREATE_ISSUE_LINK = 'https://github.com/opensearch-project/OpenSearch-Dashboards/issues/new/choose';
 
 export const OPENSEARCH_DASHBOARDS_FEEDBACK_LINK = 'https://github.com/opensearch-project';
 export const OPENSEARCH_DASHBOARDS_ASK_OPENSEARCH_LINK = 'https://github.com/opensearch-project';

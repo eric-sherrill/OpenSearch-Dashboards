@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,16 +28,12 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React, { FC } from 'react';
 import { EuiFlexGroup, EuiFlexItem, EuiPanel, EuiSpacer, EuiText } from '@elastic/eui';
 import { FeatureCatalogueEntry, FeatureCatalogueSolution } from '../../../';
 import { createAppNavigationHandler } from '../app_navigation_handler';
 import { SolutionTitle } from './solution_title';
+import { HomePluginBranding } from '../../../plugin';
 
 const getDescriptionText = (description: string): JSX.Element => (
   <EuiText size="s" key={`${description}`}>
@@ -64,9 +63,10 @@ interface Props {
   addBasePath: (path: string) => string;
   solution: FeatureCatalogueSolution;
   apps?: FeatureCatalogueEntry[];
+  branding: HomePluginBranding;
 }
 
-export const SolutionPanel: FC<Props> = ({ addBasePath, solution, apps = [] }) => (
+export const SolutionPanel: FC<Props> = ({ addBasePath, solution, apps = [], branding }) => (
   <EuiFlexItem
     key={solution.id}
     data-test-subj={`homSolutionPanel homSolutionPanel_${solution.id}`}
@@ -89,6 +89,7 @@ export const SolutionPanel: FC<Props> = ({ addBasePath, solution, apps = [] }) =
               iconType={solution.icon}
               title={solution.title}
               subtitle={solution.subtitle}
+              branding={branding}
             />
           </EuiFlexItem>
 

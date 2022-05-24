@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 const babelEslint = require('babel-eslint');
 
 const { assert, normalizeWhitespace, init } = require('../lib');
@@ -45,8 +43,11 @@ module.exports = {
       {
         type: 'object',
         properties: {
-          license: {
-            type: 'string',
+          licenses: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
           },
         },
         additionalProperties: false,
@@ -56,33 +57,38 @@ module.exports = {
   create: (context) => {
     return {
       Program(program) {
-        const license = init(context, program, function () {
+        const licenses = init(context, program, function () {
           const options = context.options[0] || {};
-          const license = options.license;
+          const licenses = options.licenses;
 
-          assert(!!license, '"license" option is required');
+          assert(!!licenses, '"licenses" option is required');
 
-          const parsed = babelEslint.parse(license);
-          assert(!parsed.body.length, '"license" option must only include a single comment');
-          assert(
-            parsed.comments.length === 1,
-            '"license" option must only include a single comment'
-          );
+          return licenses.map((license, i) => {
+            const parsed = babelEslint.parse(license);
+            assert(
+              !parsed.body.length,
+              `"licenses[${i}]" option must only include a single comment`
+            );
+            assert(
+              parsed.comments.length === 1,
+              `"licenses[${i}]" option must only include a single comment`
+            );
 
-          return {
-            source: license,
-            nodeValue: normalizeWhitespace(parsed.comments[0].value),
-          };
+            return {
+              source: license,
+              nodeValue: normalizeWhitespace(parsed.comments[0].value),
+            };
+          });
         });
 
-        if (!license) {
-          return;
-        }
+        if (!licenses || !licenses.length) return;
 
         const sourceCode = context.getSourceCode();
         const comment = sourceCode
           .getAllComments()
-          .find((node) => normalizeWhitespace(node.value) === license.nodeValue);
+          .find((node) =>
+            licenses.map((license) => license.nodeValue).includes(normalizeWhitespace(node.value))
+          );
 
         // no licence comment
         if (!comment) {
@@ -97,13 +103,16 @@ module.exports = {
                 return undefined;
               }
 
-              return fixer.replaceTextRange([0, 0], license.source + '\n\n');
+              return fixer.replaceTextRange([0, 0], licenses[0].source + '\n\n');
             },
           });
           return;
         }
 
         // ensure there is nothing before the comment
+        const currentLicense = licenses.find(
+          (license) => normalizeWhitespace(comment.value) === license.nodeValue
+        );
         const sourceBeforeNode = sourceCode
           .getText()
           .slice(0, sourceCode.getIndexFromLoc(comment.loc.start));
@@ -121,7 +130,7 @@ module.exports = {
               // if removing whitespace is not possible
               return [
                 fixer.remove(comment),
-                fixer.replaceTextRange([0, 0], license.source + '\n\n'),
+                fixer.replaceTextRange([0, 0], currentLicense.source + '\n\n'),
               ];
             },
           });

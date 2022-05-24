@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import React, { Component } from 'react';
@@ -155,6 +153,7 @@ export class Home extends Component {
           showDevToolsLink
           showManagementLink
           title={<FormattedMessage id="home.header.title" defaultMessage="Home" />}
+          branding={getServices().injectedMetadata.getBranding()}
         />
 
         <div className="homContent">
@@ -163,6 +162,7 @@ export class Home extends Component {
               addBasePath={addBasePath}
               solutions={solutions}
               directories={directories}
+              branding={getServices().injectedMetadata.getBranding()}
             />
           ) : null}
 
@@ -201,6 +201,7 @@ export class Home extends Component {
         onSkip={this.skipWelcome}
         urlBasePath={this.props.urlBasePath}
         telemetry={this.props.telemetry}
+        branding={getServices().injectedMetadata.getBranding()}
       />
     );
   }
@@ -216,7 +217,6 @@ export class Home extends Component {
         return this.renderWelcome();
       }
     }
-
     return this.renderNormal();
   }
 }

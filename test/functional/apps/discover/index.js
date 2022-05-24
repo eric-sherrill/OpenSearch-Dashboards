@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 export default function ({ getService, loadTestFile }) {
@@ -62,5 +60,6 @@ export default function ({ getService, loadTestFile }) {
     loadTestFile(require.resolve('./_date_nanos'));
     loadTestFile(require.resolve('./_date_nanos_mixed'));
     loadTestFile(require.resolve('./_indexpattern_without_timefield'));
+    loadTestFile(require.resolve('./_indexpattern_with_encoded_id'));
   });
 }

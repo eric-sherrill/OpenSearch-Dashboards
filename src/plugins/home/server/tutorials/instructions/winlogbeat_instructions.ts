@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { i18n } from '@osd/i18n';
@@ -57,7 +55,7 @@ export const createWinlogbeatInstructions = (context?: TutorialContext) => ({
             folderPath: '`C:\\Program Files`',
             winlogbeatLink:
               '{config.docs.beats.winlogbeat}/winlogbeat-installation-configuration.html',
-            opensearchLink: 'https://www.opensearch.org/downloads/beats/winlogbeat',
+            opensearchLink: 'https://opensearch.org/downloads/beats/winlogbeat',
           },
         }
       ),

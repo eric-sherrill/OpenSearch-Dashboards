@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { i18n } from '@osd/i18n';
 import { from } from 'rxjs';
 import { distinct, map, switchMap } from 'rxjs/operators';
@@ -41,6 +39,7 @@ import {
   DEFAULT_APP_CATEGORIES,
   AppStatus,
   AppNavLinkStatus,
+  Branding,
 } from '../../../core/public';
 import {
   OpenSearchDashboardsOverviewPluginSetup,
@@ -49,6 +48,9 @@ import {
   AppPluginStartDependencies,
 } from './types';
 import { PLUGIN_ID, PLUGIN_NAME, PLUGIN_PATH, PLUGIN_ICON } from '../common';
+
+/** @public */
+export type OverviewPluginBranding = Branding;
 
 export class OpenSearchDashboardsOverviewPlugin
   implements

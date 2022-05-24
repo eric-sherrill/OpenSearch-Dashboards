@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 // Tests for 4 scripted fields;
@@ -460,7 +458,7 @@ export default function ({ getService, getPageObjects }) {
           'date',
           { format: 'date', datePattern: 'YYYY-MM-DD HH:00' },
           '1',
-          "doc['utc_time'].value.getMillis() + (1000) * 60 * 60"
+          "doc['utc_time'].value.toInstant().toEpochMilli() + (1000) * 60 * 60"
         );
         await retry.try(async function () {
           expect(parseInt(await PageObjects.settings.getScriptedFieldsTabCount())).to.be(

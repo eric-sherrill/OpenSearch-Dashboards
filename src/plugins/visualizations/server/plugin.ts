@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { i18n } from '@osd/i18n';
 import { schema } from '@osd/config-schema';
 import { Observable } from 'rxjs';
@@ -42,7 +40,10 @@ import {
   Logger,
 } from '../../../core/server';
 
-import { VISUALIZE_ENABLE_LABS_SETTING } from '../common/constants';
+import {
+  VISUALIZE_ENABLE_LABS_SETTING,
+  VISUALIZE_DISABLE_BUCKET_AGG_SETTING,
+} from '../common/constants';
 
 import { visualizationSavedObjectType } from './saved_objects';
 
@@ -76,6 +77,18 @@ export class VisualizationsPlugin
         }),
         category: ['visualization'],
         schema: schema.boolean(),
+      },
+      [VISUALIZE_DISABLE_BUCKET_AGG_SETTING]: {
+        name: i18n.translate('visualizations.advancedSettings.visualizeDisableBucketAgg', {
+          defaultMessage: 'Disable visualizations bucket aggregation types',
+        }),
+        value: [],
+        description: i18n.translate('visualizations.advancedSettings.visualizeDisableBucketAgg', {
+          defaultMessage: `A comma-separated list of bucket aggregations' names. e.g. significant_terms, terms.
+            Deactivates the specified bucket aggregations from visualizations.`,
+        }),
+        category: ['visualization'],
+        schema: schema.arrayOf(schema.string()),
       },
     });
 

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import React from 'react';
 import classNames from 'classnames';
 import { EuiToken, EuiTokenProps } from '@elastic/eui';
@@ -62,7 +61,7 @@ export const typeToEuiIconMap: Partial<Record<string, EuiTokenProps>> = {
   geo_point: { iconType: 'tokenGeo' },
   geo_shape: { iconType: 'tokenGeo' },
   ip: { iconType: 'tokenIP' },
-  // is a plugin's data type https://www.opensearch.org/guide/en/elasticsearch/plugins/current/mapper-murmur3-usage.html
+  // is a plugin's data type https://opensearch.org/docs/latest/opensearch/install/plugins/#available-plugins
   murmur3: { iconType: 'tokenFile' },
   number: { iconType: 'tokenNumber' },
   _source: { iconType: 'editorCodeBlock', color: 'gray' },

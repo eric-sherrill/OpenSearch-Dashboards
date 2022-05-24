@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import './empty_state.scss';
@@ -51,7 +49,7 @@ import {
   EuiText,
 } from '@elastic/eui';
 import { useHistory } from 'react-router-dom';
-import { reactRouterNavigate } from '../../../../../../plugins/opensearch_dashboards_react/public';
+import { reactRouterNavigate } from '../../../../../opensearch_dashboards_react/public';
 import { MlCardState } from '../../../types';
 
 export const EmptyState = ({
@@ -207,7 +205,11 @@ export const EmptyState = ({
                         />
                       ),
                       description: (
-                        <EuiLink href={docLinks.links.addData} target="_blank" external>
+                        <EuiLink
+                          href={docLinks.links.noDocumentation.addData}
+                          target="_blank"
+                          external
+                        >
                           <FormattedMessage
                             id="indexPatternManagement.createIndexPattern.emptyState.readDocs"
                             defaultMessage="Read documentation"

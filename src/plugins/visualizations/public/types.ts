@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,13 +28,8 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { ExpressionAstExpression } from 'src/plugins/expressions';
-import { SavedObject } from '../../../plugins/saved_objects/public';
+import { SavedObject } from '../../saved_objects/public';
 import {
   AggConfigOptions,
   SearchSourceFields,
@@ -73,11 +71,18 @@ export interface ISavedVis {
 
 export interface VisSavedObject extends SavedObject, ISavedVis {}
 
-export interface VisResponseValue {
+export interface VisRenderValue {
+  title?: string;
   visType: string;
-  visData: object;
-  visConfig: object;
-  params?: object;
+  visData?: object | null;
+  visConfig: {
+    type?: string;
+    [key: string]: any;
+  };
+  params?: {
+    [key: string]: any;
+    listenOnChange: boolean;
+  };
 }
 
 export interface VisToExpressionAstParams {

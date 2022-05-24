@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { i18n } from '@osd/i18n';
 
 import { AggGroupNames } from '../../data/public';
@@ -39,7 +37,7 @@ import { getPositions, Positions } from './utils/collections';
 import { createVislibVisController } from './vis_controller';
 import { CommonVislibParams } from './types';
 import { VisTypeVislibDependencies } from './plugin';
-import { VIS_EVENT_TO_TRIGGER } from '../../../plugins/visualizations/public';
+import { VIS_EVENT_TO_TRIGGER } from '../../visualizations/public';
 
 export interface PieVisParams extends CommonVislibParams {
   type: 'pie';

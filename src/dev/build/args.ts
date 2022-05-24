@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -37,7 +40,9 @@ export function readCliArgs(argv: string[]) {
       'skip-archives',
       'skip-os-packages',
       'rpm',
+      'rpm-arm',
       'deb',
+      'deb-arm',
       'docker',
       'skip-docker-ubi',
       'release',
@@ -61,7 +66,9 @@ export function readCliArgs(argv: string[]) {
     default: {
       debug: true,
       rpm: null,
+      'rpm-arm': null,
       deb: null,
+      'deb-arm': null,
       docker: null,
       'version-qualifier': '',
     },
@@ -98,7 +105,13 @@ export function readCliArgs(argv: string[]) {
     }
 
     // build all if no flags specified
-    if (flags.rpm === null && flags.deb === null && flags.docker === null) {
+    if (
+      flags.rpm === null &&
+      flags['rpm-arm'] === null &&
+      flags.deb === null &&
+      flags['deb-arm'] === null &&
+      flags.docker === null
+    ) {
       return true;
     }
 
@@ -111,7 +124,9 @@ export function readCliArgs(argv: string[]) {
     downloadFreshNode: !Boolean(flags['skip-node-download']),
     createArchives: !Boolean(flags['skip-archives']),
     createRpmPackage: isOsPackageDesired('rpm'),
+    createRpmArmPackage: isOsPackageDesired('rpm-arm'),
     createDebPackage: isOsPackageDesired('deb'),
+    createDebArmPackage: isOsPackageDesired('deb-arm'),
     createDockerPackage: isOsPackageDesired('docker'),
     createDockerUbiPackage: isOsPackageDesired('docker') && !Boolean(flags['skip-docker-ubi']),
     targetPlatforms: {

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React from 'react';
 
 import { EuiBetaBadge, EuiSpacer, EuiTitle, EuiText, EuiCode, EuiLink } from '@elastic/eui';
@@ -37,7 +35,7 @@ import { EuiBetaBadge, EuiSpacer, EuiTitle, EuiText, EuiCode, EuiLink } from '@e
 import { i18n } from '@osd/i18n';
 import { FormattedMessage } from '@osd/i18n/react';
 import { DocLinksStart } from 'opensearch-dashboards/public';
-import { useOpenSearchDashboards } from '../../../../../../../plugins/opensearch_dashboards_react/public';
+import { useOpenSearchDashboards } from '../../../../../../opensearch_dashboards_react/public';
 import { IndexPatternManagmentContext } from '../../../../types';
 
 export const Header = ({
@@ -93,7 +91,11 @@ export const Header = ({
             }}
           />
           <br />
-          <EuiLink href={docLinks.links.indexPatterns.introduction} target="_blank" external>
+          <EuiLink
+            href={docLinks.links.noDocumentation.indexPatterns.introduction}
+            target="_blank"
+            external
+          >
             <FormattedMessage
               id="indexPatternManagement.createIndexPattern.documentation"
               defaultMessage="Read documentation"

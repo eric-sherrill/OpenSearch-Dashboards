@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import Bluebird from 'bluebird';
 import { createSavedObjectClass } from './saved_object';
 import {
@@ -40,7 +38,7 @@ import {
 } from '../types';
 
 import { coreMock } from '../../../../core/public/mocks';
-import { dataPluginMock, createSearchSourceMock } from '../../../../plugins/data/public/mocks';
+import { dataPluginMock, createSearchSourceMock } from '../../../data/public/mocks';
 import { getStubIndexPattern, StubIndexPattern } from '../../../../plugins/data/public/test_utils';
 import { SavedObjectAttributes, SimpleSavedObject } from 'opensearch-dashboards/public';
 import { IIndexPattern } from '../../../data/common/index_patterns';
@@ -136,9 +134,9 @@ describe('Saved Object', () => {
 
         return createInitializedSavedObject({ type: 'dashboard', id: 'myId' }).then(
           (savedObject) => {
-            stubSavedObjectsClientCreate({ id: 'myId' } as SimpleSavedObject<
-              SavedObjectAttributes
-            >);
+            stubSavedObjectsClientCreate({
+              id: 'myId',
+            } as SimpleSavedObject<SavedObjectAttributes>);
 
             return savedObject.save({ confirmOverwrite: false }).then(() => {
               expect(startMock.overlays.openModal).not.toHaveBeenCalled();

@@ -1,5 +1,16 @@
 /* eslint-disable @osd/eslint/require-license-header */
 
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
+ */
+
 /**
  * This module is based on @babel/register @ 9808d25, modified to use
  * a more efficient caching implementation which writes to disk as
@@ -39,7 +50,7 @@ import Crypto from 'crypto';
 
 import * as babel from '@babel/core';
 import { addHook } from 'pirates';
-import { REPO_ROOT } from '@osd/dev-utils';
+import { REPO_ROOT, UPSTREAM_BRANCH } from '@osd/dev-utils';
 import sourceMapSupport from 'source-map-support';
 
 import { Cache } from './cache';
@@ -88,7 +99,7 @@ function determineCachePrefix() {
     tsx: getBabelOptions(Path.resolve(REPO_ROOT, 'foo.tsx')),
   });
 
-  const checksum = Crypto.createHash('sha256').update(json).digest('hex');
+  const checksum = Crypto.createHash('sha256').update(json).digest('hex').slice(0, 8);
   return `${checksum}:`;
 }
 
@@ -131,7 +142,14 @@ export function registerNodeAutoTranspilation() {
   installed = true;
 
   const cache = new Cache({
+    pathRoot: REPO_ROOT,
+    dir: Path.resolve(REPO_ROOT, 'data/node_auto_transpilation_cache_v1', UPSTREAM_BRANCH),
     prefix: determineCachePrefix(),
+    log: process.env.DEBUG_NODE_TRANSPILER_CACHE
+      ? Fs.createWriteStream(Path.resolve(REPO_ROOT, 'node_auto_transpilation_cache.log'), {
+          flags: 'a',
+        })
+      : undefined,
   });
 
   sourceMapSupport.install({

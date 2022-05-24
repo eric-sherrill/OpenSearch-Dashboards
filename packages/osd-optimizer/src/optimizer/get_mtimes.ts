@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,18 +28,13 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import Fs from 'fs';
 
 import * as Rx from 'rxjs';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { allValuesFrom } from '../common';
 
-const stat$ = Rx.bindNodeCallback(Fs.stat);
+const stat$ = Rx.bindNodeCallback<Fs.PathLike, Fs.Stats>(Fs.stat);
 
 /**
  * get mtimes of referenced paths concurrently, limit concurrency to 100

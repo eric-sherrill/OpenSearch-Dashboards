@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,18 +28,13 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import { visWithSplits } from '../../vis_with_splits';
 import { createTickFormatter } from '../../lib/tick_formatter';
 import _, { get, isUndefined, assign, includes, pick } from 'lodash';
 import { Metric } from '../../../visualizations/views/metric';
-import { getLastValue } from '../../../../../../../plugins/vis_type_timeseries/common/get_last_value';
+import { getLastValue } from '../../../../../common/get_last_value';
 import { isBackgroundInverted } from '../../../lib/set_is_reversed';
 
 function getColors(props) {

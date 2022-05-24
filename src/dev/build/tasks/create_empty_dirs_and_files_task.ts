@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -31,6 +34,10 @@ export const CreateEmptyDirsAndFiles: Task = {
   description: 'Creating some empty directories and files to prevent file-permission issues',
 
   async run(config, log, build) {
-    await Promise.all([mkdirp(build.resolvePath('plugins')), mkdirp(build.resolvePath('data'))]);
+    await Promise.all([
+      mkdirp(build.resolvePath('plugins')),
+      mkdirp(build.resolvePath('data')),
+      mkdirp(build.resolvePath('assets')),
+    ]);
   },
 };
