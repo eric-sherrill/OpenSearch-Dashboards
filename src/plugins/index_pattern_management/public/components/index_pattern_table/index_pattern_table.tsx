@@ -49,7 +49,7 @@ import { i18n } from '@osd/i18n';
 import {
   reactRouterNavigate,
   useOpenSearchDashboards,
-} from '../../../../../plugins/opensearch_dashboards_react/public';
+} from '../../../../opensearch_dashboards_react/public';
 import { IndexPatternManagmentContext } from '../../types';
 import { CreateButton } from '../create_button';
 import { IndexPatternTableItem, IndexPatternCreationOption } from '../types';
@@ -227,7 +227,7 @@ export const IndexPatternTable = ({ canSave, history }: Props) => {
         <EmptyIndexPatternPrompt
           canSave={canSave}
           creationOptions={creationOptions}
-          docLinksIndexPatternIntro={docLinks.links.indexPatterns.introduction}
+          docLinksIndexPatternIntro={docLinks.links.noDocumentation.indexPatterns.introduction}
           setBreadcrumbs={setBreadcrumbs}
         />
       );

@@ -50,7 +50,7 @@ import {
   UI_SETTINGS,
   DataPublicPluginStart,
 } from '../../../../../../plugins/data/public';
-import { useOpenSearchDashboards } from '../../../../../../plugins/opensearch_dashboards_react/public';
+import { useOpenSearchDashboards } from '../../../../../opensearch_dashboards_react/public';
 import { IndexPatternManagmentContext } from '../../../types';
 import { createEditIndexPatternPageStateContainer } from '../edit_index_pattern_state_container';
 import { TAB_INDEXED_FIELDS, TAB_SCRIPTED_FIELDS, TAB_SOURCE_FILTERS } from '../constants';
@@ -215,7 +215,7 @@ export function Tabs({ indexPattern, saveIndexPattern, fields, history, location
                   },
                 }}
                 onRemoveField={refreshFilters}
-                painlessDocLink={docLinks.links.scriptedFields.painless}
+                painlessDocLink={docLinks.links.noDocumentation.scriptedFields.painless}
               />
             </Fragment>
           );
@@ -237,7 +237,7 @@ export function Tabs({ indexPattern, saveIndexPattern, fields, history, location
       }
     },
     [
-      docLinks.links.scriptedFields.painless,
+      docLinks.links.noDocumentation.scriptedFields.painless,
       fieldFilter,
       fieldWildcardMatcherDecorated,
       fields,
