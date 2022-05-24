@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import 'jest-canvas-mock';
 
 import { TagCloudVisualization } from './tag_cloud_visualization';
@@ -37,10 +35,9 @@ import { setFormatService } from '../services';
 import { dataPluginMock } from '../../../data/public/mocks';
 import { setHTMLElementOffset, setSVGElementGetBBox } from '../../../../test_utils/public';
 
-const describeif = process.env.SKIP_BAD_APPLES === 'true' ? describe.skip : describe;
 const seedColors = ['#00a69b', '#57c17b', '#6f87d8', '#663db8', '#bc52bc', '#9e3533', '#daa05d'];
 
-describeif('TagCloudVisualizationTest', () => {
+describe('TagCloudVisualizationTest', () => {
   let domNode;
   let visParams;
   let SVGElementGetBBoxSpyInstance;

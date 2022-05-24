@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { AggConfigs, IAggConfigs } from '../agg_configs';
@@ -88,5 +86,42 @@ describe('AggTypeMetricMedianProvider class', () => {
         },
       })
     ).toEqual(10);
+  });
+
+  it('supports scripted fields', () => {
+    const typesRegistry = mockAggTypesRegistry();
+    const field = {
+      name: 'bytes',
+      scripted: true,
+      language: 'painless',
+      script: 'return 456',
+    };
+    const indexPattern = {
+      id: '1234',
+      title: 'logstash-*',
+      fields: {
+        getByName: () => field,
+        filter: () => [field],
+      },
+    } as any;
+
+    aggConfigs = new AggConfigs(
+      indexPattern,
+      [
+        {
+          id: METRIC_TYPES.MEDIAN,
+          type: METRIC_TYPES.MEDIAN,
+          schema: 'metric',
+          params: {
+            field: 'bytes',
+          },
+        },
+      ],
+      {
+        typesRegistry,
+      }
+    );
+
+    expect(aggConfigs.toDsl()).toMatchSnapshot();
   });
 });

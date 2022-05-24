@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { get } from 'lodash';
 import { i18n } from '@osd/i18n';
 import {
@@ -40,6 +38,7 @@ import {
 
 // @ts-ignore
 import { metricsRequestHandler } from './request_handler';
+import { VisRenderValue } from '../../visualizations/public';
 
 type Input = OpenSearchDashboardsContext | null;
 type Output = Promise<Render<RenderValue>>;
@@ -52,7 +51,7 @@ interface Arguments {
 
 type VisParams = Required<Arguments>;
 
-interface RenderValue {
+interface RenderValue extends VisRenderValue {
   visType: 'metrics';
   visData: Input;
   visConfig: VisParams;

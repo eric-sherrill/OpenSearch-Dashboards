@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -204,11 +207,12 @@ export const CleanEmptyFolders: Task = {
 
   async run(config, log, build) {
     // Delete every single empty folder from
-    // the distributable except the plugins
-    // and data folder.
+    // the distributable except the plugins,
+    // data, and assets folder.
     await deleteEmptyFolders(log, build.resolvePath('.'), [
       build.resolvePath('plugins'),
       build.resolvePath('data'),
+      build.resolvePath('assets'),
     ]);
   },
 };

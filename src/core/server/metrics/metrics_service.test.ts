@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,12 +28,8 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import moment from 'moment';
+import { setImmediate } from 'timers';
 
 import { configServiceMock } from '../config/mocks';
 import { mockOpsCollector } from './metrics_service.test.mocks';
@@ -48,7 +47,8 @@ describe('MetricsService', () => {
   let metricsService: MetricsService;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    jest.useFakeTimers('legacy');
+    setImmediate(() => {});
 
     const configService = configServiceMock.create({
       atPath: { interval: moment.duration(testInterval) },

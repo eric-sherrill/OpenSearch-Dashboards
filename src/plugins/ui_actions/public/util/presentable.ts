@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
+import { EuiIconType } from '@elastic/eui/src/components/icon/icon';
 import { UiComponent } from 'src/plugins/opensearch_dashboards_utils/public';
 
 /**
@@ -56,7 +55,7 @@ export interface Presentable<Context extends object = object> {
   /**
    * Optional EUI icon type that can be displayed along with the title.
    */
-  getIconType(context: Context): string | undefined;
+  getIconType(context: Context): EuiIconType | undefined;
 
   /**
    * Returns a title to be displayed to the user.

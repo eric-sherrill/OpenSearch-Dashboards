@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import expect from '@osd/expect/expect.js';
@@ -110,10 +108,12 @@ export function VisualizeEditorPageProvider({ getService, getPageObjects }: FtrP
     }
 
     public async clickSplitDirection(direction: string) {
+      // The radio input cannot be clicked directly because it is not interactable
       const radioBtn = await find.byCssSelector(
-        `[data-test-subj="visEditorSplitBy"][title="${direction}"]`
+        `[data-test-subj="visEditorSplitBy"] [title="${direction}"] input`
       );
-      await radioBtn.click();
+      const label = await radioBtn.findByXpath('.//ancestor::label');
+      await label.click();
     }
 
     public async clickAddDateRange() {
@@ -347,10 +347,7 @@ export function VisualizeEditorPageProvider({ getService, getPageObjects }: FtrP
     }
 
     public async toggleAutoMode() {
-      // this is a temporary solution, should be replaced with initial after fixing the EuiToggleButton
-      // passing the data-test-subj attribute to a checkbox
-      await find.clickByCssSelector('.visEditorSidebar__controls input[type="checkbox"]');
-      // await testSubjects.click('visualizeEditorAutoButton');
+      await testSubjects.click('visualizeEditorAutoButton');
     }
 
     public async isApplyEnabled() {

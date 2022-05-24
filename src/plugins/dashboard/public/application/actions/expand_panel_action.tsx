@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
+import { EuiIconType } from '@elastic/eui/src/components/icon/icon';
 import { i18n } from '@osd/i18n';
 import { IEmbeddable } from '../../embeddable_plugin';
 import { ActionByType, IncompatibleActionError } from '../../ui_actions_plugin';
@@ -74,7 +73,7 @@ export class ExpandPanelAction implements ActionByType<typeof ACTION_EXPAND_PANE
         });
   }
 
-  public getIconType({ embeddable }: ExpandPanelActionContext) {
+  public getIconType({ embeddable }: ExpandPanelActionContext): EuiIconType {
     if (!embeddable.parent || !isDashboard(embeddable.parent)) {
       throw new IncompatibleActionError();
     }

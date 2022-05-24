@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { Container, isErrorEmbeddable } from '../../../..';
@@ -77,7 +75,7 @@ beforeEach(async () => {
   }
 });
 
-test('Updates the embeddable title when given', async (done) => {
+test('Updates the embeddable title when given', async () => {
   const getUserData = () => Promise.resolve({ title: 'What is up?' });
   const customizePanelAction = new CustomizePanelTitleAction(getUserData);
   expect(embeddable.getInput().title).toBeUndefined();
@@ -94,7 +92,6 @@ test('Updates the embeddable title when given', async (done) => {
     if (containerClone.getOutput().embeddableLoaded[embeddable.id]) {
       expect(embeddable.getInput().title).toBe('What is up?');
       subscription.unsubscribe();
-      done();
     }
   });
 });

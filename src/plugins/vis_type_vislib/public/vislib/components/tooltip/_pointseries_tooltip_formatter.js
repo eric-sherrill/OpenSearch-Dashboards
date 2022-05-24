@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
@@ -40,7 +38,7 @@ export function pointSeriesTooltipFormatter() {
     const details = [];
 
     const currentSeries =
-      data.series && data.series.find((serie) => serie.rawId === datum.seriesId);
+      data.series && data.series.find((series) => series.rawId === datum.seriesId);
     const addDetail = (label, value) => details.push({ label, value });
 
     if (datum.extraMetrics) {
@@ -55,7 +53,15 @@ export function pointSeriesTooltipFormatter() {
 
     if (datum.y !== null && datum.y !== undefined) {
       const value = datum.yScale ? datum.yScale * datum.y : datum.y;
-      addDetail(currentSeries.label, currentSeries.yAxisFormatter(value));
+      let label = currentSeries.label;
+
+      // For stacked charts the y axis data is only available in the raw table
+      const tableColumns = datum?.yRaw?.table?.columns;
+      if (tableColumns && tableColumns.length > 2) {
+        const yColumn = datum.yRaw.column ? tableColumns[datum.yRaw.column] : {};
+        label = yColumn.name || label;
+      }
+      addDetail(label, currentSeries.yAxisFormatter(value));
     }
 
     if (datum.z !== null && datum.z !== undefined) {

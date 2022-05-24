@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,13 +28,9 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 export const mockReadFileSync = jest.fn();
-jest.mock('fs', () => ({ readFileSync: mockReadFileSync }));
+export const mockRead = jest.fn();
+jest.mock('fs', () => ({ readFileSync: mockReadFileSync, read: mockRead }));
 
 export const mockReadPkcs12Keystore = jest.fn();
 export const mockReadPkcs12Truststore = jest.fn();

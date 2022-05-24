@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import * as Rx from 'rxjs';
@@ -108,7 +106,7 @@ export class ExpressionRenderHandler {
     };
   }
 
-  render = async (data: any, uiState: any = {}) => {
+  render = async (data: any, uiState?: any) => {
     if (!data || typeof data !== 'object') {
       return this.handleRenderError(new Error('invalid data provided to the expression renderer'));
     }
@@ -134,9 +132,9 @@ export class ExpressionRenderHandler {
         .render(this.element, data.value, {
           ...this.handlers,
           uiState,
-        } as any);
+        });
     } catch (e) {
-      return this.handleRenderError(e);
+      return this.handleRenderError(e as Error);
     }
   };
 

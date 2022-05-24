@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /**
@@ -141,7 +139,4 @@ export const TEMPORARILY_IGNORED_PATHS = [
   'src/core/server/core_app/assets/favicons/mstile-310x310.png',
   'src/core/server/core_app/assets/favicons/safari-pinned-tab.svg',
   'test/functional/apps/management/exports/_import_objects-conflicts.json',
-  'packages/osd-ui-framework/doc_site/src/images/elastic-logo.svg',
-  'packages/osd-ui-framework/doc_site/src/images/hint-arrow.svg',
-  'packages/osd-ui-framework/doc_site/src/images/react-logo.svg',
 ];

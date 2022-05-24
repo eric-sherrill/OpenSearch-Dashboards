@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import {
   OpenSearchDashboardsMigratorMock,
   migratorInstanceMock,
@@ -38,7 +36,7 @@ import {
 } from './saved_objects_service.test.mocks';
 import { BehaviorSubject } from 'rxjs';
 import { ByteSizeValue } from '@osd/config-schema';
-import { errors as opensearchErrors } from '@elastic/elasticsearch';
+import { errors as opensearchErrors } from '@opensearch-project/opensearch';
 
 import { SavedObjectsService } from './saved_objects_service';
 import { mockCoreContext } from '../core_context.mock';
@@ -214,7 +212,7 @@ describe('SavedObjectsService', () => {
       expect(migratorInstanceMock.runMigrations).not.toHaveBeenCalled();
     });
 
-    it('waits for all opensearch nodes to be compatible before running migrations', async (done) => {
+    it('waits for all opensearch nodes to be compatible before running migrations', (done) => {
       expect.assertions(2);
       const coreContext = createCoreContext({ skipMigration: false });
       const soService = new SavedObjectsService(coreContext);
@@ -227,20 +225,21 @@ describe('SavedObjectsService', () => {
         warningNodes: [],
         opensearchDashboardsVersion: '8.0.0',
       });
-      await soService.setup(setupDeps);
-      soService.start(createStartDeps());
-      expect(migratorInstanceMock.runMigrations).toHaveBeenCalledTimes(0);
-      ((setupDeps.opensearch.opensearchNodesCompatibility$ as any) as BehaviorSubject<
-        NodesVersionCompatibility
-      >).next({
-        isCompatible: true,
-        incompatibleNodes: [],
-        warningNodes: [],
-        opensearchDashboardsVersion: '8.0.0',
-      });
-      setImmediate(() => {
-        expect(migratorInstanceMock.runMigrations).toHaveBeenCalledTimes(1);
-        done();
+      soService.setup(setupDeps).then(() => {
+        soService.start(createStartDeps());
+        expect(migratorInstanceMock.runMigrations).toHaveBeenCalledTimes(0);
+        ((setupDeps.opensearch.opensearchNodesCompatibility$ as any) as BehaviorSubject<
+          NodesVersionCompatibility
+        >).next({
+          isCompatible: true,
+          incompatibleNodes: [],
+          warningNodes: [],
+          opensearchDashboardsVersion: '8.0.0',
+        });
+        setImmediate(() => {
+          expect(migratorInstanceMock.runMigrations).toHaveBeenCalledTimes(1);
+          done();
+        });
       });
     });
 

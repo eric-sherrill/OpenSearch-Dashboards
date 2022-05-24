@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -133,7 +131,7 @@ describe('ServerMetricsCollector', () => {
     expect(metrics.requests).toEqual(
       expect.objectContaining({
         total: 3,
-        disconnects: 1,
+        disconnects: 0,
       })
     );
 
@@ -144,7 +142,7 @@ describe('ServerMetricsCollector', () => {
     expect(metrics.requests).toEqual(
       expect.objectContaining({
         total: 3,
-        disconnects: 2,
+        disconnects: 0,
       })
     );
   });

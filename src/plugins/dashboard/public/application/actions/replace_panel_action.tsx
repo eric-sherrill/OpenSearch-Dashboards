@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,13 +28,9 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { i18n } from '@osd/i18n';
 import { CoreStart } from 'src/core/public';
+import { EuiIconType } from '@elastic/eui/src/components/icon/icon';
 import { IEmbeddable, ViewMode, EmbeddableStart } from '../../embeddable_plugin';
 import { DASHBOARD_CONTAINER_TYPE, DashboardContainer } from '../embeddable';
 import { ActionByType, IncompatibleActionError } from '../../ui_actions_plugin';
@@ -68,11 +67,11 @@ export class ReplacePanelAction implements ActionByType<typeof ACTION_REPLACE_PA
     });
   }
 
-  public getIconType({ embeddable }: ReplacePanelActionContext) {
+  public getIconType({ embeddable }: ReplacePanelActionContext): EuiIconType {
     if (!embeddable.parent || !isDashboard(embeddable.parent)) {
       throw new IncompatibleActionError();
     }
-    return 'dqlOperand';
+    return 'kqlOperand';
   }
 
   public async isCompatible({ embeddable }: ReplacePanelActionContext) {

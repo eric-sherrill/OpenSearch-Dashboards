@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import React from 'react';
@@ -83,7 +81,11 @@ describe('ImportSummary', () => {
     const wrapper = shallowWithI18nProvider(<ImportSummary {...props} />);
 
     expect(findHeader(wrapper).childAt(0).props()).toEqual(
-      expect.not.objectContaining({ values: expect.anything() }) // no importCount for singular
+      expect.objectContaining({
+        defaultMessage: expect.any(String),
+        id: expect.any(String),
+        values: new Object(),
+      })
     );
     const countCreated = findCountCreated(wrapper);
     expect(countCreated).toHaveLength(1);
@@ -103,7 +105,7 @@ describe('ImportSummary', () => {
     const wrapper = shallowWithI18nProvider(<ImportSummary {...props} />);
 
     expect(findHeader(wrapper).childAt(0).props()).toEqual(
-      expect.not.objectContaining({ values: expect.anything() }) // no importCount for singular
+      expect.objectContaining({ values: new Object() }) // no importCount for singular
     );
     expect(findCountCreated(wrapper)).toHaveLength(0);
     const countOverwritten = findCountOverwritten(wrapper);
@@ -123,7 +125,7 @@ describe('ImportSummary', () => {
     const wrapper = shallowWithI18nProvider(<ImportSummary {...props} />);
 
     expect(findHeader(wrapper).childAt(0).props()).toEqual(
-      expect.not.objectContaining({ values: expect.anything() }) // no importCount for singular
+      expect.objectContaining({ values: new Object() }) // no importCount for singular
     );
     expect(findCountCreated(wrapper)).toHaveLength(0);
     expect(findCountOverwritten(wrapper)).toHaveLength(0);

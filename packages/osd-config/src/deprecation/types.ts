@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /**
@@ -116,6 +114,35 @@ export interface ConfigDeprecationFactory {
    * ```
    */
   renameFromRoot(oldKey: string, newKey: string, silent?: boolean): ConfigDeprecation;
+  /**
+   * Rename a configuration property from inside a plugin's configuration path.
+   * Will log a deprecation warning if the oldKey was found and deprecation applied.
+   *
+   * @example
+   * Rename 'myplugin.oldKey' to 'myplugin.newKey'
+   * ```typescript
+   * const provider: ConfigDeprecationProvider = ({ rename }) => [
+   *   rename('oldKey', 'newKey'),
+   * ]
+   * ```
+   */
+  renameWithoutMap(oldKey: string, newKey: string): ConfigDeprecation;
+  /**
+   * Rename a configuration property from the root configuration.
+   * Will log a deprecation warning if the oldKey was found and deprecation applied.
+   *
+   * This should be only used when renaming properties from different configuration's path.
+   * To rename properties from inside a plugin's configuration, use 'rename' instead.
+   *
+   * @example
+   * Rename 'oldplugin.key' to 'newplugin.key'
+   * ```typescript
+   * const provider: ConfigDeprecationProvider = ({ renameFromRoot }) => [
+   *   renameFromRoot('oldplugin.key', 'newplugin.key'),
+   * ]
+   * ```
+   */
+  renameFromRootWithoutMap(oldKey: string, newKey: string, silent?: boolean): ConfigDeprecation;
   /**
    * Remove a configuration property from inside a plugin's configuration path.
    * Will log a deprecation warning if the unused key was found and deprecation applied.

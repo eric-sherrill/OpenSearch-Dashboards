@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,14 +28,11 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
 import { i18n } from '@osd/i18n';
 import { Action, ActionExecutionContext } from 'src/plugins/ui_actions/public';
 import { NotificationsStart, OverlayStart } from 'src/core/public';
 import { EmbeddableStart } from 'src/plugins/embeddable/public/plugin';
+import { EuiIconType } from '@elastic/eui/src/components/icon/icon';
 import { ViewMode } from '../../../../types';
 import { openAddPanelFlyout } from './open_add_panel_flyout';
 import { IContainer } from '../../../../containers';
@@ -61,7 +61,7 @@ export class AddPanelAction implements Action<ActionContext> {
     });
   }
 
-  public getIconType() {
+  public getIconType(): EuiIconType {
     return 'plusInCircleFilled';
   }
 

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,16 +28,12 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { findTestSubject } from '@elastic/eui/lib/test';
 import React from 'react';
 import { skip } from 'rxjs/operators';
 import { mount } from 'enzyme';
 import { I18nProvider } from '@osd/i18n/react';
+import sizeMe from 'react-sizeme';
 import { nextTick } from 'test_utils/enzyme_helpers';
 import { DashboardViewport, DashboardViewportProps } from './dashboard_viewport';
 import { DashboardContainer, DashboardContainerOptions } from '../dashboard_container';
@@ -46,6 +45,8 @@ import {
 import { OpenSearchDashboardsContextProvider } from '../../../../../opensearch_dashboards_react/public';
 import { embeddablePluginMock } from 'src/plugins/embeddable/public/mocks';
 import { applicationServiceMock } from '../../../../../../core/public/mocks';
+
+sizeMe.noPlaceholders = true;
 
 let dashboardContainer: DashboardContainer | undefined;
 
@@ -211,7 +212,7 @@ test('renders exit full screen button when in full screen mode and empty screen'
   component.unmount();
 });
 
-test('DashboardViewport unmount unsubscribes', async (done) => {
+test('DashboardViewport unmount unsubscribes', (done) => {
   const { props, options } = getProps();
   const component = mount(
     <I18nProvider>

@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { act, renderHook } from '@testing-library/react-hooks';
 import { EventEmitter } from 'events';
 import { Observable } from 'rxjs';
@@ -40,13 +38,11 @@ import { visualizeAppStateStub } from '../stubs';
 import { VisualizeConstants } from '../../visualize_constants';
 import { createVisualizeServicesMock } from '../mocks';
 
-const describeif = process.env.SKIP_BAD_APPLES === 'true' ? describe.skip : describe;
-
 jest.mock('../utils');
 jest.mock('../create_visualize_app_state');
 jest.mock('../../../../../data/public');
 
-describeif('useVisualizeAppState', () => {
+describe('useVisualizeAppState', () => {
   const { visStateToEditorState } = jest.requireMock('../utils');
   const { createVisualizeAppState } = jest.requireMock('../create_visualize_app_state');
   const { connectToQueryState } = jest.requireMock('../../../../../data/public');

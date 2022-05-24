@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { has, get } from 'lodash';
@@ -129,6 +127,7 @@ const mapManifestServiceUrlDeprecation: ConfigDeprecation = (settings, fromPath,
 export const coreDeprecationProvider: ConfigDeprecationProvider = ({
   unusedFromRoot,
   renameFromRoot,
+  renameFromRootWithoutMap,
 }) => [
   unusedFromRoot('savedObjects.indexCheckTimeout'),
   unusedFromRoot('server.xsrf.token'),
@@ -156,6 +155,11 @@ export const coreDeprecationProvider: ConfigDeprecationProvider = ({
   renameFromRoot('cpuacct.cgroup.path.override', 'ops.cGroupOverrides.cpuAcctPath'),
   unusedFromRoot('opensearch.preserveHost'),
   unusedFromRoot('opensearch.startupTimeout'),
+  renameFromRootWithoutMap('server.xsrf.whitelist', 'server.xsrf.allowlist'),
+  renameFromRootWithoutMap(
+    'server.compression.referrerWhitelist',
+    'server.compression.referrerAllowlist'
+  ),
   configPathDeprecation,
   dataPathDeprecation,
   rewriteBasePathDeprecation,

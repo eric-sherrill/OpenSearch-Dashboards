@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { map, last } from 'lodash';
@@ -233,7 +231,7 @@ describe('IndexPattern', () => {
       expect(indexPattern.toSpec()).toMatchSnapshot();
     });
 
-    test('can restore from spec', async () => {
+    test('can restore from spec', () => {
       const formatter = {
         toJSON: () => ({ id: 'number', params: { pattern: '$0,0.[00]' } }),
       } as FieldFormat;

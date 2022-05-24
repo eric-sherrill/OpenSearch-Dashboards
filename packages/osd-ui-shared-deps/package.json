@@ -9,14 +9,14 @@
     "osd:watch": "node scripts/build --dev --watch"
   },
   "dependencies": {
-    "@elastic/charts": "23.2.2",
-    "@elastic/eui": "29.3.2",
+    "@elastic/charts": "31.1.0",
+    "@elastic/eui": "34.6.0",
     "@elastic/numeral": "^2.5.0",
     "@osd/i18n": "1.0.0",
     "@osd/monaco": "1.0.0",
     "abortcontroller-polyfill": "^1.4.0",
-    "angular": "^1.8.0",
-    "axios": "^0.21.4",
+    "angular": "^1.8.2",
+    "axios": "^0.27.2",
     "compression-webpack-plugin": "^4.0.0",
     "core-js": "^3.6.5",
     "custom-event-polyfill": "^0.3.0",

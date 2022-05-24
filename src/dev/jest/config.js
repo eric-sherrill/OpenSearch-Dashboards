@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { RESERVED_DIR_JEST_INTEGRATION_TESTS } from '../constants';
@@ -50,16 +48,6 @@ export default {
     '<rootDir>/packages',
     '<rootDir>/src/test_utils',
     '<rootDir>/test/functional/services/remote',
-  ],
-  collectCoverageFrom: [
-    'src/plugins/**/*.{ts,tsx}',
-    '!src/plugins/**/*.d.ts',
-    'packages/osd-ui-framework/src/components/**/*.js',
-    '!packages/osd-ui-framework/src/components/index.js',
-    '!packages/osd-ui-framework/src/components/**/*/index.js',
-    'packages/osd-ui-framework/src/services/**/*.js',
-    '!packages/osd-ui-framework/src/services/index.js',
-    '!packages/osd-ui-framework/src/services/**/*/index.js',
   ],
   moduleNameMapper: {
     '@elastic/eui$': '<rootDir>/node_modules/@elastic/eui/test-env',
@@ -84,7 +72,8 @@ export default {
     '<rootDir>/src/dev/jest/setup/react_testing_library.js',
   ],
   coverageDirectory: '<rootDir>/target/opensearch-dashboards-coverage/jest',
-  coverageReporters: ['html', 'text', 'text-summary'],
+  coveragePathIgnorePatterns: ['/node_modules/', '.*\\.d\\.ts'],
+  coverageReporters: ['lcov', 'text-summary'],
   moduleFileExtensions: ['js', 'mjs', 'json', 'ts', 'tsx', 'node'],
   modulePathIgnorePatterns: [
     '__fixtures__/',
@@ -92,13 +81,15 @@ export default {
     '<rootDir>/src/plugins/maps_legacy',
     '<rootDir>/src/plugins/region_map',
   ],
-  testEnvironment: 'jest-environment-jsdom-thirteen',
+  testEnvironment: 'jest-environment-jsdom',
   testMatch: ['**/*.test.{js,mjs,ts,tsx}'],
   testPathIgnorePatterns: [
-    '<rootDir>/packages/osd-ui-framework/(dist|doc_site)/',
+    '<rootDir>/packages/osd-ui-framework/(dist)/',
     '<rootDir>/packages/osd-pm/dist/',
     `${RESERVED_DIR_JEST_INTEGRATION_TESTS}/`,
   ],
+  // angular is not compatible with the default circus runner
+  testRunner: 'jest-jasmine2',
   transform: {
     '^.+\\.(js|tsx?)$': '<rootDir>/src/dev/jest/babel_transform.js',
     '^.+\\.txt?$': 'jest-raw-loader',

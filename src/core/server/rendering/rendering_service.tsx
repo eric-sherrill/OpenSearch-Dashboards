@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,15 +28,11 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { first, take } from 'rxjs/operators';
 import { i18n } from '@osd/i18n';
+import { Agent as HttpsAgent } from 'https';
 
 import Axios from 'axios';
 // @ts-expect-error untyped internal module used to prevent axios from using xhr adapter in tests
@@ -50,6 +49,8 @@ import {
   BrandingAssignment,
 } from './types';
 import { OpenSearchDashboardsConfigType } from '../opensearch_dashboards_config';
+import { HttpConfigType } from '../http/http_config';
+import { SslConfig } from '../http/ssl_config';
 
 const DEFAULT_TITLE = 'OpenSearch Dashboards';
 
@@ -57,15 +58,22 @@ const DEFAULT_TITLE = 'OpenSearch Dashboards';
 export class RenderingService {
   constructor(private readonly coreContext: CoreContext) {}
   private logger = this.coreContext.logger;
+  private httpsAgent?: HttpsAgent;
+
   public async setup({
     http,
     status,
     uiPlugins,
   }: RenderingSetupDeps): Promise<InternalRenderingServiceSetup> {
-    const opensearchDashboardsConfig = await this.coreContext.configService
-      .atPath<OpenSearchDashboardsConfigType>('opensearchDashboards')
-      .pipe(first())
-      .toPromise();
+    const [opensearchDashboardsConfig, serverConfig] = await Promise.all([
+      this.coreContext.configService
+        .atPath<OpenSearchDashboardsConfigType>('opensearchDashboards')
+        .pipe(first())
+        .toPromise(),
+      this.coreContext.configService.atPath<HttpConfigType>('server').pipe(first()).toPromise(),
+    ]);
+
+    this.setupHttpAgent(serverConfig as HttpConfigType);
 
     return {
       render: async (
@@ -87,9 +95,10 @@ export class RenderingService {
         const darkMode = settings.user?.['theme:darkMode']?.userValue
           ? Boolean(settings.user['theme:darkMode'].userValue)
           : false;
+
         const brandingAssignment = await this.assignBrandingConfig(
           darkMode,
-          opensearchDashboardsConfig
+          opensearchDashboardsConfig as OpenSearchDashboardsConfigType
         );
 
         const metadata: RenderingMetadata = {
@@ -149,6 +158,29 @@ export class RenderingService {
   }
 
   public async stop() {}
+
+  /**
+   * Setups HTTP Agent if SSL is enabled to pass SSL config
+   * values to Axios to make requests in while validating
+   * resources.
+   *
+   * @param {Readonly<HttpConfigType>} httpConfig
+   */
+  private setupHttpAgent(httpConfig: Readonly<HttpConfigType>) {
+    if (!httpConfig.ssl?.enabled) return;
+    try {
+      const sslConfig = new SslConfig(httpConfig.ssl);
+      this.httpsAgent = new HttpsAgent({
+        ca: sslConfig.certificateAuthorities,
+        cert: sslConfig.certificate,
+        key: sslConfig.key,
+        passphrase: sslConfig.keyPassphrase,
+        rejectUnauthorized: false,
+      });
+    } catch (e) {
+      this.logger.get('branding').error('HTTP agent failed to setup for SSL.');
+    }
+  }
 
   /**
    * Assign values for branding related configurations based on branding validation
@@ -322,7 +354,11 @@ export class RenderingService {
       this.logger.get('branding').error(`${configName} config is invalid. Using default branding.`);
       return false;
     }
-    return await Axios.get(url, { adapter: AxiosHttpAdapter, maxRedirects: 0 })
+    return await Axios.get(url, {
+      httpsAgent: this.httpsAgent,
+      adapter: AxiosHttpAdapter,
+      maxRedirects: 0,
+    })
       .then(() => {
         return true;
       })

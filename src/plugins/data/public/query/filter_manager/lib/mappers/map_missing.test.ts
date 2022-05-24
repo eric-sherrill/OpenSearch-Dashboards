@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { mapMissing } from './map_missing';
 import { MissingFilter, buildEmptyFilter } from '../../../../../common';
 
@@ -46,7 +44,7 @@ describe('filter manager utilities', () => {
       expect(result).toHaveProperty('value', 'missing');
     });
 
-    test('should return undefined for none matching', async (done) => {
+    test('should return undefined for none matching', (done) => {
       const filter = buildEmptyFilter(true);
 
       try {

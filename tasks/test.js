@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import { run } from '../utilities/visual_regression';
@@ -60,7 +58,7 @@ module.exports = function (grunt) {
     grunt.task.run(
       [
         !grunt.option('quick') && 'run:eslint',
-        !grunt.option('quick') && 'run:sasslint',
+        !grunt.option('quick') && 'run:stylelint',
         !grunt.option('quick') && 'run:checkTsProjects',
         !grunt.option('quick') && 'run:checkDocApiChanges',
         !grunt.option('quick') && 'run:typeCheck',

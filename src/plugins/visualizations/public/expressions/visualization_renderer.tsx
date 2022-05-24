@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,23 +28,18 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-// @ts-ignore
+import { ExpressionRenderDefinition } from '../../../expressions/public';
 import { ExprVis } from './vis';
 import { Visualization } from '../components';
-import { VisParams } from '../types';
+import { VisParams, VisRenderValue } from '../types';
 
-export const visualization = () => ({
+export const visualization = (): ExpressionRenderDefinition<VisRenderValue> => ({
   name: 'visualization',
   displayName: 'visualization',
   reuseDomNode: true,
-  render: async (domNode: HTMLElement, config: any, handlers: any) => {
+  render: async (domNode, config, handlers) => {
     const { visData, visConfig, params } = config;
     const visType = config.visType || visConfig.type;
 

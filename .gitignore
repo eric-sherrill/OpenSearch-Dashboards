@@ -14,6 +14,7 @@ trash
 /built_assets
 target
 /build
+/bwc_tmp
 .jruby
 .idea
 *.iml
@@ -38,8 +39,6 @@ selenium
 *.swp
 *.swo
 *.out
-/packages/osd-ui-framework/doc_site/build/*
-!/packages/osd-ui-framework/doc_site/build/index.html
 package-lock.json
 .yo-rc.json
 .vscode

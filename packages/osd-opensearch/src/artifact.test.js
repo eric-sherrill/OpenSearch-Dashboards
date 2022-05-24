@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,11 +28,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 import { ToolingLog } from '@osd/dev-utils';
 jest.mock('node-fetch');
 import fetch from 'node-fetch';
@@ -42,7 +40,7 @@ let MOCKS;
 
 const DAILY_SNAPSHOT_BASE_URL = 'https://artifacts.opensearch.org/snapshots/core/opensearch';
 
-const ORIGINAL_PLATFROM = process.platform;
+const ORIGINAL_PLATFORM = process.platform;
 const ORIGINAL_ARCHITECTURE = process.arch;
 const PLATFORM = process.platform === 'win32' ? 'windows' : process.platform;
 const ARCHITECTURE = process.arch === 'arm64' ? 'arm64' : 'x64';
@@ -157,7 +155,7 @@ describe('Artifact', () => {
       afterAll(() => {
         Object.defineProperties(process, {
           platform: {
-            value: ORIGINAL_PLATFROM,
+            value: ORIGINAL_PLATFORM,
           },
           arch: {
             value: ORIGINAL_ARCHITECTURE,
@@ -182,7 +180,7 @@ describe('Artifact', () => {
       it('should not throw when on a non-x64 arch', async () => {
         Object.defineProperties(process, {
           platform: {
-            value: ORIGINAL_PLATFROM,
+            value: ORIGINAL_PLATFORM,
           },
           arch: {
             value: 'arm64',

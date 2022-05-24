@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -58,6 +61,11 @@ async function setup({ failOnUrl }: { failOnUrl?: string } = {}) {
   const config = await Config.create({
     isRelease: true,
     targetAllPlatforms: true,
+    targetPlatforms: {
+      linux: false,
+      linuxArm: false,
+      darwin: false,
+    },
   });
 
   getNodeDownloadInfo.mockImplementation((_: Config, platform: Platform) => {

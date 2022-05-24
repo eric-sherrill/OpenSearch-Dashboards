@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -25,10 +28,7 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
+import { EuiIconType } from '@elastic/eui/src/components/icon/icon';
 import { CreateManagementItemArgs } from '../types';
 
 export class ManagementItem {
@@ -36,7 +36,7 @@ export class ManagementItem {
   public readonly title: string;
   public readonly tip?: string;
   public readonly order: number;
-  public readonly euiIconType?: string;
+  public readonly euiIconType?: EuiIconType;
   public readonly icon?: string;
 
   public enabled: boolean = true;

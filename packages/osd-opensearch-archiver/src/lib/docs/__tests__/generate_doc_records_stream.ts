@@ -4,6 +4,9 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
+ *
+ * Any modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -23,11 +26,6 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 import sinon from 'sinon';
@@ -137,7 +135,9 @@ describe('opensearchArchiver: createGenerateDocRecordsStream()', () => {
         type: 'doc',
         value: {
           index: '.opensearch_dashboards_1',
-          type: undefined,
+          // TODO: verify no BWC issues here
+          // Removed: https://github.com/opensearch-project/OpenSearch/pull/2239
+          // type: undefined,
           id: 1,
           source: undefined,
         },
@@ -146,7 +146,9 @@ describe('opensearchArchiver: createGenerateDocRecordsStream()', () => {
         type: 'doc',
         value: {
           index: 'foo',
-          type: undefined,
+          // TODO: verify no BWC issues here
+          // Removed: https://github.com/opensearch-project/OpenSearch/pull/2239
+          // type: undefined,
           id: 2,
           source: undefined,
         },
