@@ -148,7 +148,7 @@
     "angular-sanitize": "^1.8.0",
     "bluebird": "3.5.5",
     "chalk": "^4.1.0",
-    "chokidar": "^3.4.2",
+    "chokidar": "^4.0.0",
     "color": "1.0.3",
     "commander": "^3.0.2",
     "core-js": "^3.6.5",
