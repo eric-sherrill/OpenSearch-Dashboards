@@ -19,7 +19,7 @@
     "chalk": "^4.1.0",
     "cheerio": "0.22.0",
     "dedent": "^0.7.0",
-    "execa": "^4.0.2",
+    "execa": "^9.6.0",
     "exit-hook": "^2.2.0",
     "getopts": "^2.2.5",
     "globby": "^8.0.1",
