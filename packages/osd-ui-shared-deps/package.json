@@ -9,7 +9,7 @@
     "osd:watch": "node scripts/build --dev --watch"
   },
   "dependencies": {
-    "@elastic/charts": "31.1.0",
+    "@elastic/charts": "46.10.2",
     "@elastic/eui": "34.6.0",
     "@elastic/numeral": "^2.5.0",
     "@osd/i18n": "1.0.0",
