@@ -27,7 +27,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "dedent": "^0.7.0",
-    "del": "^6.0.0",
+    "del": "^8.0.0",
     "exit-hook": "^2.2.0",
     "getopts": "^2.2.5",
     "glob": "^9.0.0",
